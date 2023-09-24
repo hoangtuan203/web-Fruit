@@ -1,0 +1,107 @@
+*{
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    font-family: "Signika", sans-serif;
+    color: #000;
+}
+:root{
+    --background-primary:#fdf8f8;
+    --main-color: #039201;
+    --blackLight:#303337;
+    --blackDark:#212121;;
+    --mattGray: #878d8d;
+}
+.navbar{
+    display: flex;
+    background-color:var(--blackLight); /* Màu nền của navbar */
+    color: #fff; /* Màu chữ trắng */
+    display: flex;
+    justify-content: space-between; /* Canh giữa các phần tử theo chiều ngang */
+    align-items: center; /* Canh giữa các phần tử theo chiều dọc */
+    padding: 10px 0;
+    
+}
+.navbar-title{
+    display: flex;
+}
+.navbar-title p{
+    margin-left: 8px;
+    color: white;
+}
+.admin-img{
+    max-width: 50px;
+    margin: 0 16px;
+}
+.logout-admin{
+    margin-right: 20px; 
+    background-color: var(--main-color); 
+    color: #fff; 
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+.logout-admin:hover {
+    background-color: #cc0000; 
+}
+.menu-left{
+    height: 100%;
+    width: 80px;
+    position: fixed;
+    left: 0;
+    background-color:var(--mattGray) ; 
+    padding-top: 20px; 
+    color: #fff; 
+    overflow-y: auto; 
+    transition: all ease 0.3s;
+    z-index: 1000;
+}
+
+.list-menu{
+    text-align: center;
+    list-style-type: none;
+}
+.list-menu-item{
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.4s ease; 
+}
+.list-menu-item h2{
+    font-size: 30px;
+    text-align: center;
+}
+.list-menu-item:hover{
+    transform: scale(1.1);
+    background-color: #ccc;
+}
+.list-menu-item .text{
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 16px;
+}
+
+.list-menu-item:first-child{
+    margin-top: 16px;
+}
+.list-menu-item svg {
+    width: 30px; 
+    height: 30px;
+}
+.list-menu-item.hide-text .text {
+    display: none;
+}
+/* CONTENT */
+/* SAN PHAM */
+.content{
+    width: 100%;
+    margin-left: 80px;
+    margin-top: 10px; 
+} 
+.header-product h1{
+    text-align: center;
+}
+.new-product .btn{
+    display: flex;
+    justify-content: center;
+}
