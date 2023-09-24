@@ -15,10 +15,3 @@ function ThuSide() {
         item.classList.add('hide-text');
     });
 }
-//ẩn menu khi load lại
-window.addEventListener('load', function() {
-    var menuItems = document.querySelectorAll('.list-menu-item');
-    menuItems.forEach(function(item) {
-        item.classList.add('hide-text');
-    });
-});

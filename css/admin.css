@@ -1,6 +1,6 @@
 *{
     box-sizing: inherit;
-    margin: 0;
+    margin: 0 ;
     padding: 0;
     font-family: "Signika", sans-serif;
     color: #000;
@@ -26,35 +26,31 @@
     display: flex;
 }
 .navbar-title p{
-    margin-left: 8px;
+    margin-left: 100px;
     color: white;
+    font-weight: 800;
 }
 .admin-img{
     max-width: 50px;
     margin: 0 16px;
+
 }
-.logout-admin{
-    margin-right: 20px; 
-    background-color: var(--main-color); 
-    color: #fff; 
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
+.exit{
+    background-color: #878d8d;
+    margin-right: 12px;
 }
-.logout-admin:hover {
-    background-color: #cc0000; 
-}
+
 .menu-left{
     height: 100%;
     width: 80px;
     position: fixed;
-    left: 0;
+    top: 0;
     background-color:var(--mattGray) ; 
     padding-top: 20px; 
     color: #fff; 
     overflow-y: auto; 
     transition: all ease 0.3s;
-    z-index: 1000;
+   
 }
 
 .list-menu{
@@ -62,7 +58,7 @@
     list-style-type: none;
 }
 .list-menu-item{
-    padding: 16px;
+    padding: 24px;
     display: flex;
     align-items: center;
     transition: transform 0.4s ease; 
@@ -96,12 +92,94 @@
 .content{
     width: 100%;
     margin-left: 80px;
-    margin-top: 10px; 
 } 
 .header-product h1{
     text-align: center;
 }
 .new-product .btn{
+    display: block; 
+    margin: 0 auto;
+    background-color: #039201;
+    color: white;
+    cursor: pointer;
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 16px;
+}
+/* Sản phẩm */
+.product{
+}
+.product-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.card{
+    width: 20%;
+    background-color: var(--mattGray);
+    border: 1px solid #858585;
+    border-radius: 8px;
+    margin: 16px;
+}
+.header-title{
+    margin-top: -16px;
+}
+.header-card{
+    
+}
+.card-img{
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card-body{
+
+}
+.title-body{
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    margin:8px 0 8px 0;
+}
+.price{
+    color: white;
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 12px;
+}
+.button-group{
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.btn-edit{
+    background-color: var(--main-color);
+    padding: 8px 16px;
+    border-radius: 16px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+.btn-edit:hover{
+    opacity: 0.5;
+}
+.btn-delete{
+    background-color: red;
+    padding: 8px 32px;
+    border-radius: 16px;
+    cursor: pointer;
+}
+.btn-delete:hover{
+    opacity: 0.7;
+}
+/* page list */
+.page-list{
+    display: flex;
+    justify-content: center;
+}
+
+.page-item {
+    list-style: none;
+    padding: 10px;
 }
