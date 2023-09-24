@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Source Sans Pro;
+    box-sizing: border-box;
+}
+body {
+    background-image: url(../image/anh-nen-login.jpg);
+}
+.singup_modal {
+    width: 460px;
+    height: auto;
+    margin: auto;
+    background-color: #fdf8f8;
+}
+.singup_modal .signup_modal_inner {
+    padding: 30px;
+    border: 1px solid #a5a5a5;
+    border-radius: 10px;
+    margin-top: 100px;
+}
+.singup_modal .signup_modal_inner h1{
+    color: #282a35;
+    font-size: 29px;
+    font-weight: 700;
+}
+.singup_modal .signup_modal_inner .email_input {
+    display: flex;
+    flex-direction: column;
+}
+.singup_modal .signup_modal_inner .email_input .email_input_label {
+    display: flex;
+    margin: 30px 0 0;
+    justify-content: space-between;
+}
+.singup_modal .signup_modal_inner .email_input .email_input_label label {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+}
+.singup_modal .signup_modal_inner .email_input .email_input_label .already_account {
+    font-size: 14px;
+}
+.singup_modal .signup_modal_inner .email_input .email_input_label .lg {
+    margin-left: 5px;
+    color: green;
+    cursor: pointer;
+    font-weight: 600;
+    display: inline-block;
+}
+.singup_modal .signup_modal_inner .email_input .email_input_field {
+    width: 100%;
+}
+.input {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 6px 0;
+    padding: 14px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+.input:focus{
+    box-shadow: 0 0 10px rgba(0, 149, 248, 0.718);
+}
+.singup_modal .signup_modal_inner .password_input {
+    display: flex;
+    flex-direction: column;
+}
+.singup_modal .signup_modal_inner .password_input .password_input_label {
+    display: flex;
+    margin: 30px 0 0;
+    justify-content: space-between;
+}
+.singup_modal .signup_modal_inner .password_input .password_input_label label {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+}
+.singup_modal .signup_modal_inner .password_input .password_input_label .password_input_show {
+    color: #282a35;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+}
+.singup_modal .signup_modal_inner .validation {
+    column-count: 2;
+    display: block;
+    margin: 14px 0 0;
+}
+.singup_modal .signup_modal_inner .validation .validation_form {
+    font-size: 14px;
+}
+.singup_modal .signup_modal_inner .validation .validation_form::marker {
+    color: #039201;
+    font-size: 23px;
+}
+.singup_modal .signup_modal_inner .email_consent_checkbox {
+    margin: 20px 0;
+}
+.singup_modal .signup_modal_inner .email_consent_checkbox input{
+    cursor: pointer;
+}
+.singup_modal .signup_modal_inner .email_consent_checkbox span {
+    cursor: pointer;
+}
+.singup_modal .signup_modal_inner .login_button {
+    text-align: center;
+    margin-top: 20px;
+}
+.forget_password {
+    color: #039201;
+    text-decoration: none;
+    font-size: 14px;
+}
+.singup_modal .signup_modal_inner .login_button .button {
+    border: 0;
+    border-radius: 25px;
+    box-sizing: border-box;
+    display: inline-block;
+    font-family: Source Sans Pro,sans-serif;
+    font-size: 18px;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: 600;
+    height: 50px;
+    letter-spacing: normal;
+    line-height: 1.17;
+    margin: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: #039201;
+    cursor: pointer;
+    color: white;
+}
+.error {
+    color: red;
+    font-size: 14px;
+}
+.input_error {
+    box-shadow: 0 0 10px red;
+}
+.input_error:focus {
+    box-shadow: 0 0 10px red;
+}
+.fulfilled {
+  opacity: 0.3;
+}
+.fulfilled::marker {
+  opacity: 0.3;
+}
