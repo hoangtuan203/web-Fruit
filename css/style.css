@@ -1,9 +1,14 @@
 *{
     margin: 0;
     padding: 0;
+    
 }
 .text-decoration{
     text-decoration: none;
+}
+.header_fixed{
+    /* background-color: #fd7e14; */
+    height: 132px;
 }
 .container{
     max-width: 100%;
@@ -16,18 +21,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-   
-    background-color: #ffffff; /* Màu nền của header */
+
 }
 .header_top{
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    padding-top: 10px;
 }
 
 .header_top-left{
     display: flex;
-    font-size: 10px;
+   
     align-items: center;
     
     
@@ -167,9 +171,48 @@
 .card-product a{
     display: flex;
     justify-content: center;
-    text-decoration: none;
+   
     
 }
+<<<<<<< HEAD
+/* navigation */
+.navigation{
+   background-color: #338ec9;
+}
+.nav-list{
+    display: flex;
+    list-style: none;
+    
+}
+.nav-item{
+    padding: 10px;
+    margin-right: 20px;
+}
+.nav-item a{
+     text-decoration: none;
+     color: black;
+     font-weight: 800;
+     font-size: 16px;
+}
+
+
+
+/* product */
+.grid_row{ 
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.grid_col-2-4{
+    
+    width: 25%;
+}
+
+
+.content{
+    padding-top: 20px;
+}
+=======
 /* carousel*/
 
 
@@ -228,3 +271,4 @@
     transition: all 0.5s;
 }
 /* end carousel */
+>>>>>>> 861b52e8b9b960f1c5937d25b7e9b182d27a3435
