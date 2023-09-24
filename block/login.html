@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="./block.css">
+    <script src="https://kit.fontawesome.com/82758490c7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="singup_modal">
+        <div class="signup_modal_inner">
+            <form action="" class="form_signup" method="POST">
+                <div>
+                    <h1>Đăng nhập</h1>
+                </div>
+                <div>
+                    <div class="email_input">
+                        <div class="email_input_label">
+                            <label for="email_input">Email</label>
+                            <span class="already_account">
+                                Bạn đã chưa có tài khoản?
+                                <span class="lg">Đăng ký</span>
+                            </span>
+                        </div>
+                        <div class="email_input_field">
+                            <input type="text" name="email" value="" class="input" id="email_input">
+                        </div>
+                        <div class="error">
+                            <!--code js show error-->
+                        </div>
+                    </div>
+                    <div class="password_input">
+                        <div class="password_input_label">
+                            <label for="password_input">Mật khẩu</label>
+                            <span class="password_input_show">
+                                <i class="fa-solid fa-eye"></i>
+                                <span id="showPassword">Xem</span>
+                            </span>
+                        </div>
+                        <div class="password_input_field">
+                            <input type="password" name="password" value="" class="input" id="password_input">
+                        </div>
+                    </div>
+                </div>
+                <a href="" class="forget_password">Quên mật khẩu</a>
+                <div class="login_button">
+                    <button class="button" type="submit">
+                        Đăng nhập miễn phí
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../js/main.js"></script>
+</body>
+</html>
