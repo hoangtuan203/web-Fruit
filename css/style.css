@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    max-width: 100%;
+    width: 1200px;
+    margin: 0 auto;
+}
+/* header */
+/* CSS cho phần header_body */
+.header_body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff; /* Màu nền của header */
+}
+
+/* CSS cho logo */
+.header_body img {
+    width: 150px;
+}
+
+/* CSS cho ô tìm kiếm */
+.header_search {
+    flex: 1;
+    margin-left: 20px; /* Khoảng cách giữa logo và ô tìm kiếm */
+}
+
+/* CSS cho ô tìm kiếm input */
+.serch_box input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* CSS cho biểu tượng tìm kiếm */
+.serch_box  {
+    display: flex;
+    align-items: center;
+}
+
+/* CSS cho giỏ hàng */
+.header_cart {
+    display: flex;
+    align-items: center;
+}
+
+/* CSS cho nút "Giỏ hàng" */
+.header_cart a {
+    text-decoration: none;
+    color: #39393A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px; /* Khoảng cách giữa ô tìm kiếm và giỏ hàng */
+}
+
+/* CSS cho biểu tượng giỏ hàng */
+.header_cart a div span {
+    /* display: inline-block; */
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    fill: #39393A; /* Màu cho biểu tượng giỏ hàng */
+}
+.icon_search{
+    position: relative;
+    left: -35px;
+}
+.quantity_cart{
+    /* position: absolute; */
+    top: -10px;
+    right: -10px;
+    background-color: #cb4141;
+    color: #fff;
+    font-size: 9px;
+    padding: 4px 8px;
+    border-radius: 50%;
+}
