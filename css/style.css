@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+.text-decoration{
+    text-decoration: none;
+}
 .container{
     max-width: 100%;
     width: 1200px;
@@ -13,15 +16,45 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+   
     background-color: #ffffff; /* Màu nền của header */
 }
-
-/* CSS cho logo */
-.header_body img {
-    width: 150px;
+.header_top{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
+.header_top-left{
+    display: flex;
+    font-size: 10px;
+    align-items: center;
+    
+    
+}
+.header_top-right{
+    display: flex;
+}
+.header_top-right a{
+    color: black;
+    margin-left: 20px;
+}
+.header_top-right svg{
+    margin-left: 5px;
+}
+.header_top-container{
+    margin-left: 20px;
+    background-color: #338ec9;
+    padding: 4px 7px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* header right */
+.header_top-right{
+
+}
 /* CSS cho ô tìm kiếm */
 .header_search {
     flex: 1;
@@ -49,24 +82,9 @@
     align-items: center;
 }
 
-/* CSS cho nút "Giỏ hàng" */
-.header_cart a {
-    text-decoration: none;
-    color: #39393A;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 20px; /* Khoảng cách giữa ô tìm kiếm và giỏ hàng */
-}
 
-/* CSS cho biểu tượng giỏ hàng */
-.header_cart a div span {
-    /* display: inline-block; */
-    width: 20px;
-    height: 20px;
-    margin-left: 5px;
-    fill: #39393A; /* Màu cho biểu tượng giỏ hàng */
-}
+
+
 .icon_search{
     position: relative;
     left: -35px;
@@ -79,14 +97,76 @@
 }
 .quantity_cart{
     position: absolute;
-    top: -10px;
-    right: -10px;
+    top: -3px;
+    right: -11px;
     background-color: #cb4141;
     color: #fff;
     font-size: 10px;
-    padding: 2px 4px;
+    padding: 4px 7px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* cart */
+  .card-product {
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 300px;
+    top: 49px;
+    background-color: #fff;
+    border-radius: 4px;
+    z-index: 10;border: 1px solid;
+ }
+  
+  .card-product::after {
+    position: absolute;
+    content: "";
+    width: 15%;
+    height: 14px;
+    top: -14px;
+    right: 0; 
+    display: block;
+    /* background-color: #cb4141; */
+}
+.cart-product-body{
+    max-height: 400px; 
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.img-product{
+   width: 100px;
+  
+}
+.cart-pr{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cart:hover .card-product {
+    display: block; 
+}
+.total-price{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+.btn-pay{
+    background-color: #eb9825;
+    margin-bottom: 15px;
+    display: inline-block;
+    border-radius: 0.25rem;
+    padding: 8px;
+   
+}
+.card-product a{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    
 }
