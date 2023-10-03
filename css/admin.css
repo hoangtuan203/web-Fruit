@@ -1,6 +1,6 @@
 *{
     box-sizing: inherit;
-    margin: 0 ;
+    margin: 0 auto ;
     padding: 0;
     font-family: "Signika", sans-serif;
     color: #000;
@@ -20,6 +20,7 @@
     justify-content: space-between; /* Canh giữa các phần tử theo chiều ngang */
     align-items: center; /* Canh giữa các phần tử theo chiều dọc */
     padding: 10px 0;
+    width:100%;
     
 }
 .navbar-title{
@@ -42,7 +43,7 @@
 
 .menu-left{
     height: 100%;
-    width: 80px;
+    width: 20%;
     position: fixed;
     top: 0;
     background-color:var(--mattGray) ; 
@@ -90,96 +91,101 @@
 /* CONTENT */
 /* SAN PHAM */
 .content{
-    width: 100%;
     margin-left: 80px;
-} 
-.header-product h1{
-    text-align: center;
-}
-.new-product .btn{
-    display: block; 
-    margin: 0 auto;
-    background-color: #039201;
-    color: white;
-    cursor: pointer;
-    margin-top: 8px;
-    padding: 8px;
-    border-radius: 16px;
-}
-/* Sản phẩm */
-.product{
-}
-.product-list{
-    display: flex;
-    flex-wrap: wrap;
-}
-.card{
-    width: 20%;
-    background-color: var(--mattGray);
-    border: 1px solid #858585;
-    border-radius: 8px;
-    margin: 16px;
-}
-.header-title{
-    margin-top: -16px;
-}
-.header-card{
-    
-}
-.card-img{
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-.card-body{
-
-}
-.title-body{
-    color: white;
-    text-align: center;
-    font-weight: 700;
-    font-size: 20px;
-    margin:8px 0 8px 0;
-}
-.price{
-    color: white;
-    text-align: center;
-    margin-bottom: 16px;
-    font-size: 12px;
-}
-.button-group{
     display: flex;
     justify-content: center;
+} 
+.product{
+    width: 80%;
+    margin:32px;
+}
+.header-product {
+    display: flex;
+    justify-content: space-between; 
     align-items: center;
     margin-bottom: 16px;
 }
-.btn-edit{
-    background-color: var(--main-color);
-    padding: 8px 16px;
-    border-radius: 16px;
-    margin-right: 16px;
-    cursor: pointer;
-}
-.btn-edit:hover{
-    opacity: 0.5;
-}
-.btn-delete{
-    background-color: red;
-    padding: 8px 32px;
-    border-radius: 16px;
-    cursor: pointer;
-}
-.btn-delete:hover{
-    opacity: 0.7;
-}
-/* page list */
-.page-list{
+
+.header-product .title{
     display: flex;
     justify-content: center;
+    text-decoration: none;
+    text-align: center;
+}
+.title{
+    margin-bottom: 16px ;
+    font-size: 24px;
+    font-weight: 700;
+}
+.btn-add{
+    padding: 8px 16px;
+    background-color:#4CAF50;
+    margin-left: 140px;
+}
+.btn-add a{
+    color: white;
+    text-decoration: none;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #ddd;
+}
+.btn-edit, .btn-delete {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.btn-delete {
+    background-color: #f44336;
+}
+.btn-edit{
+    margin-right: 16px;
 }
 
-.page-item {
-    list-style: none;
-    padding: 10px;
+/* end product  */
+/* pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.page-number {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+.page-number:hover{
+    color:red;
+    background-color: #ccc;
+}
+.prev, .next {
+    padding: 10px 15px;
+    margin: 5px;
+    text-decoration: none;
+    background-color: #f2f2f2;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.prev:hover, .next:hover {
+    background-color: #ccc;
 }
