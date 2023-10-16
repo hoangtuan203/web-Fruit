@@ -15,3 +15,16 @@ function ThuSide() {
         item.classList.add('hide-text');
     });
 }
+// xử lí phân trang
+const page = document.getElementById('pagination');
+const range = delta + 4;
+const valuePage = {
+    truncate :true,
+    currentPage :1,
+    numLinksTwoSide:1,
+    totalPages:3
+};
+function pagination(){
+    const {totalPages,currentPage,truncate,numLinksTwoSide:delta } = valuePage;
+}
+

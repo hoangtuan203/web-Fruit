@@ -13,6 +13,28 @@
         <ul class="navbar-title">
           <!-- <img class="admin-img" src="./image/admin.jpg" alt="ADMIN" /> -->
           <p>Xin Chào Admin</p>
+
+          <?xml version="1.0" encoding="utf-8"?>
+
+          <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+          <!-- <svg class="btn-exit"
+            width="40px"
+            height="40px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="Interface / Exit">
+              <path
+                id="Vector"
+                d="M12 15L15 12M15 12L12 9M15 12H4M4 7.24802V7.2002C4 6.08009 4 5.51962 4.21799 5.0918C4.40973 4.71547 4.71547 4.40973 5.0918 4.21799C5.51962 4 6.08009 4 7.2002 4H16.8002C17.9203 4 18.4796 4 18.9074 4.21799C19.2837 4.40973 19.5905 4.71547 19.7822 5.0918C20 5.5192 20 6.07899 20 7.19691V16.8036C20 17.9215 20 18.4805 19.7822 18.9079C19.5905 19.2842 19.2837 19.5905 18.9074 19.7822C18.48 20 17.921 20 16.8031 20H7.19691C6.07899 20 5.5192 20 5.0918 19.7822C4.71547 19.5905 4.40973 19.2839 4.21799 18.9076C4 18.4798 4 17.9201 4 16.8V16.75"
+                stroke="#000000"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+          </svg> -->
         </ul>
       </div>
       <!-- End navbar -->
@@ -146,7 +168,9 @@
                 stroke-linecap="round"
               />
             </svg>
-            <span class="text">Người dùng</span>
+            <span class="text">
+              <a href="">Người dùng</a>
+            </span>
           </li>
 
           <li class="list-menu-item">
@@ -197,10 +221,10 @@
       <!-- SẢN PHẨM -->
       <div class="product">
         <div class="header-product">
-          <h1 class="title">QUAN LI SAN PHAM</h1>
+          <h1 class="title">QUẢN LÝ SẢN PHẨM</h1>
           <div class="button-header">
             <button class="btn-add">
-              <a href="">ADD</a>
+              <a href="" id="add-data">ADD</a>
             </button>
           </div>
         </div>
@@ -273,7 +297,51 @@
                 </td>
               </tr>
               <tr>
-                <td>6</td>
+                <td>5</td>
+                <td>Sản phẩm E</td>
+                <td>150,000 VND</td>
+                <td>Hết hàng</td>
+                <td><input type="checkbox" /></td>
+                <td>
+                  <button class="btn-edit">Sửa</button
+                  ><button class="btn-delete">Xóa</button>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Sản phẩm E</td>
+                <td>150,000 VND</td>
+                <td>Hết hàng</td>
+                <td><input type="checkbox" /></td>
+                <td>
+                  <button class="btn-edit">Sửa</button
+                  ><button class="btn-delete">Xóa</button>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Sản phẩm E</td>
+                <td>150,000 VND</td>
+                <td>Hết hàng</td>
+                <td><input type="checkbox" /></td>
+                <td>
+                  <button class="btn-edit">Sửa</button
+                  ><button class="btn-delete">Xóa</button>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Sản phẩm E</td>
+                <td>150,000 VND</td>
+                <td>Hết hàng</td>
+                <td><input type="checkbox" /></td>
+                <td>
+                  <button class="btn-edit">Sửa</button
+                  ><button class="btn-delete">Xóa</button>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
                 <td>Sản phẩm E</td>
                 <td>150,000 VND</td>
                 <td>Hết hàng</td>
@@ -288,7 +356,7 @@
         </div>
 
         <div class="pagination">
-          <a href="#" class="prev">
+          <a href="#" class="prev" id="prevPage">
             <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
             <svg
               width="16px"
@@ -303,10 +371,10 @@
               />
             </svg>
           </a>
-          <span class="page-number">1</span>
-          <span class="page-number">2</span>
-          <span class="page-number">3</span>
-          <a href="#" class="next">
+          <span class="page-number" id="currentPage">1</span>
+          <span class="page-number" id="currentPage">2</span>
+          <span class="page-number" id="currentPage">3</span>
+          <a href="#" class="next" id="nextPage">
             <?xml version="1.0" encoding="utf-8"?>
             <svg
               fill="#000000"
@@ -330,6 +398,9 @@
           </a>
         </div>
       </div>
+
+      <!-- Account -->
+      
     </div>
   </body>
   <script src="/js/admin.js"></script>
