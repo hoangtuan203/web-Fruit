@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  flex: 7;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+.bill {
+  width: 200px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 3;
+}
+#order {
+  padding: 10px;
+  width: 100px;
+  border-radius: 6px;
+  width: 200px;
+  background-color: #039201;
+  align-self: center;
+}
+.item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  display: flex;
+  gap: 20px;
+}
+h2 {
+  align-self: center;
+}
+.trangchu {
+  margin-top: 40px;
+
+  background-color: #039201;
+  width: 200px;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #039201;
+  margin-top: 30px;
+  width: 150px;
+  text-align: center;
+}
+img {
+  height: 40px;
+}
+button {
+  padding: 5px 10px;
+  border-radius: 3px;
+}
