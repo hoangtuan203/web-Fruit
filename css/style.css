@@ -8,9 +8,8 @@
 }
 .header_fixed{
     /* background-color: #fd7e14; */
-    background-color: #fd7e14; /* Set the background color */
     height: 132px;
-    position: fixed;
+    /* position: fixed; */
     top: 0; /* Position the header at the top of the viewport */
     left: 0;
     right: 0;
@@ -186,7 +185,7 @@ nav{
 
 /* navigation */
 .navigation{
-   background-color: #fd7e14;;
+   
 }
 .nav-list{
     display: flex;
