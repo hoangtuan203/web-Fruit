@@ -19,8 +19,84 @@ function ThuSide() {
     item.classList.add('hide-text');
   });
 }
+// xử lí phân trang
+let thisPage = 1;
+let limit = 5;
+let list = document.querySelectorAll('.list-product .item');
 
-// thong ke
+function loadItem() {
+  let beginGet = limit * (thisPage - 1);
+  let endGet = limit * thisPage;
+
+  list.forEach((item, key) => {
+    if (key >= beginGet && key < endGet) {
+      item.style.display = 'table-row'; // Chuyển style display về 'table-row' thay vì 'block'
+    } else {
+      item.style.display = 'none';
+    }
+  });
+  listPage();
+}
+
+loadItem();
+
+function listPage() {
+  let count = Math.ceil(list.length / limit);
+  let listPageContainer = document.querySelector('.listPage');
+  listPageContainer.innerHTML = '';
+
+  if (thisPage > 1) {
+    let prev = document.createElement('li');
+    prev.innerText = '<';
+    prev.setAttribute('onclick', `changePage(${thisPage - 1})`);
+    listPageContainer.appendChild(prev);
+  }
+
+  for (let i = 1; i <= count; i++) {
+    let page = document.createElement('li');
+    page.innerText = i;
+    if (i === thisPage) {
+      page.classList.add('active');
+    }
+    page.setAttribute('onclick', `changePage(${i})`);
+    listPageContainer.appendChild(page);
+  }
+
+  if (thisPage < count) {
+    let next = document.createElement('li');
+    next.innerText = '>';
+    next.setAttribute('onclick', `changePage(${thisPage + 1})`);
+    listPageContainer.appendChild(next);
+  }
+}
+
+function changePage(newPage) {
+  thisPage = newPage;
+  loadItem();
+}
+//delete row table
+// Lấy danh sách các nút "Xóa"
+// Lấy danh sách các nút "Xóa"
+const deleteButtons = document.querySelectorAll('.btn-delete');
+
+// Lặp qua từng nút và gán sự kiện click cho nút "Xóa"
+deleteButtons.forEach(deleteButton => {
+  deleteButton.addEventListener('click', function () {
+    // Sử dụng hàm confirm để hiển thị cửa sổ xác nhận
+    const confirmed = window.confirm("Bạn có chắc muốn xóa?");
+    
+    // Nếu người dùng chọn "OK" trong cửa sổ xác nhận, thực hiện xóa dòng
+    if (confirmed) {
+      const row = this.closest('tr'); // Tìm dòng gần nhất chứa nút "Xóa"
+      if (row) {
+        row.remove(); // Xóa dòng ra khỏi bảng
+      }
+    }
+  });
+});
+
+
+//thong ke
 
 const chitiethoadon = JSON.parse(localStorage.getItem('chitiethoadon')) || [];
 const hoadon = JSON.parse(localStorage.getItem('hoadon')) || [];
