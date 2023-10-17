@@ -1,21 +1,73 @@
 *{
+    font-family: 'Nunito',sans-serif;
     margin: 0;
     padding: 0;
-    
-}
-.text-decoration{
+    box-sizing: border-box;
     text-decoration: none;
+    outline: none;
+    border: none;
+    /* text-transform: capitalize;
+    transition: all .2s linear; */
 }
-.header_fixed{
-    /* background-color: #fd7e14; */
-    height: 132px;
-    /* position: fixed; */
-    top: 0; /* Position the header at the top of the viewport */
+:root{
+    --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); 
+}
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top:5.5rem ;
+    /* scroll-behavior: smooth; */
+}
+.header{
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+    padding: 1rem 7%;
+    background: #fff;
+    box-shadow: var(--box-shadow);
 }
-nav{
+.register{
+    margin-right: 10px;
+   
+}
+.login-register{
+    display: flex;
+    justify-content: end;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+header .navbar a{
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    color: #666;
+}
+header .navbar a.active ,
+header .navbar a:hover{
+    color: #fff;
+    background-color: #27ae60;
+}
+
+header .icons span,
+header .icons a{
+    cursor: pointer;
+    margin-left: .5rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    text-align: center;
+    font-size: 1.7rem;
    
 }
 .container{
@@ -23,83 +75,62 @@ nav{
     width: 1200px;
     margin: 0 auto;
 }
-/* header */
-/* CSS cho phần header_body */
-.header_body {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-.header_top{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 10px;
-}
-
-.header_top-left{
-    display: flex;
-   
-    align-items: center;
-    
-    
-}
-.header_top-right{
-    display: flex;
-}
-.header_top-right a{
-    color: black;
-    margin-left: 20px;
-}
-.header_top-right svg{
-    margin-left: 5px;
-}
-.header_top-container{
-    margin-left: 20px;
-    background-color: #338ec9;
-    padding: 4px 7px;
-    border-radius: 20px;
+.quantity_cart{
+    position: absolute;
+    top: 32px;
+    right: 89px;
+    background-color: #cb4141;
+    color: #fff;
+    font-size: 10px;
+    padding: 7px 7px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 0px;
 }
-/* header right */
-.header_top-right{
-
-}
-/* CSS cho ô tìm kiếm */
-.header_search {
-    flex: 1;
-    margin-left: 20px; /* Khoảng cách giữa logo và ô tìm kiếm */
-}
-
-/* CSS cho ô tìm kiếm input */
-.serch_box input[type="text"] {
+#search-form{
+    position: fixed;
+    top: -110%;
+    left: 0;
+    height: 100%;
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-}
-
-/* CSS cho biểu tượng tìm kiếm */
-.serch_box  {
+    z-index: 1004;
+    background-color: rgba(0, 0, 0, .8);
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+}
+#search-form #search-box{
+    width: 50rem;
+    border-bottom: .1rem solid #fff;
+    padding: 1rem 0;
+    color: #fff;
+    font-size: 3rem;
+    text-transform: none;
+    background: none;
+}
+.icons-search #search-box::placeholder{
+    color: #eee;
+}
+.icons-search #search-box::-webkit-search-cancel-button{
+    --webkit-appearance: none;
+}
+#search-form label{
+   
+    cursor: pointer;
+}
+#search-form #close{
+    position: absolute;
+    cursor: pointer;
+    top:2rem;
+    right: 3rem;
+    font-size: 5rem;
 }
 
-/* CSS cho giỏ hàng */
-.header_cart {
-    display: flex;
-    align-items: center;
-}
-
-
-
-
-.icon_search{
-    position: relative;
-    left: -35px;
+#search-form.active{
+    top:0;
 }
 .cart{
     position: relative;
