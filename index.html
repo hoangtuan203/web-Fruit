@@ -21,10 +21,10 @@
                     <a class="logo" href="">Fruit</a>
                     <nav class="navbar">
                         <a class="active" href="">Trang Chủ</a>
-                        <a href="">Sản Phẩm</a>
-                        <a href="">Tin tức</a>
-                        <a href="">Liên hệ</a>
-                        <a href="">Khám Phá</a>
+                        <a id="product" href="#">Sản Phẩm</a>
+                        <a href="#">Tin tức</a>
+                        <a href="#">Liên hệ</a>
+                        <a href="#">Khám Phá</a>
                     </nav>
                     <div class="icons">
                         <span>
@@ -54,29 +54,23 @@
                 </header>
             </div>
         </div>
-
         <!-- header ends -->
-
     </div>
-
-
-
-
     <div class="carousel">
         <div class="slider">
             <div class="slide">
                 <a href="">
-                    <img src="" alt="">
+                    <img src="./image/slider-1.png" alt="">
                 </a>
             </div>
             <div class="slide">
                 <a href="">
-                    <img src="" alt="">
+                    <img src="./image/slider-2.png" alt="">
                 </a>
             </div>
             <div class="slide">
                 <a href="">
-                    <img src="" alt="">
+                    <img src="./image/slider-3.png" alt="">
                 </a>
             </div>
         </div>
@@ -108,73 +102,12 @@
     </div>
 
     <div class="content">
-        <div class="product">
-            <div class="container">
-                <div class="product_sale">
-                    <h1 class="product_sale-heading">Khuyến Mãi</h1>
-                    <div class="grid_row">
-                        <div class="grid_col-2-4">
-                            <div class="home-product-item" href="">
-                                <div style="border: 1px solid;" class="product_container">
-                                    <div class="product_hov">
-                                        <div class="product_top">
-
-                                            <div class="product_detail">
-                                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M9 4.45962C9.91153 4.16968 10.9104 4 12 4C16.1819 4 19.028 6.49956 20.7251 8.70433C21.575 9.80853 22 10.3606 22 12C22 13.6394 21.575 14.1915 20.7251 15.2957C19.028 17.5004 16.1819 20 12 20C7.81811 20 4.97196 17.5004 3.27489 15.2957C2.42496 14.1915 2 13.6394 2 12C2 10.3606 2.42496 9.80853 3.27489 8.70433C3.75612 8.07914 4.32973 7.43025 5 6.82137"
-                                                        stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path
-                                                        d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"
-                                                        stroke="#1C274C" stroke-width="1.5" />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div class="">
-                                            <a href="">
-                                                <img class="product_image"
-                                                    src="https://traicaykh.vn/uploads/source/anh-web-ngoc/cherry-my-kh-fruit.png"
-                                                    alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="add_cart">
-                                        <button class="addcart" data-product="1">Thêm vào giỏ hàng</button>
-                                    </div>
-                                    <div class="product_info">
-                                        <div class="product_name">
-                                            <span>Nho thái lan</span>
-                                        </div>
-                                        <div class="product_price">
-                                            <div class="price">3000$</div>
-                                            <div class="price_old">5000$</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="grid_col-2-4">
-                            <a class="home-product-item" href="">
-                                2
-                            </a>
-
-                        </div>
-                        <div class="grid_col-2-4">
-                            <a class="home-product-item" href="">
-                                3
-                            </a>
-
-                        </div>
-                        <div class="grid_col-2-4">
-                            <a class="home-product-item" href="">
-                                4
-                            </a>
-
-                        </div>
-                    </div>
-                </div>
+        <h1 class="heading">
+            <a href="">Sản Phẩm Bán Chạy</a>
+        </h1>
+        <div class="row">
+            <div class="col-2 category-container"></div>
+            <div class="col-10 box-container">
             </div>
         </div>
     </div>
@@ -183,8 +116,8 @@
     <div class="footer"></div>
     </div>
 
-      <!-- form search-->
-      <form action="" id="search-form">
+    <!-- form search-->
+    <form action="" id="search-form">
         <input type="search" name="" placeholder="tìm kiếm..." id="search-box">
         <label for="search-box">
             <svg class="icon_search" width="25px" height="25px" viewBox="0 0 24 24" fill="none"
@@ -195,10 +128,11 @@
             </svg>
         </label>
         <svg id="close" width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 6L18 18M18 6L6 18" stroke="#ffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <path d="M6 6L18 18M18 6L6 18" stroke="#ffff" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
     </form>
     <!-- form search ends -->
     <!-- <script src="./js/app.js"></script> -->
-    <script src="./js/search.js"></script>
-</body>
+    <script type="module" src="./js/main.js"></script>
+</body>.
