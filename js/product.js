@@ -1,81 +1,88 @@
-const product={
-    products: [
-        {
-            id: 1,
-            name: 'Sản phẩm 1',
-            price: 1500,
-            img: './image/product1.jpg',
-            priceOld: 1500,
-        },
-        {
-            id: 2,
-            name: 'Sản phẩm 2',
-            price: 1500,
-            img: './image/product1.jpg',
-            priceOld: 1500,
-        },
-        {
-            id: 3,
-            name: 'Sản phẩm 3',
-            price: 1500,
-            img: './image/product1.jpg',
-            priceOld: 1500,
-        },
-        {
-            id: 4,
-            name: 'Sản phẩm 4',
-            price: 1500,
-            img: './image/product1.jpg',
-            priceOld: 1500,
-        }
-        ,
-        {
-            id: 4,
-            name: 'Sản phẩm 4',
-            price: 1500,
-            img: './image/product1.jpg',
-            priceOld: 1500,
-        },
-        {
-            id: 4,
-            name: 'Sản phẩm 4',
-            price: 1500,
-            img: './image/product1.jpg',
-            priceOld: 1500,
-        },
-        {
-            id: 4,
-            name: 'Sản phẩm 4',
-            price: 1500,
-            img: './image/product1.jpg',
-            priceOld: 1500,
-        },
-        {
-            id: 4,
-            name: 'Sản phẩm 4',
-            price: 1500,
-            img: './image/product1.jpg',
-            priceOld: 1500,
-        }
-    ],
-    categories: [
-        'Danh mục 1 Danh mục 1 Danh mục 1 Danh mục 1',
-        'Danh mục 2',
-        'Danh mục 3',
-        // Thêm các danh mục ở đây
-    ],
-    handleEvent: function(){
-        const productEvent=document.querySelector('#product');
-        const categoryContainer = document.querySelector('.category-container');
-        productEvent.onclick=function(){
-            categoryContainer.style.display = 'block';
-        }
+const product = {
+  products: [
+    {
+      manhom: 1,
+      id: 1,
+      name: 'Sản phẩm 1',
+      price: 1500,
+      img: './image/product1.jpg',
+      priceOld: 1500,
     },
-    // category
-    renderCategories: function () {
-        const categoryContainer = document.querySelector('.category-container');
-        this.categories.forEach(category => {
-           categoryContainer.innerHTML=`
+    {
+      manhom: 1,
+      id: 2,
+      name: 'Sản phẩm 2',
+      price: 1500,
+      img: './image/product1.jpg',
+      priceOld: 1500,
+    },
+    {
+      manhom: 1,
+      id: 3,
+      name: 'Sản phẩm 3',
+      price: 1500,
+      img: './image/product1.jpg',
+      priceOld: 1500,
+    },
+    {
+      manhom: 1,
+      id: 4,
+      name: 'Sản phẩm 4',
+      price: 1500,
+      img: './image/product1.jpg',
+      priceOld: 1500,
+    },
+    {
+      manhom: 2,
+      id: 5,
+      name: 'Sản phẩm 5',
+      price: 1500,
+      img: './image/product1.jpg',
+      priceOld: 1500,
+    },
+    {
+      manhom: 2,
+      id: 6,
+      name: 'Sản phẩm 6',
+      price: 1500,
+      img: './image/product1.jpg',
+      priceOld: 1500,
+    },
+    {
+      manhom: 2,
+      id: 7,
+      name: 'Sản phẩm 7',
+      price: 1500,
+      img: './image/product1.jpg',
+      priceOld: 1500,
+    },
+    {
+      manhom: 2,
+      id: 8,
+      name: 'Sản phẩm 8',
+      price: 1500,
+      img: './image/product1.jpg',
+      priceOld: 1500,
+    },
+  ],
+  categories: [
+    'Danh mục 1 Danh mục 1 Danh mục 1 Danh mục 1',
+    'Danh mục 2',
+    'Danh mục 3',
+    // Thêm các danh mục ở đây
+  ],
+  handleEvent: function () {
+    const productEvent = document.querySelector('#product');
+    const categoryContainer = document.querySelector('.category-container');
+    productEvent.onclick = function () {
+      categoryContainer.style.display = 'block';
+    };
+  },
+  // category
+  renderCategories: function () {
+    const categoryContainer = document.querySelector('.category-container');
+    this.categories.forEach((category) => {
+      categoryContainer.innerHTML = `
                 <div>
                     <ul>
                         <li>danh mục 1</li>
@@ -83,19 +90,22 @@ const product={
                         <li>danh mục 1</li>
                     </ul>
                 </div>
-           `
-        });
-    },
-    // sản phẩm bán chạy
-    renderProductSelling: function(){
-        const container = document.querySelector('.box-container');
-        const categoryContainer = document.querySelector('.category-container');
-        categoryContainer.style.display = 'none';
-        this.products.forEach(item => {
-            const productElement = document.createElement('div');
-            const formattedPrice = item.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-            productElement.classList.add('product');
-            productElement.innerHTML = `
+           `;
+    });
+  },
+  // sản phẩm bán chạy
+  renderProductSelling: function () {
+    const container = document.querySelector('.box-container');
+    const categoryContainer = document.querySelector('.category-container');
+    categoryContainer.style.display = 'none';
+    this.products.forEach((item) => {
+      const productElement = document.createElement('div');
+      const formattedPrice = item.price.toLocaleString('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+      });
+      productElement.classList.add('product');
+      productElement.innerHTML = `
             <a class="eye" href="">
                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -110,18 +120,18 @@ const product={
             <img src="${item.img}" alt="">
             <h3>${item.name}</h3>
             <span>${formattedPrice}</span>
-            <a href="" class="btn">
+            <button class="btn addcart"  data-product="${item.id}">
                 Thêm vào giỏ
-            </a>
+            </button>
             `;
-            container.appendChild(productElement);
-        });
-    },
-   
-    start: function() {
-        this.renderProductSelling()
-        this.renderCategories()
-        this.handleEvent()
-    }
-}
+      container.appendChild(productElement);
+    });
+  },
+
+  start: function () {
+    this.renderProductSelling();
+    this.renderCategories();
+    this.handleEvent();
+  },
+};
 export default product;

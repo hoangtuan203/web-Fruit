@@ -6,37 +6,76 @@ const order = document.getElementById('order');
 // fake so lieu
 const currentuser = JSON.parse(localStorage.getItem('currentuser')) || '';
 const hoadon = JSON.parse(localStorage.getItem('hoadon')) || [];
-
 const cart = JSON.parse(localStorage.getItem('currentcart')) || [];
 const chitiethoadon = JSON.parse(localStorage.getItem('chitiethoadon')) || [];
-
 const sanpham = JSON.parse(localStorage.getItem('sanpham')) || [
   {
-    masanpham: 1,
     manhom: 1,
-    mahang: '',
-    tensanpham: 'nho',
-    ngaynhap: '',
-    motta: '',
-    soluong: '',
-    gia: 30,
-    hinhanh: 'xoai.jpg',
-    trangthaisanpham: '',
+    id: 1,
+    name: 'Sản phẩm 1',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
   },
   {
-    masanpham: 2,
+    manhom: 1,
+    id: 2,
+    name: 'Sản phẩm 2',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
+    manhom: 1,
+    id: 3,
+    name: 'Sản phẩm 3',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
+    manhom: 1,
+    id: 4,
+    name: 'Sản phẩm 4',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
     manhom: 2,
-    mahang: '',
-    tensanpham: 'nho',
-    ngaynhap: '',
-    motta: '',
-    soluong: '',
-    gia: 40,
-    hinhanh: 'xoai.jpg',
-    trangthaisanpham: '',
+    id: 5,
+    name: 'Sản phẩm 5',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
+    manhom: 2,
+    id: 6,
+    name: 'Sản phẩm 6',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
+    manhom: 2,
+    id: 7,
+    name: 'Sản phẩm 7',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
+    manhom: 2,
+    id: 8,
+    name: 'Sản phẩm 8',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
   },
 ];
 // thay doi so luong vat pham
+
 function reloadCard() {
   let count = 0;
   let totalPrice = 0;
@@ -51,13 +90,13 @@ function reloadCard() {
     count += value.soluong;
     totalPrice += value.gia * count;
 
-    let product = sanpham.find((x) => x.masanpham == value.masanpham);
+    let product = sanpham.find((x) => x.id == value.masanpham);
     let tr = document.createElement('tr');
 
     tr.innerHTML = `
-                <td><img src="../image/${product.hinhanh}"/></td>
-                <td>${product.tensanpham}</td>
-                <td>${product.gia.toLocaleString()}</td>
+                <td><img src=".${product.img}"/></td>
+                <td>${product.name}</td>
+                <td>${product.price.toLocaleString()}</td>
                 <td>               <div class="item">
                 <button onclick="changeQuantity(${key}, ${
       value.soluong - 1
@@ -105,7 +144,7 @@ order.addEventListener('click', () => {
     tong_tien += x.soluong * x.gia;
   });
   hoadon.push({
-    makhach: currentuser.makhach,
+    makhach: currentuser.user_id,
     mahoadon: mahoadon,
     ngaymua: today,
     trangthaihoadon: 'Chờ xử lý',

@@ -1,3 +1,5 @@
+import { user } from '../js/array_demo.js';
+
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('.form_signup');
   const emailField = form.querySelector('input[name="email"]');
@@ -6,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const validationItems = document.querySelectorAll('.validation_form');
   const passwordInput = document.getElementById('password_input');
   const showPasswordButton = document.getElementById('showPassword');
-  const divLogin = document.getElementById('login');
+  const button = document.getElementById('button');
   const dangKy = document.getElementById('dangky');
   const dangNhap = document.getElementById('dangnhap');
 
@@ -38,20 +40,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // user list
 
-  const usersList = JSON.parse(localStorage.getItem('users')) || [
-    {
-      makhach: 1,
-      hoten: 'lahuuminh',
-      usname: 'lahuuminh',
-      password: 'Lahuuminh1.',
-      diachi: 'tran quoc thao',
-      email: 'lahuuminh678@gmail.com',
-      dienthoai: '0997330699',
-      gioitinh: 'nam',
-      trangthaikhach: '',
-    },
-  ];
-
+  const usersList = JSON.parse(localStorage.getItem('users')) || user;
+  console.log(usersList);
   form.addEventListener('submit', function (event) {
     event.preventDefault(); // prevent default form submission
     let valid = true;
@@ -81,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (valid) {
       // form.submit(); // send form when there is no error
-      if (divLogin) {
+      if (button.getAttribute('data-action') == 'login') {
         let user = usersList.find((x) => x.email == emailField.value);
 
         if (user) {
@@ -105,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
           return;
         }
         usersList.push({
-          makhach: usersList.length + 1,
+          user_id: usersList.length + 1,
           email: emailField.value,
           password: passwordField.value,
         });
