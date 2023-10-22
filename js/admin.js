@@ -233,6 +233,7 @@ let thongke = (ngaybatdau, ngayketthuc, nhom) => {
 // load data
 
 let loaddata = (map) => {
+  let nhom = document.getElementById('nhom');
   const table = document.getElementsByClassName('table');
   let nhomhientai = nhom.value;
   let sanphamnhom;
@@ -240,10 +241,9 @@ let loaddata = (map) => {
     sanphamnhom = sanpham;
   } else {
     sanphamnhom = sanpham.filter((x) => {
-      return x.id == nhomhientai;
+      return x.manhom == nhomhientai;
     });
   }
-
   table[0].innerHTML = '';
   let thead = document.createElement('thead');
   let tr = document.createElement('tr');
@@ -275,7 +275,7 @@ let loaddata = (map) => {
 
 let tainhom = () => {
   let nhom = document.getElementById('nhom');
-  console.log(nhom);
+
   let option = document.createElement('option');
   option.value = 'all';
   option.innerHTML = `Tất cả nhóm`;

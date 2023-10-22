@@ -48,7 +48,6 @@ const main = () => {
   const currentcart = JSON.parse(localStorage.getItem('currentcart')) || [];
 
   if (currentuser) {
-    console.log(login);
     login.innerHTML = '';
     let div = document.createElement('div');
     div.innerHTML = `<div class="dropdown">
@@ -59,7 +58,18 @@ const main = () => {
       <a href="./block/logout.html">Đăng xuất</a>
     </div>
   </div>`;
+
     login.appendChild(div);
+    let divdropdown = document.getElementsByClassName('dropdown-content')[0];
+    console.log(currentuser.role);
+    console.log(currentuser.role == 'admin');
+    if (currentuser.role == 'admin') {
+      let a = document.createElement('a');
+      a.href = './admin/admin_index.html';
+      a.innerHTML = 'Tới trang admin';
+      divdropdown.insertBefore(a, divdropdown.children[0]);
+    } else {
+    }
   }
 
   for (let i = 0; i < addcart.length; i++) {

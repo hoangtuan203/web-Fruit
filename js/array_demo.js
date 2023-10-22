@@ -4,10 +4,10 @@ const user = [
     user_id: 1,
     username: 'admin',
     password: 'Lahuuminh1.',
-    email: 'truonglykhong2003@gmail.com',
+    email: 'lahuuminh678@gmail.com',
     phone: '0782713663',
     status: 'active',
-    role: 'amdin',
+    role: 'admin',
   },
   {
     user_id: 2,
@@ -16,16 +16,16 @@ const user = [
     email: 'truonglykhong2003@gmail.com',
     phone: '0782713663',
     status: 'active',
-    role: 'amdin',
+    role: 'admin',
   },
   {
-    user_id: 1,
+    user_id: 3,
     username: 'admin',
     password: 'Lahuuminh1.',
-    email: 'truonglykhong2003@gmail.com',
+    email: 'admin@gmail.com',
     phone: '0782713663',
     status: 'active',
-    role: 'amdin',
+    role: 'admin',
   },
 ];
 // product

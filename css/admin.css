@@ -242,7 +242,9 @@ tr:hover {
 }
 
 /* thong ke */
-
+.bill {
+  height: fit-content;
+}
 .container-thongke {
   display: flex;
   gap: 25px;
