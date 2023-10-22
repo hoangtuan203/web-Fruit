@@ -54,7 +54,7 @@ const main = () => {
     div.innerHTML = `<div class="dropdown">
     <button class="dropbtn"><i class="far fa-user"></i></button>
     <div class="dropdown-content">
-      <a href="#">${currentuser.username}</a>
+      <a href="#">${currentuser.email}</a>
       <a href="./user/orderhistory.html">Đơn hàng</a>
       <a href="./block/logout.html">Đăng xuất</a>
     </div>
