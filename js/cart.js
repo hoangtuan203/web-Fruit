@@ -88,7 +88,7 @@ function reloadCard() {
   table[0].appendChild(tr);
   cart.forEach((value, key) => {
     count += value.soluong;
-    totalPrice += value.gia * count;
+    totalPrice += value.gia * value.soluong;
 
     let product = sanpham.find((x) => x.id == value.masanpham);
     let tr = document.createElement('tr');
