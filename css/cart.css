@@ -50,6 +50,7 @@ th {
 }
 h2 {
   align-self: center;
+  margin-bottom: 20px;
 }
 .trangchu {
   margin-top: 40px;
@@ -78,4 +79,7 @@ img {
 button {
   padding: 5px 10px;
   border-radius: 3px;
+}
+.bill {
+  height: fit-content;
 }
