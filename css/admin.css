@@ -159,6 +159,100 @@
     color: white;
     text-decoration: none;
   }
+  /* add  */
+  /* CSS cho biểu mẫu thêm sản phẩm */
+  /* CSS cho phần nền mờ */
+.overlay {
+
+  display: none;
+ 
+  z-index: 999; /* Đảm bảo nó hiển thị phía trên */
+}
+
+/* CSS cho biểu mẫu thêm sản phẩm */
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+.form-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  padding: 20px;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Định dạng cho tiêu đề */
+h2 {
+  color: #333;
+}
+
+/* Định dạng cho các label và input fields */
+label, input {
+  display: block;
+  margin: 10px 0;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Định dạng cho hình ảnh được tải lên */
+input[type="file"] {
+  padding: 0;
+}
+
+/* Chỉnh màu chữ mặc định cho required field */
+label[for="product_id"], label[for="product_name"], label[for="product_price_new"], label[for="product_image"], label[for="product_price_old"] {
+  color: #007BFF;
+}
+.list-btn{
+  display: flex;
+  justify-content: center;
+}
+
+.btn-add-product {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-back {
+  background-color: #4CAF50; /* Màu xanh (green) */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 20px; /* Khoảng cách giữa các nút */
+}
+/* end thêm sản phẩm */
+
   table {
       border-collapse: collapse;  
       width: 100%;
