@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .btn-buy {
+        border: 1px solid var(--theme-color);
+        background-color: #fff;
+        color: var(--theme-color);
+        padding: 5px;
+        text-align: center;
+        border-radius: 5px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="product">
+        <div class="image-product">
+            <img src="${item.img}" alt="">
+        </div>
+        <div class="title">
+            <p class="heading">${item.name}</p>
+            <span class="product-price">${formattedPrice}</span>
+            <div class="btn-buy">
+            Chọn mua
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

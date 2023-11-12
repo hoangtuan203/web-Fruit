@@ -210,3 +210,4 @@ const products = [
         img: 'link_to_dried_mango_image.jpg',
       }
 ];
+export default products;
