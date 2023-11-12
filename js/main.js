@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const products = [
     {
       id: 1,
@@ -210,3 +211,12 @@ const products = [
         img: 'link_to_dried_mango_image.jpg',
       }
 ];
+=======
+import search from './search.js';
+import product from './product.js';
+import { main } from './app.js';
+
+search.start();
+product.start();
+main();
+>>>>>>> c0586cb8c6553dfdb87a642dbb5b085dd0aff505

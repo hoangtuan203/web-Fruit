@@ -1,6 +1,5 @@
-const form = document.getElementById('thongke');
-let nhom = document.getElementById('nhom');
-const table = document.getElementsByClassName('table');
+const thongkeitem = document.getElementById('thongke');
+const content = document.getElementsByClassName('content')[0];
 //hien thi menu left
 
 var menu_left = document.getElementsByClassName('menu-left')[0];
@@ -80,11 +79,11 @@ function changePage(newPage) {
 const deleteButtons = document.querySelectorAll('.btn-delete');
 
 // Lặp qua từng nút và gán sự kiện click cho nút "Xóa"
-deleteButtons.forEach(deleteButton => {
+deleteButtons.forEach((deleteButton) => {
   deleteButton.addEventListener('click', function () {
     // Sử dụng hàm confirm để hiển thị cửa sổ xác nhận
-    const confirmed = window.confirm("Bạn có chắc muốn xóa?");
-    
+    const confirmed = window.confirm('Bạn có chắc muốn xóa?');
+
     // Nếu người dùng chọn "OK" trong cửa sổ xác nhận, thực hiện xóa dòng
     if (confirmed) {
       const row = this.closest('tr'); // Tìm dòng gần nhất chứa nút "Xóa"
@@ -95,52 +94,91 @@ deleteButtons.forEach(deleteButton => {
   });
 });
 
-
 //thong ke
 
 const chitiethoadon = JSON.parse(localStorage.getItem('chitiethoadon')) || [];
 const hoadon = JSON.parse(localStorage.getItem('hoadon')) || [];
-const sanpham = JSON.parse(localStorage.getItem('sanpham')) || [
+const nhomsanpham = JSON.parse(localStorage.getItem('nhom')) || [
   {
-    masanpham: 1,
     manhom: 1,
-    mahang: '',
-    tensanpham: 'nho',
-    ngaynhap: '',
-    motta: '',
-    soluong: '',
-    gia: 30,
-    hinhanh: 'xoai.jpg',
-    trangthaisanpham: '',
+    tennhom: 'Nhóm 1',
   },
   {
-    masanpham: 2,
     manhom: 2,
-    mahang: '',
-    tensanpham: 'nho',
-    ngaynhap: '',
-    motta: '',
-    soluong: '',
-    gia: 40,
-    hinhanh: 'xoai.jpg',
-    trangthaisanpham: '',
+    tennhom: 'Nhóm 2',
+  },
+  {
+    manhom: 3,
+    tennhom: 'Nhóm 3',
   },
 ];
-
-let tainhom = () => {
-  let option = document.createElement('option');
-  option.value = 'all';
-  option.innerHTML = `Tất cả nhóm`;
-  nhom.appendChild(option);
-  sanpham.map((x) => {
-    let option = document.createElement('option');
-    option.value = x.manhom;
-    option.innerHTML = `${'Nhóm: ' + x.manhom}`;
-    nhom.appendChild(option);
-  });
-};
-tainhom();
-
+const sanpham = JSON.parse(localStorage.getItem('sanpham')) || [
+  {
+    manhom: 1,
+    id: 1,
+    name: 'Sản phẩm 1',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
+    manhom: 1,
+    id: 2,
+    name: 'Sản phẩm 2',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
+    manhom: 1,
+    id: 3,
+    name: 'Sản phẩm 3',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
+    manhom: 1,
+    id: 4,
+    name: 'Sản phẩm 4',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
+    manhom: 2,
+    id: 5,
+    name: 'Sản phẩm 5',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
+    manhom: 2,
+    id: 6,
+    name: 'Sản phẩm 6',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
+    manhom: 2,
+    id: 7,
+    name: 'Sản phẩm 7',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+  {
+    manhom: 2,
+    id: 8,
+    name: 'Sản phẩm 8',
+    price: 1500,
+    img: './image/product1.jpg',
+    priceOld: 1500,
+  },
+];
+let today = new Date().toISOString().slice(0, 10);
 let doanhthu = (chitiethoadon) => {
   let map = new Map();
   chitiethoadon.map((x) => {
@@ -172,7 +210,7 @@ let thongke = (ngaybatdau, ngayketthuc, nhom) => {
   let sanphamnhom;
   if (nhom == 'all') {
     sanphamnhom = sanpham.map((y) => {
-      return y.masanpham;
+      return y.id;
     });
   } else {
     sanphamnhom = sanpham
@@ -180,7 +218,7 @@ let thongke = (ngaybatdau, ngayketthuc, nhom) => {
         return x.manhom == nhom;
       })
       .map((y) => {
-        return y.masanpham;
+        return y.id;
       });
   }
 
@@ -192,18 +230,11 @@ let thongke = (ngaybatdau, ngayketthuc, nhom) => {
   return doanhthu(thongkearray);
 };
 
-let today = new Date().toISOString().slice(0, 10);
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-  let nhomhientai = nhom.value;
-  let ngaybatdau = document.getElementById('ngaybatdau').value;
-  let ngayketthuc = document.getElementById('ngayketthuc').value;
-
-  let map = thongke(ngaybatdau, ngayketthuc, nhomhientai);
-  loaddata(map);
-});
 // load data
+
 let loaddata = (map) => {
+  let nhom = document.getElementById('nhom');
+  const table = document.getElementsByClassName('table');
   let nhomhientai = nhom.value;
   let sanphamnhom;
   if (nhomhientai == 'all') {
@@ -213,7 +244,6 @@ let loaddata = (map) => {
       return x.manhom == nhomhientai;
     });
   }
-
   table[0].innerHTML = '';
   let thead = document.createElement('thead');
   let tr = document.createElement('tr');
@@ -227,11 +257,11 @@ let loaddata = (map) => {
   sanphamnhom.map((x) => {
     let tr = document.createElement('tr');
 
-    tr.innerHTML = `<td>${x.masanpham}</td>
+    tr.innerHTML = `<td>${x.id}</td>
   <td>${x.manhom}</td>
-  <td>${x.tensanpham}</td>`;
+  <td>${x.name}</td>`;
     let td = document.createElement('td');
-    let giatien = map.get(x.masanpham);
+    let giatien = map.get(x.id);
     if (giatien) {
       td.innerHTML = `${giatien.toLocaleString()}`;
     } else {
@@ -242,3 +272,61 @@ let loaddata = (map) => {
   });
   table[0].appendChild(tbody);
 };
+
+let tainhom = () => {
+  let nhom = document.getElementById('nhom');
+
+  let option = document.createElement('option');
+  option.value = 'all';
+  option.innerHTML = `Tất cả nhóm`;
+  nhom.appendChild(option);
+  nhomsanpham.map((x) => {
+    let option = document.createElement('option');
+    option.value = x.manhom;
+    option.innerHTML = `${x.tennhom}`;
+    nhom.appendChild(option);
+  });
+};
+thongkeitem.addEventListener('click', () => {
+  content.innerHTML = '';
+  let div = document.createElement('div');
+  div.className = 'container-thongke';
+  div.innerHTML = `<div class="left-content">
+  <form action="" class="form-thongke"  method="POST">
+    <div class="text-form">
+      <span>Thống kê</span>
+    </div>
+    <div class="form-item">
+      <div class="item">
+        <label for="birthday">Ngày bắt đầu:</label>
+        <input type="date" id="ngaybatdau" name="birthday" />
+      </div>
+      <div class="item">
+        <label for="birthday">Ngày kết thúc:</label>
+        <input type="date" id="ngayketthuc" name="" />
+      </div>
+    </div>
+    <div class="form-select">
+      <label for="cars">Chọn nhóm:</label>
+      <select name="nhom" id="nhom"></select>
+    </div>
+    <button class="form-button" type="submit">Thống kê ngay</button>
+  </form>
+</div>
+<div class="right-content">
+  <table class="table"></table>
+</div>`;
+  content.appendChild(div);
+  tainhom();
+
+  const form = document.getElementsByClassName('form-thongke')[0];
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let nhomhientai = nhom.value;
+    let ngaybatdau = document.getElementById('ngaybatdau').value;
+    let ngayketthuc = document.getElementById('ngayketthuc').value;
+
+    let map = thongke(ngaybatdau, ngayketthuc, nhomhientai);
+    loaddata(map);
+  });
+});

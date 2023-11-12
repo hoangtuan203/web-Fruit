@@ -1,7 +1,13 @@
 const table = document.getElementsByClassName('table');
 const currentuser = JSON.parse(localStorage.getItem('currentuser')) || '';
 const hoadon = JSON.parse(localStorage.getItem('hoadon')) || [];
-let hoadonnguoidung = hoadon.filter((x) => x.makhach == currentuser.makhach);
+let hoadonnguoidung = hoadon.filter((x) => x.makhach == currentuser.user_id);
+let formate = (s) => {
+  s = s.split('-');
+
+  let k = s[2] + '-' + s[1] + '-' + s[0];
+  return k;
+};
 function reloadCard() {
   table[0].innerHTML = '';
   let tr = document.createElement('tr');
@@ -17,7 +23,7 @@ function reloadCard() {
     tr.innerHTML = `
                   <td>${value.mahoadon}</td>
                   <td>${value.tongtien}</td>
-                  <td>${value.ngaymua}</td>
+                  <td>${formate(value.ngaymua)}</td>
                   <td>${value.trangthaihoadon}</td>`;
 
     table[0].appendChild(tr);
