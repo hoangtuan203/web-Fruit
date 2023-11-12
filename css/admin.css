@@ -1,5 +1,4 @@
 * {
-<<<<<<< HEAD
     box-sizing: inherit;
     margin: 0 auto;
     padding: 0;
@@ -336,13 +335,6 @@ label[for="product_id"], label[for="product_name"], label[for="product_price_new
     background-color: #B192EF;
     color:#fff;
   }
-=======
-  box-sizing: inherit;
-  margin: 0 auto;
-  padding: 0;
-  font-family: 'Signika', sans-serif;
-  color: #000;
-}
 body {
   background-color: #cccccccd;
 }
@@ -363,8 +355,6 @@ body {
   padding: 10px 0;
   width: 100%;
 }
->>>>>>> c0586cb8c6553dfdb87a642dbb5b085dd0aff505
-
 .navbar-title {
   display: flex;
   position: relative;
