@@ -107,10 +107,6 @@ const nhomsanpham = JSON.parse(localStorage.getItem('nhom')) || [
     manhom: 2,
     tennhom: 'Nhóm 2',
   },
-  {
-    manhom: 3,
-    tennhom: 'Nhóm 3',
-  },
 ];
 const sanpham = JSON.parse(localStorage.getItem('sanpham')) || [
   {
@@ -191,7 +187,6 @@ let doanhthu = (chitiethoadon) => {
       map.set(sanpham, temp);
     }
   });
-
   return map;
 };
 
@@ -233,8 +228,10 @@ let thongke = (ngaybatdau, ngayketthuc, nhom) => {
 // load data
 
 let loaddata = (map) => {
+  const itemsPerPage = 5; // Số sản phẩm trên mỗi trang
+  let currentPage = 1; // Trang hiện tại
   let nhom = document.getElementById('nhom');
-  const table = document.getElementsByClassName('table');
+  // const table = document.getElementsByClassName('table');
   let nhomhientai = nhom.value;
   let sanphamnhom;
   if (nhomhientai == 'all') {
@@ -244,33 +241,82 @@ let loaddata = (map) => {
       return x.manhom == nhomhientai;
     });
   }
-  table[0].innerHTML = '';
-  let thead = document.createElement('thead');
-  let tr = document.createElement('tr');
-  tr.innerHTML = ` <th >STT</th>
- <th >Nhóm</th>
- <th >Tên sản phẩm</th>
- <th ">Lợi nhuận</th>`;
-  thead.appendChild(tr);
-  table[0].appendChild(thead);
-  let tbody = document.createElement('tbody');
-  sanphamnhom.map((x) => {
-    let tr = document.createElement('tr');
 
-    tr.innerHTML = `<td>${x.id}</td>
-  <td>${x.manhom}</td>
-  <td>${x.name}</td>`;
-    let td = document.createElement('td');
-    let giatien = map.get(x.id);
-    if (giatien) {
-      td.innerHTML = `${giatien.toLocaleString()}`;
-    } else {
-      td.innerHTML = `${0}`;
+  function displayProducts(page) {
+    const tableBody = document.getElementById('tableBody');
+    const pagination = document.getElementById('pagination');
+    tableBody.innerHTML = '';
+
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const paginatedProducts = sanphamnhom.slice(start, end);
+
+    paginatedProducts.forEach((product) => {
+      const row = tableBody.insertRow();
+      let giatien = map.get(product.id);
+      if (giatien) {
+        row.innerHTML = `
+            <td>${product.id}</td>
+            <td>${product.manhom}</td>
+            <td>${product.name}</td>
+            <td>${giatien.toLocaleString()}</td>
+        `;
+      } else {
+        row.innerHTML = `
+        <td>${product.id}</td>
+        <td>${product.manhom}</td>
+        <td>${product.name}</td>
+        <td>${0}</td>
+    `;
+      }
+    });
+
+    const totalPages = Math.ceil(sanphamnhom.length / itemsPerPage);
+    pagination.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement('button');
+      btn.innerText = i;
+      if (currentPage == i) btn.style.backgroundColor = '#039201';
+
+      btn.addEventListener('click', function () {
+        currentPage = i;
+        displayProducts(currentPage);
+      });
+
+      pagination.appendChild(btn);
     }
-    tr.appendChild(td);
-    tbody.appendChild(tr);
-  });
-  table[0].appendChild(tbody);
+  }
+
+  // Hiển thị sản phẩm cho trang đầu tiên khi trang web được tải
+  displayProducts(currentPage);
+  //   table[0].innerHTML = '';
+  //   let thead = document.createElement('thead');
+  //   let tr = document.createElement('tr');
+  //   tr.innerHTML = ` <th >STT</th>
+  //  <th >Nhóm</th>
+  //  <th >Tên sản phẩm</th>
+  //  <th ">Lợi nhuận</th>`;
+  //   thead.appendChild(tr);
+  //   table[0].appendChild(thead);
+  //   let tbody = document.createElement('tbody');
+  //   sanphamnhom.map((x) => {
+  //     let tr = document.createElement('tr');
+
+  //     tr.innerHTML = `<td>${x.id}</td>
+  //   <td>${x.manhom}</td>
+  //   <td>${x.name}</td>`;
+  //     let td = document.createElement('td');
+  //     let giatien = map.get(x.id);
+  //     if (giatien) {
+  //       td.innerHTML = `${giatien.toLocaleString()}`;
+  //     } else {
+  //       td.innerHTML = `${0}`;
+  //     }
+  //     tr.appendChild(td);
+  //     tbody.appendChild(tr);
+  //   });
+  //   table[0].appendChild(tbody);
 };
 
 let tainhom = () => {
@@ -313,9 +359,24 @@ thongkeitem.addEventListener('click', () => {
     <button class="form-button" type="submit">Thống kê ngay</button>
   </form>
 </div>
+<
 <div class="right-content">
-  <table class="table"></table>
-</div>`;
+<table id="productTable">
+<thead>
+  <tr>
+    <th>Mã Sản Phẩm</th>
+    <th>Nhóm</th>
+    <th>Tên Sản Phẩm</th>
+    <th>Lợi nhuận</th>
+  </tr>
+</thead>
+<tbody id="tableBody">
+  <!-- Dữ liệu sản phẩm sẽ được thêm vào đây -->
+</tbody>
+</table>
+<div id="pagination"></div>
+</div>
+`;
   content.appendChild(div);
   tainhom();
 

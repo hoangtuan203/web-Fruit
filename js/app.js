@@ -99,25 +99,15 @@ const main = () => {
   let addtocart = (product_id) => {
     let product = sanpham.find((x) => x.id == product_id);
 
-    if (currentuser) {
-      if (currentcart.length > 0) {
-        let checkcart = currentcart.findIndex((x) => x.masanpham == product_id);
+    if (currentcart.length > 0) {
+      let checkcart = currentcart.findIndex((x) => x.masanpham == product_id);
 
-        if (checkcart != -1) {
-          let updatecart = currentcart[checkcart];
+      if (checkcart != -1) {
+        let updatecart = currentcart[checkcart];
 
-          updatecart.soluong = updatecart.soluong + 1;
-          currentcart[checkcart] = updatecart;
-          localStorage.setItem('currentcart', JSON.stringify(currentcart));
-        } else {
-          currentcart.push({
-            masanpham: product.id,
-            gia: product.priceOld,
-            soluong: 1,
-          });
-
-          localStorage.setItem('currentcart', JSON.stringify(currentcart));
-        }
+        updatecart.soluong = updatecart.soluong + 1;
+        currentcart[checkcart] = updatecart;
+        localStorage.setItem('currentcart', JSON.stringify(currentcart));
       } else {
         currentcart.push({
           masanpham: product.id,
@@ -128,9 +118,37 @@ const main = () => {
         localStorage.setItem('currentcart', JSON.stringify(currentcart));
       }
     } else {
-      alert('Đăng nhập trước khi mua');
+      currentcart.push({
+        masanpham: product.id,
+        gia: product.priceOld,
+        soluong: 1,
+      });
+
+      localStorage.setItem('currentcart', JSON.stringify(currentcart));
     }
+
     countquantity();
   };
 };
+
+// const cart = JSON.parse(localStorage.getItem('currentcart')) || [];
+// let quantity=1;
+// let temp
+// let button=document.createElement('button')
+// let product_id=temp.getAttribute('data-productid')
+// button.addEventListener('click',()=>{
+//   if(button.getAttribute('data-action')=='add'){
+//     quantity++;
+//     reloaddata()
+//   }else{
+//     if(quantity==1) return
+//     else{
+//       quantity--;
+//       reloaddata()
+//     }
+//   }
+// })
+// addcart.addEventListener('click',()=>{
+//   currentcart.push({masanpham:product_id,gia:30,soluong:quantity})
+// })
 export { main };

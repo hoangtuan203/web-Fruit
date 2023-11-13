@@ -111,7 +111,7 @@ function reloadCard() {
     table[0].appendChild(tr);
   });
 
-  tong_tien[0].innerHTML = `Tổng tiền:${totalPrice.toLocaleString()}`;
+  tong_tien[0].innerHTML = `Tổng tiền:${totalPrice.toLocaleString()}đ`;
   so_luong[0].innerHTML = `Tổng sản phẩm:${count.toLocaleString()}`;
 }
 reloadCard();
@@ -132,33 +132,37 @@ let deleteProduct = (key) => {
 };
 // order
 order.addEventListener('click', () => {
-  const cart = JSON.parse(localStorage.getItem('currentcart')) || [];
-  if (cart.length == 0) {
-    alert('Chọn ít nhất 1 sản phẩm');
-    return;
+  if (currentuser) {
+    const cart = JSON.parse(localStorage.getItem('currentcart')) || [];
+    if (cart.length == 0) {
+      alert('Chọn ít nhất 1 sản phẩm');
+      return;
+    }
+    let today = new Date().toISOString().slice(0, 10);
+    let mahoadon = hoadon.length + 1;
+    let tong_tien = 0;
+    cart.map((x) => {
+      tong_tien += x.soluong * x.gia;
+    });
+    hoadon.push({
+      makhach: currentuser.user_id,
+      mahoadon: mahoadon,
+      ngaymua: today,
+      trangthaihoadon: 'Chờ xử lý',
+      tongtien: tong_tien,
+    });
+
+    cart.map((x) => {
+      x['mahoadon'] = mahoadon;
+      chitiethoadon.push(x);
+    });
+    localStorage.setItem('hoadon', JSON.stringify(hoadon));
+    localStorage.setItem('chitiethoadon', JSON.stringify(chitiethoadon));
+    localStorage.removeItem('currentcart');
+
+    alert('Đặt hàng thành công đơn hàng chờ xử lý');
+    window.location.href = '../index.html';
+  } else {
+    alert('Đăng nhập trước khi mua');
   }
-  let today = new Date().toISOString().slice(0, 10);
-  let mahoadon = hoadon.length + 1;
-  let tong_tien = 0;
-  cart.map((x) => {
-    tong_tien += x.soluong * x.gia;
-  });
-  hoadon.push({
-    makhach: currentuser.user_id,
-    mahoadon: mahoadon,
-    ngaymua: today,
-    trangthaihoadon: 'Chờ xử lý',
-    tongtien: tong_tien,
-  });
-
-  cart.map((x) => {
-    x['mahoadon'] = mahoadon;
-    chitiethoadon.push(x);
-  });
-  localStorage.setItem('hoadon', JSON.stringify(hoadon));
-  localStorage.setItem('chitiethoadon', JSON.stringify(chitiethoadon));
-  localStorage.removeItem('currentcart');
-
-  alert('Đặt hàng thành công đơn hàng chờ xử lý');
-  window.location.href = '../index.html';
 });
