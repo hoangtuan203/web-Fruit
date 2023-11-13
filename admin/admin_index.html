@@ -113,7 +113,12 @@
       </div>
       <!-- End navbar -->
       <!-- Menuleft -->
-      <div id="menuLeft" class="menu-left" onmouseover="PhongSide()" onmouseout="ThuSide()">
+      <div
+        id="menuLeft"
+        class="menu-left"
+        onmouseover="PhongSide()"
+        onmouseout="ThuSide()"
+      >
         <ul class="list-menu">
           <li class="list-menu-item">
             <h2 class="text title-1 hide-text">MENU</h2>
@@ -295,49 +300,45 @@
         <div class="header-product">
           <h1 class="title">QUẢN LÝ SẢN PHẨM</h1>
           <div class="button-header">
-            <button class="btn-add" onclick="hienThi()">ADD</button>
+            <button class="btn-add" onclick="addProduct()">ADD</button>
+            <button class="btn-upload-img">Upload Image</button>
           </div>
         </div>
-        <div class="body-product">
-        </div>
+        <div class="body-product"></div>
         <!-- add product -->
-          <div class="form-container" id="formContainer">
-            <form
-              action=""
-            > 
-            <label for="product_id">ID Sản Phẩm:</label>
-            <input type="text" name="product_id" id="product_id" required /><br />
+        <div id="addProductModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeAddProductModal()">&times;</span>
+            <h2>Add New Product</h2>
+            <form id="addProductForm">
+              <label for="productName">Product Name:</label>
+              <input type="text" id="productName" name="productName" placeholder="Input Product Name" />
 
-            <label for="product_name">Tên Sản Phẩm:</label>
-            <input
-              type="text"
-              name="product_name"
-              id="product_name"
-              required
-            /><br />
+              <label for="productPrice">Price:</label>
+              <input
+                type="number"
+                id="productPrice"
+                name="productPrice"
+                placeholder="Input Price"
+                required
+              />
 
-            <label for="product_price_new">Giá Mới:</label>
-            <input
-              type="number"
-              name="product_price"
-              id="product_price"
-              required
-            /><br />
+              <label for="productQuantity">Quantity:</label>
+              <input
+                type="number"
+                id="productQuantity"
+                name="productQuantity"
+                placeholder="Input Quantity"
+                required
+              />
 
-            <label for="product_image">Hình Ảnh:</label>
-            <input
-              type="file"
-              name="product_image"
-              id="product_image"
-              required
-            /><br />
+              <label for="productImage">Image:</label>
+              <input type="file" id="productImage" name="productImage" accept="image/*" required>
 
-            <div class="list-btn">
-              <input id="addProduct" class="btn-add-product" type="submit" onclick="themSanPhamMoi()" value="Thêm" />
-              <input  class="btn-back" type="submit" value="Thoát" onclick="Thoat()" />
-            </div>
+              <button class="btn-add-product-new" type="button" onclick="addProductNew()">Add Product</button>
             </form>
           </div>
+        </div>
 
         <div class="pagination">
           <ul class="listPage">
@@ -351,6 +352,6 @@
       <!-- Account -->
     </div>
   </body>
-  <script type="module" src="../js/admin.js"></script>
-  <script type="module" src="../js/product.js"></script>
+  <script src="../js/admin.js"></script>
+  <script src="../js/product-list.js"></script>
 </html>
