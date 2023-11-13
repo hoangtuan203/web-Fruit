@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
       emailField.classList.remove('input_error'); // remove the class when there is no error
     }
 
-    if (!passwordValid) {
+    if (passwordValid === false) {
       valid = false;
       passwordField.classList.add('input_error');
     } else {
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
           if (user.password == passwordField.value) {
             localStorage.setItem('currentuser', JSON.stringify(user));
             errorMessage.innerHTML = '';
-            alert('Đăng nhập thành công');
+
             window.location.href = '../index.html';
           } else {
             errorMessage.innerHTML = 'Email hoặc mật khẩu không hợp lệ';
@@ -93,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (user) {
           errorMessage.innerHTML = 'Email đã tồn tại';
           return;
+        } else {
+          errorMessage.innerHTML = '';
         }
         usersList.push({
           user_id: usersList.length + 1,
@@ -101,7 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         errorMessage.innerHTML = '';
         localStorage.setItem('users', JSON.stringify(usersList));
-        alert('Tạo người dùng thành công');
 
         window.location.href = 'login.html';
       }
