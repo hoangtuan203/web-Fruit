@@ -240,10 +240,6 @@ const products = [
     img: 'link_to_dried_mango_image.jpg',
   },
 ];
-<<<<<<< HEAD
 
 const productsJSON = JSON.stringify(products);
 localStorage.setItem('products', productsJSON);
-=======
-export default products;
->>>>>>> 837f83e9dd39068758a62fee049dcf5bde8826bc

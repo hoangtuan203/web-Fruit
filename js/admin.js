@@ -1,3 +1,5 @@
+const storedProductsJSON = localStorage.getItem("products");
+const storedProducts = JSON.parse(storedProductsJSON);
 const thongkeitem = document.getElementById("thongke");
 const content = document.getElementsByClassName("content")[0];
 //hien thi menu left
@@ -32,7 +34,7 @@ function loadItem() {
 
   list.forEach((item, key) => {
     if (key >= beginGet && key < endGet) {
-      item.style.display = "table-row"; // Chuyển style display về 'table-row' thay vì 'block'
+      item.style.display = "block"; // Chuyển style display về 'table-row' thay vì 'block'
     } else {
       item.style.display = "none";
     }
@@ -87,41 +89,39 @@ function loadProductList() {
   headerRow.innerHTML = `
       <th>STT</th>
       <th>ID</th>
-      <th>Name Product</th>
-      <th>Price(VNĐ)</th>
-      <th>Quantity</th>
-      <th>Image</th>
+      <th>Tên Sản Phẩm</th>
+      <th>Giá(VNĐ)</th>
+      <th>Số Lượng</th>
+      <th>Hình ảnh</th>
   `;
 
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
   // Retrieve the product data from localStorage
-  const storedProductsJSON = localStorage.getItem("products");
+//   <td> 
+//   <input type="checkbox" class="product-checkbox" id="checkbox-${item.id}">
+// </td>
 
   if (storedProductsJSON) {
-    const storedProducts = JSON.parse(storedProductsJSON);
-
-    // Loop through the stored products and create rows for each
     storedProducts.forEach((item, index) => {
       const row = document.createElement("tr");
       row.innerHTML = `
-          <td>${index + 1}</td>
-          <td>${item.id}</td>
-          <td>${item.name}</td>
-          <td>${item.price}</td>
-          <td>${item.quantity}</td>
-          <td>${item.img}</td>
-          <td> 
-            <input type="checkbox" class="product-checkbox" id="checkbox-${item.id}">
-          </td>
-          <td>
-            <button onclick="editProduct(${item.id})">Edit</button>
-            <button onclick="deleteProduct(${item.id})">Delete</button>
+        <td>${index + 1}</td>
+        <td>${item.id}</td>
+        <td>${item.name}</td>
+        <td>${item.price}</td>
+        <td>${item.quantity}</td>
+        <td><img src="../image/product-fresh/${item.img}" style="max-width: 50px; max-height: 50px;"></td>
+      
+        <td>
+          <button class="btn-edit-product" onclick="editProduct(${item.id})">Sửa</button>
+          <button class="btn-delete-product" onclick="deleteProduct(${item.id})">Xóa</button>
         </td>
       `;
       tbody.appendChild(row);
     });
+    
   } else {
     // Handle the case when there are no products in localStorage
     const noDataMessageRow = document.createElement("tr");
@@ -134,7 +134,7 @@ function loadProductList() {
 }
 
 // Call the function to load the product list
-loadProductList();
+
 function closeAddProductModal() {
   const modal = document.getElementById("addProductModal");
   modal.style.display = "none";
@@ -191,138 +191,97 @@ function addProductNew() {
   localStorage.setItem("products", JSON.stringify(storedProducts));
   alert("Add Product New Successful.");
   closeAddProductModal();
-  loadProductList();
 }
+//delete product 
+function deleteProduct(productId) {
+  const isConfirmed = window.confirm("Are you sure you want to delete this product?");
 
+  if (isConfirmed) {
+    const storedProductsJSON = localStorage.getItem("products");
+
+    if (storedProductsJSON) {
+      const storedProducts = JSON.parse(storedProductsJSON);
+      const productIndex = storedProducts.findIndex((item) => item.id === productId);
+
+      if (productIndex !== -1) {
+        storedProducts.splice(productIndex, 1);
+        localStorage.setItem("products", JSON.stringify(storedProducts));
+
+      }
+    }
+  }
+}
+loadProductList();
+//load quantity product
+function quantityProduct() {
+  document.getElementById('quantityValue').innerText = storedProducts.length;
+}
+quantityProduct()
 //thong ke
-
-const chitiethoadon = JSON.parse(localStorage.getItem("chitiethoadon")) || [];
-const hoadon = JSON.parse(localStorage.getItem("hoadon")) || [];
-const nhomsanpham = JSON.parse(localStorage.getItem("nhom")) || [
+const chitiethoadon = JSON.parse(localStorage.getItem('chitiethoadon')) || [];
+const hoadon = JSON.parse(localStorage.getItem('hoadon')) || [];
+const nhomsanpham = JSON.parse(localStorage.getItem('nhom')) || [
   {
     manhom: 1,
-    tennhom: "Nhóm 1",
+    tennhom: 'Nhóm 1',
   },
   {
     manhom: 2,
-    tennhom: "Nhóm 2",
+    tennhom: 'Nhóm 2',
   },
-<<<<<<< HEAD
-  {
-    manhom: 3,
-    tennhom: "Nhóm 3",
-  },
-=======
->>>>>>> 837f83e9dd39068758a62fee049dcf5bde8826bc
 ];
-const sanpham = JSON.parse(localStorage.getItem("sanpham")) || [
+const sanpham = JSON.parse(localStorage.getItem('sanpham')) || [
   {
     manhom: 1,
     id: 1,
-<<<<<<< HEAD
-    name: "Sản phẩm 1",
-    price: 1500,
-    img: "./image/product1.jpg",
-    priceOld: 1500,
-=======
     name: 'Chôm Chôm',
     price: 5000,
     quantity: 10,
     img: './image/product-fresh/chom-chom.jpg',
->>>>>>> 837f83e9dd39068758a62fee049dcf5bde8826bc
   },
   {
     manhom: 1,
     id: 2,
-<<<<<<< HEAD
-    name: "Sản phẩm 2",
-    price: 1500,
-    img: "./image/product1.jpg",
-    priceOld: 1500,
-=======
     name: 'Dưa Hấu',
     price: 8000,
     quantity: 15,
     img: './image/product-fresh/dua-hau.jpg',
->>>>>>> 837f83e9dd39068758a62fee049dcf5bde8826bc
   },
   {
     manhom: 1,
     id: 3,
-<<<<<<< HEAD
-    name: "Sản phẩm 3",
-    price: 1500,
-    img: "./image/product1.jpg",
-    priceOld: 1500,
-=======
     name: 'Dưa Lưới',
     price: 7000,
     quantity: 12,
     img: './image/product-fresh/dua-luoi.jpg',
->>>>>>> 837f83e9dd39068758a62fee049dcf5bde8826bc
   },
   {
     manhom: 1,
     id: 4,
-<<<<<<< HEAD
-    name: "Sản phẩm 4",
-    price: 1500,
-    img: "./image/product1.jpg",
-    priceOld: 1500,
-=======
     name: 'Hồng Giòn',
     price: 6000,
     quantity: 20,
     img: './image/product-fresh/hong-gion.jpg',
->>>>>>> 837f83e9dd39068758a62fee049dcf5bde8826bc
   },
   {
     manhom: 1,
     id: 5,
-<<<<<<< HEAD
-    name: "Sản phẩm 5",
-    price: 1500,
-    img: "./image/product1.jpg",
-    priceOld: 1500,
-=======
     name: 'Hồng Trung',
     price: 7500,
     quantity: 8,
     img: './image/product-fresh/Hong-Trung.jpg',
->>>>>>> 837f83e9dd39068758a62fee049dcf5bde8826bc
   },
   {
     manhom: 1,
     id: 6,
-<<<<<<< HEAD
-    name: "Sản phẩm 6",
-    price: 1500,
-    img: "./image/product1.jpg",
-    priceOld: 1500,
-=======
     name: 'Măng Cụt',
     price: 10000,
     quantity: 18,
     img: './image/product-fresh/mang-cut.jpg',
->>>>>>> 837f83e9dd39068758a62fee049dcf5bde8826bc
   },
   {
     manhom: 1,
     id: 7,
-<<<<<<< HEAD
-    name: "Sản phẩm 7",
-    price: 1500,
-    img: "./image/product1.jpg",
-    priceOld: 1500,
-  },
-  {
-    manhom: 2,
-    id: 8,
-    name: "Sản phẩm 8",
-    price: 1500,
-    img: "./image/product1.jpg",
-    priceOld: 1500,
-=======
     name: 'Nhãn Xuồng',
     price: 9000,
     quantity: 14,
@@ -512,7 +471,6 @@ const sanpham = JSON.parse(localStorage.getItem("sanpham")) || [
     price: 14000,
     quantity: 14,
     img: './image/product-cart/sinh-nhat.jpg',
->>>>>>> 837f83e9dd39068758a62fee049dcf5bde8826bc
   },
 ];
 
@@ -545,7 +503,7 @@ let thongke = (ngaybatdau, ngayketthuc, nhom) => {
     });
 
   let sanphamnhom;
-  if (nhom == "all") {
+  if (nhom == 'all') {
     sanphamnhom = sanpham.map((y) => {
       return y.id;
     });
@@ -570,48 +528,19 @@ let thongke = (ngaybatdau, ngayketthuc, nhom) => {
 // load data
 
 let loaddata = (map) => {
-<<<<<<< HEAD
-  let nhom = document.getElementById("nhom");
-  const table = document.getElementsByClassName("table");
-=======
   const itemsPerPage = 5; // Số sản phẩm trên mỗi trang
   let currentPage = 1; // Trang hiện tại
   let nhom = document.getElementById('nhom');
   // const table = document.getElementsByClassName('table');
->>>>>>> 837f83e9dd39068758a62fee049dcf5bde8826bc
   let nhomhientai = nhom.value;
   let sanphamnhom;
-  if (nhomhientai == "all") {
+  if (nhomhientai == 'all') {
     sanphamnhom = sanpham;
   } else {
     sanphamnhom = sanpham.filter((x) => {
       return x.manhom == nhomhientai;
     });
   }
-<<<<<<< HEAD
-  table[0].innerHTML = "";
-  let thead = document.createElement("thead");
-  let tr = document.createElement("tr");
-  tr.innerHTML = ` <th >STT</th>
- <th >Nhóm</th>
- <th >Tên sản phẩm</th>
- <th ">Lợi nhuận</th>`;
-  thead.appendChild(tr);
-  table[0].appendChild(thead);
-  let tbody = document.createElement("tbody");
-  sanphamnhom.map((x) => {
-    let tr = document.createElement("tr");
-
-    tr.innerHTML = `<td>${x.id}</td>
-  <td>${x.manhom}</td>
-  <td>${x.name}</td>`;
-    let td = document.createElement("td");
-    let giatien = map.get(x.id);
-    if (giatien) {
-      td.innerHTML = `${giatien.toLocaleString()}`;
-    } else {
-      td.innerHTML = `${0}`;
-=======
 
   function displayProducts(page) {
     const tableBody = document.getElementById('tableBody');
@@ -656,7 +585,6 @@ let loaddata = (map) => {
       });
 
       pagination.appendChild(btn);
->>>>>>> 837f83e9dd39068758a62fee049dcf5bde8826bc
     }
   }
 
@@ -665,23 +593,23 @@ let loaddata = (map) => {
 };
 
 let tainhom = () => {
-  let nhom = document.getElementById("nhom");
+  let nhom = document.getElementById('nhom');
 
-  let option = document.createElement("option");
-  option.value = "all";
+  let option = document.createElement('option');
+  option.value = 'all';
   option.innerHTML = `Tất cả nhóm`;
   nhom.appendChild(option);
   nhomsanpham.map((x) => {
-    let option = document.createElement("option");
+    let option = document.createElement('option');
     option.value = x.manhom;
     option.innerHTML = `${x.tennhom}`;
     nhom.appendChild(option);
   });
 };
-thongkeitem.addEventListener("click", () => {
-  content.innerHTML = "";
-  let div = document.createElement("div");
-  div.className = "container-thongke";
+thongkeitem.addEventListener('click', () => {
+  content.innerHTML = '';
+  let div = document.createElement('div');
+  div.className = 'container-thongke';
   div.innerHTML = `<div class="left-content">
   <form action="" class="form-thongke"  method="POST">
     <div class="text-form">
@@ -725,12 +653,12 @@ thongkeitem.addEventListener("click", () => {
   content.appendChild(div);
   tainhom();
 
-  const form = document.getElementsByClassName("form-thongke")[0];
-  form.addEventListener("submit", function (e) {
+  const form = document.getElementsByClassName('form-thongke')[0];
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
     let nhomhientai = nhom.value;
-    let ngaybatdau = document.getElementById("ngaybatdau").value;
-    let ngayketthuc = document.getElementById("ngayketthuc").value;
+    let ngaybatdau = document.getElementById('ngaybatdau').value;
+    let ngayketthuc = document.getElementById('ngayketthuc').value;
 
     let map = thongke(ngaybatdau, ngayketthuc, nhomhientai);
     loaddata(map);

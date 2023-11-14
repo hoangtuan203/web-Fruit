@@ -5,20 +5,17 @@
   font-family: "Tahoma Geneva", sans-serif;
   color: #000;
 }
-body {
-  background-color: #cccccccd;
-}
 :root {
   --background-primary: #fdf8f8;
   --main-color: #039201;
-  --blackLight: #303337;
+  --blackLight: #30333789;
   --blackDark: #212121;
-  --mattGray: #878d8d;
+  --mattGray: #dae8e8;
 }
 .navbar {
   display: flex;
-  background-color: var(--blackLight); /* Màu nền của navbar */
-  color: #fff; /* Màu chữ trắng */
+  background-color: var(--blackLight); 
+  color: #fff; 
   display: flex;
   justify-content: space-between; /* Canh giữa các phần tử theo chiều ngang */
   align-items: center; /* Canh giữa các phần tử theo chiều dọc */
@@ -61,7 +58,7 @@ body {
   width: 20%;
   position: fixed;
   top: 0;
-  background-color: var(--mattGray);
+  background-color: #ccc;
   padding-top: 20px;
   color: #fff;
   overflow-y: auto;
@@ -108,6 +105,8 @@ body {
   margin-left: 80px;
   display: flex;
   justify-content: center;
+  background-color: var(--background-primary); 
+
 }
 .product {
   width: 80%;
@@ -117,19 +116,22 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
 }
 
 .header-product .title {
-  display: flex;
-  justify-content: center;
-  text-decoration: none;
-  text-align: center;
+  position: relative;
+  top: 10px;
+  font-family: math;
 }
-.title {
-  margin-bottom: 16px;
-  font-size: 24px;
-  font-weight: 700;
+#quantityValue {
+  color: var(--main-color);
+  font-size: 25px;
+  margin-left: 8px;
+}
+#productQuantity {
+  align-items: center;
+  display: flex;
+  font-size: 20px;
 }
 .btn-add {
   padding: 8px 16px;
@@ -139,6 +141,7 @@ body {
   border-radius: 5px;
   box-shadow: 2px 2px green;
   opacity: 1;
+  color: white;
 }
 .btn-add:hover {
   opacity: 0.8;
@@ -158,12 +161,9 @@ body {
   text-decoration: none;
 }
 /* add  */
-/* CSS cho biểu mẫu thêm sản phẩm */
-/* CSS cho phần nền mờ */
 .overlay {
   display: none;
-
-  z-index: 999; /* Đảm bảo nó hiển thị phía trên */
+  z-index: 999;
 }
 
 /* CSS cho biểu mẫu thêm sản phẩm */
@@ -239,153 +239,7 @@ label[for="product_price_old"] {
 /* end thêm sản phẩm */
 
 /* end product  */
-/* pagination */
-.listPage {
-  padding: 20px;
-  text-align: center;
-  list-style: none;
-}
-.listPage li {
-  display: inline-block;
-  background-color: #ffffffbd;
-  padding: 10px;
-  margin: 0 10px;
-  cursor: pointer;
-  border-radius: 8px;
-  font-weight: 600;
-}
-.listPage li:hover {
-  opacity: 0.6;
-}
-.listPage .active {
-  background-color: #b192ef;
-  color: #fff;
-}
-body {
-  background-color: #cccccccd;
-}
-:root {
-  --background-primary: #fdf8f8;
-  --main-color: #039201;
-  --blackLight: #303337;
-  --blackDark: #212121;
-  --mattGray: #878d8d;
-}
-.navbar {
-  display: flex;
-  background-color: var(--blackLight); /* Màu nền của navbar */
-  color: #fff; /* Màu chữ trắng */
-  display: flex;
-  justify-content: space-between; /* Canh giữa các phần tử theo chiều ngang */
-  align-items: center; /* Canh giữa các phần tử theo chiều dọc */
-  padding: 10px 0;
-  width: 100%;
-}
-.navbar-title {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-}
-.navbar-title p {
-  margin-left: 100px;
-  color: white;
-  font-weight: 800;
-}
-.navbar-title p {
-  margin-left: 100px;
-  color: white;
-  font-weight: 800;
-}
-.admin-logo {
-  margin: -5px 0 0 10px;
-}
-.exit-logo {
-  margin-left: 1000px;
-}
-.btn-exit {
-  background-color: white;
-}
-.exit {
-  background-color: #878d8d;
-  margin-right: 12px;
-}
 
-.menu-left {
-  height: 100%;
-  width: 20%;
-  position: fixed;
-  top: 0;
-  background-color: var(--mattGray);
-  padding-top: 20px;
-  color: #fff;
-  overflow-y: auto;
-  transition: all ease 0.3s;
-}
-
-.list-menu {
-  text-align: center;
-  list-style-type: none;
-}
-.list-menu-item {
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  transition: transform 0.4s ease;
-}
-.list-menu-item h2 {
-  font-size: 30px;
-  text-align: center;
-}
-.list-menu-item:hover {
-  transform: scale(1.1);
-  background-color: #ccc;
-}
-.list-menu-item .text {
-  font-size: 16px;
-  font-weight: 600;
-  margin-left: 16px;
-}
-
-.list-menu-item:first-child {
-  margin-top: 16px;
-}
-.list-menu-item svg {
-  width: 30px;
-  height: 30px;
-}
-.list-menu-item.hide-text .text {
-  display: none;
-}
-/* CONTENT */
-/* SAN PHAM */
-.content {
-  margin-left: 80px;
-  display: flex;
-  justify-content: center;
-}
-.product {
-  width: 80%;
-  margin: 32px;
-}
-.header-product {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.header-product .title {
-  display: flex;
-  justify-content: center;
-  text-decoration: none;
-  text-align: center;
-}
-.title {
-  margin-bottom: 16px;
-  font-size: 24px;
-  font-weight: 700;
-}
 .btn-add {
   padding: 8px 16px;
   background-color: #4caf50;
@@ -396,6 +250,22 @@ body {
   opacity: 1;
 }
 .btn-add:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.btn-delete-all {
+  padding: 8px 16px;
+  background-color: rgba(212, 23, 23, 0.712);
+  margin-left: 16px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px rgba(212, 23, 23, 0.712);
+  opacity: 1;
+  color: white;
+}
+.btn-delete-all:hover
+{
+  cursor: pointer;
   opacity: 0.8;
 }
 .title {
@@ -413,28 +283,43 @@ body {
   text-decoration: none;
 }
 table {
+ 
+  margin-top: 32px;
   border-collapse: collapse;
   width: 100%;
-  border: 1px solid black;
-  background-color: rgba(255, 255, 255, 0.853);
+  background-color: rgba(255, 255, 255, 0.5);
 }
+
 th,
 td {
   text-align: left;
-  padding: 8px;
-  border-collapse: collapse;
+  padding: 10px;
+  border: 1px solid #dddddd;
 }
-th,
-td {
-  text-align: left;
-  padding: 8px;
-}
+
 th {
   background-color: #f2f2f2;
 }
-tr:hover {
-  background-color: #f2f2f2;
+
+tr{
+  color: #ff8000;
 }
+tr:hover {
+  background-color: #d8d7d7f4;
+}
+
+thead {
+  border-bottom: 2px solid #dddddd;
+}
+
+td:last-child {
+  border-right: 2px solid #dddddd;
+}
+
+tbody tr:last-child td {
+  border-bottom: 2px solid #dddddd;
+}
+
 .btn-upload-img {
   padding: 8px 16px;
   background-color: #4caf50;
@@ -444,6 +329,11 @@ tr:hover {
   box-shadow: 2px 2px green;
   opacity: 1;
   margin-left: 20px;
+  color: white;
+}
+.btn-upload-img:hover{
+  cursor: pointer;
+  opacity: 0.8;
 }
 /* form add product */
 /* Your existing styles for the scroll-table class */
@@ -466,7 +356,7 @@ tr:hover {
   border: 1px solid #888;
   border-radius: 10px; /* Add rounded corners */
 }
-.modal-content h2{
+.modal-content h2 {
   color: var(--main-color);
   margin-bottom: 10px;
   align-items: center;
@@ -486,18 +376,45 @@ tr:hover {
   text-decoration: none;
   cursor: pointer;
 }
-.btn-add-product-new{
+.btn-add-product-new {
   background-color: #4caf50;
-  border:  1px solid ;
+  border: 1px solid;
   border-radius: 5px;
-  padding:8px;
+  padding: 8px;
   display: flex;
   color: white;
   font-weight: 600;
 }
-.btn-add-product-new:hover{
+.btn-add-product-new:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.btn-edit-product {
+  background-color: #3498db;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 8px;
+}
+.btn-edit-product:hover {
   opacity: 0.8;
 }
+.btn-delete-product {
+  cursor: pointer;
+  background-color: rgba(212, 23, 23, 0.712);
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 8px;
+  color: white;
+  font-weight: 600;
+}
+.btn-delete-product:hover {
+  opacity: 0.8;
+}
+
 /* end product  */
 /* pagination */
 .listPage {
