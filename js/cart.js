@@ -268,10 +268,10 @@ function reloadCard() {
   let totalPrice = 0;
   table[0].innerHTML = '';
   let tr = document.createElement('tr');
-  tr.innerHTML = ` <th >Hình ảnh</th>
- <th>Tên sản phẩm</th>
- <th>Giá</th>
- <th >Số lượng</th>`;
+  tr.innerHTML = ` <th style="width: 30%;">Hình ảnh</th>
+ <th style="width: 20%;">Tên sản phẩm</th>
+ <th style="width: 20%;">Giá</th>
+ <th style="width: 30%;">Số lượng</th>`;
   table[0].appendChild(tr);
   cart.forEach((value, key) => {
     count += value.soluong;

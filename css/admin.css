@@ -246,7 +246,7 @@ tr:hover {
 .container-thongke {
   display: flex;
   gap: 25px;
-  margin: 35px 20px;
+  margin: 50px 80px;
   flex: 1;
 }
 .left-content {
@@ -296,10 +296,27 @@ tr:hover {
   align-items: center;
   justify-content: center;
   height: fit-content;
-  margin-top: 5px;
+  margin-top: 15px;
+  gap: 8px;
 }
 #pagination button {
   padding: 5px 10px;
   margin: 0 8px 0 0;
   border-radius: 5px;
+}
+.item input {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+#nhom {
+  border: 1px solid black;
+}
+.item {
+  align-items: center;
+}
+.form-select {
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }

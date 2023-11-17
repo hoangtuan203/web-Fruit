@@ -3,21 +3,25 @@
   padding: 0;
 }
 body {
-  margin: 30px;
+  margin: 20px 30px;
   display: flex;
   flex-direction: column;
+  min-width: 900px;
 }
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   flex: 7;
+  height: fit-content;
+  width: fit-content;
+  font-size: 16px;
 }
 
 td,
 th {
   border: 1px solid #dddddd;
   text-align: center;
-  padding: 8px;
+  padding: 5px;
 }
 
 .bill {
@@ -46,7 +50,8 @@ th {
 }
 .container {
   display: flex;
-  gap: 20px;
+  gap: 100px;
+  margin: 0 100px;
 }
 h2 {
   align-self: center;
@@ -72,14 +77,23 @@ a {
   margin-top: 30px;
   width: 150px;
   text-align: center;
+  margin-left: 100px;
 }
 img {
-  height: 40px;
+  height: 90px;
+  width: fit-content;
 }
 button {
   padding: 5px 10px;
   border-radius: 3px;
+  background-color: #fff;
+}
+button:hover {
+  background-color: #039201;
 }
 .bill {
   height: fit-content;
+}
+.count {
+  min-width: 25px;
 }
