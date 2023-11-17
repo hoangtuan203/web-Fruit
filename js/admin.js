@@ -1,27 +1,32 @@
-const thongkeitem = document.getElementById('thongke');
-const content = document.getElementsByClassName('content')[0];
+const storedProductsJSON = localStorage.getItem("products");
+const storedProducts = JSON.parse(storedProductsJSON);
+const thongkeitem = document.getElementById("thongke");
+const content = document.getElementsByClassName("content")[0];
 //hien thi menu left
 
-var menu_left = document.getElementsByClassName('menu-left')[0];
+const menu_left = document.getElementById("menuLeft");
 function PhongSide() {
-  menu_left.style.width = '250px';
-  var menuItems = document.querySelectorAll('.list-menu-item');
+  menu_left.style.width = "250px";
+  var menuItems = document.querySelectorAll(".list-menu-item");
   menuItems.forEach(function (item) {
-    item.classList.remove('hide-text');
+    item.classList.remove("hide-text");
   });
 }
 // Ẩn menu left
 function ThuSide() {
-  menu_left.style.width = '80px';
-  var menuItems = document.querySelectorAll('.list-menu-item');
+  menu_left.style.width = "80px";
+  var menuItems = document.querySelectorAll(".list-menu-item");
   menuItems.forEach(function (item) {
-    item.classList.add('hide-text');
+    item.classList.add("hide-text");
   });
 }
+document.addEventListener("DOMContentLoaded", function () {
+  ThuSide();
+});
 // xử lí phân trang
 let thisPage = 1;
 let limit = 5;
-let list = document.querySelectorAll('.list-product .item');
+let list = document.querySelectorAll(".list-product .item");
 
 function loadItem() {
   let beginGet = limit * (thisPage - 1);
@@ -29,9 +34,9 @@ function loadItem() {
 
   list.forEach((item, key) => {
     if (key >= beginGet && key < endGet) {
-      item.style.display = 'table-row'; // Chuyển style display về 'table-row' thay vì 'block'
+      item.style.display = "block"; // Chuyển style display về 'table-row' thay vì 'block'
     } else {
-      item.style.display = 'none';
+      item.style.display = "none";
     }
   });
   listPage();
@@ -41,30 +46,30 @@ loadItem();
 
 function listPage() {
   let count = Math.ceil(list.length / limit);
-  let listPageContainer = document.querySelector('.listPage');
-  listPageContainer.innerHTML = '';
+  let listPageContainer = document.querySelector(".listPage");
+  listPageContainer.innerHTML = "";
 
   if (thisPage > 1) {
-    let prev = document.createElement('li');
-    prev.innerText = '<';
-    prev.setAttribute('onclick', `changePage(${thisPage - 1})`);
+    let prev = document.createElement("li");
+    prev.innerText = "<";
+    prev.setAttribute("onclick", `changePage(${thisPage - 1})`);
     listPageContainer.appendChild(prev);
   }
 
   for (let i = 1; i <= count; i++) {
-    let page = document.createElement('li');
+    let page = document.createElement("li");
     page.innerText = i;
     if (i === thisPage) {
-      page.classList.add('active');
+      page.classList.add("active");
     }
-    page.setAttribute('onclick', `changePage(${i})`);
+    page.setAttribute("onclick", `changePage(${i})`);
     listPageContainer.appendChild(page);
   }
 
   if (thisPage < count) {
-    let next = document.createElement('li');
-    next.innerText = '>';
-    next.setAttribute('onclick', `changePage(${thisPage + 1})`);
+    let next = document.createElement("li");
+    next.innerText = ">";
+    next.setAttribute("onclick", `changePage(${thisPage + 1})`);
     listPageContainer.appendChild(next);
   }
 }
@@ -73,29 +78,146 @@ function changePage(newPage) {
   thisPage = newPage;
   loadItem();
 }
-//delete row table
-// Lấy danh sách các nút "Xóa"
-// Lấy danh sách các nút "Xóa"
-const deleteButtons = document.querySelectorAll('.btn-delete');
+// Load product
+function loadProductList() {
+  const bodyProduct = document.querySelector(".body-product");
+  const table = document.createElement("table");
+  table.id = "tbl-product";
+  const thead = document.createElement("thead");
+  const tbody = document.createElement("tbody");
+  const headerRow = document.createElement("tr");
+  headerRow.innerHTML = `
+      <th>STT</th>
+      <th>ID</th>
+      <th>Tên Sản Phẩm</th>
+      <th>Giá(VNĐ)</th>
+      <th>Số Lượng</th>
+      <th>Hình ảnh</th>
+  `;
 
-// Lặp qua từng nút và gán sự kiện click cho nút "Xóa"
-deleteButtons.forEach((deleteButton) => {
-  deleteButton.addEventListener('click', function () {
-    // Sử dụng hàm confirm để hiển thị cửa sổ xác nhận
-    const confirmed = window.confirm('Bạn có chắc muốn xóa?');
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
 
-    // Nếu người dùng chọn "OK" trong cửa sổ xác nhận, thực hiện xóa dòng
-    if (confirmed) {
-      const row = this.closest('tr'); // Tìm dòng gần nhất chứa nút "Xóa"
-      if (row) {
-        row.remove(); // Xóa dòng ra khỏi bảng
+  // Retrieve the product data from localStorage
+//   <td> 
+//   <input type="checkbox" class="product-checkbox" id="checkbox-${item.id}">
+// </td>
+
+  if (storedProductsJSON) {
+    storedProducts.forEach((item, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${item.id}</td>
+        <td>${item.name}</td>
+        <td>${item.price}</td>
+        <td>${item.quantity}</td>
+        <td><img src="../image/product-fresh/${item.img}" style="max-width: 50px; max-height: 50px;"></td>
+      
+        <td>
+          <button class="btn-edit-product" onclick="editProduct(${item.id})">Sửa</button>
+          <button class="btn-delete-product" onclick="deleteProduct(${item.id})">Xóa</button>
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+    
+  } else {
+    // Handle the case when there are no products in localStorage
+    const noDataMessageRow = document.createElement("tr");
+    noDataMessageRow.innerHTML = '<td colspan="6">No products available</td>';
+    tbody.appendChild(noDataMessageRow);
+  }
+
+  table.appendChild(tbody);
+  bodyProduct.appendChild(table);
+}
+
+// Call the function to load the product list
+
+function closeAddProductModal() {
+  const modal = document.getElementById("addProductModal");
+  modal.style.display = "none";
+}
+function addProduct() {
+  const modal = document.getElementById("addProductModal");
+  modal.style.display = "block";
+}
+
+function addProductNew() {
+  const productName = document.getElementById("productName").value.trim();
+  const productPrice = parseFloat(
+    document.getElementById("productPrice").value
+  );
+  const productQuantity = parseInt(
+    document.getElementById("productQuantity").value
+  );
+  const productImageInput = document.getElementById("productImage");
+
+  // Extract only the file name from the full path
+  const productImage = productImageInput.files[0]
+    ? productImageInput.files[0].name
+    : "";
+
+  if (
+    !productName ||
+    isNaN(productPrice) ||
+    isNaN(productQuantity) ||
+    !productImage
+  ) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  const storedProductsJSON = localStorage.getItem("products");
+  const storedProducts = storedProductsJSON
+    ? JSON.parse(storedProductsJSON)
+    : [];
+
+  const maxId = storedProducts.reduce(
+    (max, product) => (product.id > max ? product.id : max),
+    0
+  );
+
+  const newProduct = {
+    id: maxId + 1,
+    name: productName,
+    price: productPrice,
+    quantity: productQuantity,
+    img: productImage,
+  };
+
+  storedProducts.push(newProduct);
+  localStorage.setItem("products", JSON.stringify(storedProducts));
+  alert("Add Product New Successful.");
+  closeAddProductModal();
+}
+//delete product 
+function deleteProduct(productId) {
+  const isConfirmed = window.confirm("Are you sure you want to delete this product?");
+
+  if (isConfirmed) {
+    const storedProductsJSON = localStorage.getItem("products");
+
+    if (storedProductsJSON) {
+      const storedProducts = JSON.parse(storedProductsJSON);
+      const productIndex = storedProducts.findIndex((item) => item.id === productId);
+
+      if (productIndex !== -1) {
+        storedProducts.splice(productIndex, 1);
+        localStorage.setItem("products", JSON.stringify(storedProducts));
+
       }
     }
-  });
-});
-
+  }
+}
+loadProductList();
+//load quantity product
+function quantityProduct() {
+  document.getElementById('quantityValue').innerText = storedProducts.length;
+}
+quantityProduct()
 //thong ke
-
 const chitiethoadon = JSON.parse(localStorage.getItem('chitiethoadon')) || [];
 const hoadon = JSON.parse(localStorage.getItem('hoadon')) || [];
 const nhomsanpham = JSON.parse(localStorage.getItem('nhom')) || [
