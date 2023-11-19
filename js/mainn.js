@@ -63,14 +63,19 @@ document.addEventListener('DOMContentLoaded', function () {
       errorMessage.innerHTML = ''; // Clear error message if email is valid
       emailField.classList.remove('input_error'); // remove the class when there is no error
     }
-    if (nameField.value == '' || nameField.value.length < 5) {
-      valid = false;
-      errorName.innerHTML = 'Tên không để trống và ít nhất 5 ký tự';
-      nameField.classList.add('input_error');
+    //check
+    if (button.getAttribute('data-action') == 'login') {
     } else {
-      errorName.innerHTML = '';
-      nameField.classList.remove('input_error');
+      if (nameField.value == '' || nameField.value.length < 5) {
+        valid = false;
+        errorName.innerHTML = 'Tên không để trống và ít nhất 5 ký tự';
+        nameField.classList.add('input_error');
+      } else {
+        errorName.innerHTML = '';
+        nameField.classList.remove('input_error');
+      }
     }
+
     if (passwordValid === false) {
       valid = false;
       passwordField.classList.add('input_error');
@@ -109,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
           user_id: usersList.length + 1,
           email: emailField.value,
           password: passwordField.value,
-          name: nameField.value,
+          username: nameField.value,
         });
         errorMessage.innerHTML = '';
         localStorage.setItem('users', JSON.stringify(usersList));

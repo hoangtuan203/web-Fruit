@@ -337,7 +337,7 @@ order.addEventListener('click', () => {
       ngaymua: today,
       trangthaihoadon: 'Chờ xử lý',
       tongtien: tong_tien,
-      tenkhach: currentuser.name,
+      username: currentuser.username,
     });
 
     cart.map((x) => {
