@@ -2,7 +2,7 @@
   box-sizing: inherit;
   margin: 0 auto;
   padding: 0;
-  font-family: "Tahoma Geneva", sans-serif;
+  font-family: 'Tahoma Geneva', sans-serif;
   color: #000;
 }
 :root {
@@ -14,8 +14,8 @@
 }
 .navbar {
   display: flex;
-  background-color: var(--blackLight); 
-  color: #fff; 
+  background-color: var(--blackLight);
+  color: #fff;
   display: flex;
   justify-content: space-between; /* Canh giữa các phần tử theo chiều ngang */
   align-items: center; /* Canh giữa các phần tử theo chiều dọc */
@@ -105,8 +105,7 @@
   margin-left: 80px;
   display: flex;
   justify-content: center;
-  background-color: var(--background-primary); 
-
+  background-color: var(--background-primary);
 }
 .product {
   width: 80%;
@@ -209,9 +208,9 @@ input {
   margin: 10px 0;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="file"] {
+input[type='text'],
+input[type='number'],
+input[type='file'] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -219,16 +218,16 @@ input[type="file"] {
 }
 
 /* Định dạng cho hình ảnh được tải lên */
-input[type="file"] {
+input[type='file'] {
   padding: 0;
 }
 
 /* Chỉnh màu chữ mặc định cho required field */
-label[for="product_id"],
-label[for="product_name"],
-label[for="product_price_new"],
-label[for="product_image"],
-label[for="product_price_old"] {
+label[for='product_id'],
+label[for='product_name'],
+label[for='product_price_new'],
+label[for='product_image'],
+label[for='product_price_old'] {
   color: #007bff;
 }
 .list-btn {
@@ -263,8 +262,7 @@ label[for="product_price_old"] {
   opacity: 1;
   color: white;
 }
-.btn-delete-all:hover
-{
+.btn-delete-all:hover {
   cursor: pointer;
   opacity: 0.8;
 }
@@ -283,7 +281,6 @@ label[for="product_price_old"] {
   text-decoration: none;
 }
 table {
- 
   margin-top: 32px;
   border-collapse: collapse;
   width: 100%;
@@ -301,7 +298,7 @@ th {
   background-color: #f2f2f2;
 }
 
-tr{
+tr {
   color: #ff8000;
 }
 tr:hover {
@@ -331,7 +328,7 @@ tbody tr:last-child td {
   margin-left: 20px;
   color: white;
 }
-.btn-upload-img:hover{
+.btn-upload-img:hover {
   cursor: pointer;
   opacity: 0.8;
 }
@@ -458,6 +455,7 @@ tbody tr:last-child td {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  border-radius: 10px;
 }
 .text-form {
   text-align: center;
@@ -513,8 +511,14 @@ tbody tr:last-child td {
 .item {
   align-items: center;
 }
+.item label {
+  margin: 0;
+}
 .form-select {
   display: flex;
   gap: 5px;
   align-items: center;
+}
+#productTable {
+  margin: 0;
 }
