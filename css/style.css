@@ -30,10 +30,7 @@ html {
 .box-container {
   width: 100%; /* Chiếm hết không gian còn lại */
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 65266df8881b48ea5175cbd4b4a0baee2cfaed9f
 
 .btn {
   margin-top: 1rem;
@@ -156,10 +153,6 @@ header .icons a {
   top: 0;
 }
 /* product starts*/
-<<<<<<< HEAD
-.content {
-  padding: 2rem 9%;
-=======
 
 .content{
     padding: 0rem 9%;
@@ -174,7 +167,6 @@ header .icons a {
 .content {
   padding: 2rem 9%;
 
->>>>>>> 65266df8881b48ea5175cbd4b4a0baee2cfaed9f
 }
 
 .heading {
@@ -215,8 +207,6 @@ header .icons a {
     background: #333;
     -webkit-transform: translate(0%,-50%);
     transform: translate(0%,-50%);
-<<<<<<< HEAD
-=======
 }
 .heading a::before {
   content: '';
@@ -231,9 +221,7 @@ header .icons a {
 
 
 
->>>>>>> 65266df8881b48ea5175cbd4b4a0baee2cfaed9f
 }
-
 .category-container {
     width: 25%; /* Không chiếm không gian, sẽ bị ẩn khi display: none; */
 }
@@ -258,11 +246,8 @@ header .icons a {
 
   text-align: center; 
 }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 65266df8881b48ea5175cbd4b4a0baee2cfaed9f
 @media (max-width: 28rem) {
     .content .box-container {
         grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
@@ -291,10 +276,7 @@ header .icons a {
   font-weight: bolder;
   margin-right: 1rem;
   font-size: 2.5rem;
-<<<<<<< HEAD
-=======
 
->>>>>>> 65266df8881b48ea5175cbd4b4a0baee2cfaed9f
 }
 .eye,
 .heart {
@@ -353,13 +335,9 @@ header .icons a {
     font-weight: 700;
     font-size: 20px;
     margin-bottom: 10px;
-<<<<<<< HEAD
-  border: 1px solid #27ae60;
-=======
 
 
 
->>>>>>> 65266df8881b48ea5175cbd4b4a0baee2cfaed9f
   background-color: #fff;
   color: var(--theme-color);
   padding: 5px;
@@ -378,10 +356,7 @@ header .icons a {
   width: 100%; /* Đảm bảo ảnh chiếm toàn bộ không gian của thẻ div */
   height: 100%;
   object-fit: cover; /* Hiển thị ảnh mà không làm biến đổi tỷ lệ khung hình */
-<<<<<<< HEAD
-=======
 
->>>>>>> 65266df8881b48ea5175cbd4b4a0baee2cfaed9f
 }
 /* product ends*/
 
@@ -508,17 +483,10 @@ header .icons a {
   width: 25%;
 }
 
-<<<<<<< HEAD
-
-.content {
-  padding-top: 20px;
-}
-=======
 .content {
   padding-top: 20px;
 }
 
->>>>>>> 65266df8881b48ea5175cbd4b4a0baee2cfaed9f
 
 /* carousel*/
 
@@ -637,11 +605,7 @@ header .icons a {
   filter: none;
 }
 
-<<<<<<< HEAD
-/*  danh mục sản phẩm */
-=======
 
->>>>>>> 65266df8881b48ea5175cbd4b4a0baee2cfaed9f
 .category-crumb{
     border-bottom: 1px solid #fff;
     margin-bottom: 30px;
@@ -683,9 +647,6 @@ header .icons a {
 .category-title-name{
     color: #666;
 }
-<<<<<<< HEAD
-
-=======
 .cap  { 
    
     padding: 8px 0;
@@ -694,17 +655,13 @@ header .icons a {
     cursor: pointer; 
     font-size: 12px;
 }
->>>>>>> 65266df8881b48ea5175cbd4b4a0baee2cfaed9f
 .cap {
   padding: 8px 10px;
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
   font-size: 12px;
-<<<<<<< HEAD
-=======
 
->>>>>>> 65266df8881b48ea5175cbd4b4a0baee2cfaed9f
 }
 .ct > label {
   margin: 8px 0 8px 30px;
