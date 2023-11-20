@@ -22,13 +22,6 @@ html{
     display: flex;
 }
 
-.category-container {
-    width: 20%; /* Không chiếm không gian, sẽ bị ẩn khi display: none; */
-}
-
-.box-container {
-    width: 100%; /* Chiếm hết không gian còn lại */
-}
 
 .btn{
     margin-top: 1rem;
@@ -156,7 +149,7 @@ header .icons a{
 }
 /* product starts*/
 .content{
-    padding: 2rem 9%;
+    padding: 0rem 9%;
    
 }
 
@@ -183,6 +176,11 @@ header .icons a{
     transform: translate(0%,-50%);
   
 }
+.title-search{
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
 .heading a::before{
     content: "";
     position: absolute;
@@ -193,6 +191,14 @@ header .icons a{
     background: #333;
     -webkit-transform: translate(0%,-50%);
     transform: translate(0%,-50%);
+}
+.category-container {
+    width: 25%; /* Không chiếm không gian, sẽ bị ẩn khi display: none; */
+}
+
+.box-container {
+    width: 100%; /* Chiếm hết không gian còn lại */
+    margin-top: 30px;
 }
 
 .content .box-container{
@@ -210,6 +216,11 @@ header .icons a{
    
     text-align: center;
 }
+@media (max-width: 28rem) {
+    .content .box-container {
+        grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+    }
+}
 .content .box-container .product h3{
     color: black;
     font-size: 2rem;
@@ -217,10 +228,11 @@ header .icons a{
     
 }
 .content .box-container .product span{
-    color: green;
+    color:#fe0000;;
     font-weight: bolder;
     margin-right: 1rem;
-    font-size: 2.5rem;
+    font-size: 16px;
+    margin-top: 10px;
 }
 .eye,
 .heart{
@@ -255,18 +267,30 @@ header .icons a{
     border-radius: 5px;
     margin-top: 10px;
     cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
 }
 
 .image-product{
    
-    height: 200px; 
+    height: 240px; 
   
     overflow: hidden; 
 }
 .image-product img {
-    width: 100%; /* Đảm bảo ảnh chiếm toàn bộ không gian của thẻ div */
+    width: 100%; 
     height: 100%;
-    object-fit: cover; /* Hiển thị ảnh mà không làm biến đổi tỷ lệ khung hình */
+    object-fit: contain; 
+}
+
+.heading-name{
+    color: black;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 /* product ends*/
 
@@ -339,7 +363,38 @@ header .icons a{
    
     
 }
+/* pagination */
+.home-product__pagination{
+    margin: 50px 0 32px;
+}
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+.pagination-item{
+    margin: 0 8px;
+}
+.pagination-item__link{
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 400;
+    display: block;
+    color: #939393;
+    min-width: 40px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 2px;
+}
 
+/* .pagination-item-active .pagination-item__link{
+    color: black;
+} */
+.pagination-active{
+    color: #000;
+}
 /* navigation */
 .navigation{
    
@@ -374,9 +429,6 @@ header .icons a{
 }
 
 
-.content{
-    padding-top: 20px;
-}
 
 /* carousel*/
 
@@ -501,9 +553,50 @@ header .icons a{
 }
 
 /*  danh mục sản phẩm */
+.category-crumb{
+    border-bottom: 1px solid #fff;
+    margin-bottom: 30px;
+}
+.row-container-category{
+    display: flex;
+   
+}
+.category-crumb-container{
+    
+}
+.btn-aply{
+    font-size: 12px;
+    padding: 10px 70px;
+    background-color: #27ae60;
+    cursor: pointer;
+}
+.category-crumb-right{
+    display: flex;
+    align-items: center;
+    width: 20%;
+    background-color: #27ae60;
+    height: 50px;
+    
+}
+.category-crumb-right span{
+    font-size: 20px;
+    margin-left: 10px;
+   
+}
+.category-crumb-left{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+.category-crumb-left span{
+    font-size: 14px;
+}
+.category-title-name{
+    color: #666;
+}
 .cap  { 
    
-    padding: 8px 10px;
+    padding: 8px 0;
     font-weight: bold;
     text-transform: uppercase; 
     cursor: pointer; 
@@ -516,3 +609,140 @@ header .icons a{
     cursor: pointer; 
 }
 .ct input { width: 16px; height: 16px; margin-right: 10px;}
+
+/* footer */
+.footer{
+    padding: 1.5rem 9%;
+    background-color:rgb(124, 224, 124);
+    
+    border-top: 4px solid red;
+    background-color: var(--white-color);
+
+}
+.footer__heading {
+    font-size: 20px;
+    font-weight: bold;
+  
+}
+.col-md-3{
+    width: 25%;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-list li {
+    margin-bottom: 5px;
+}
+
+.footer-list a {
+    color: #000;
+    text-decoration: none;
+}
+
+.foote-item__icon {
+    margin-right: 5px;
+}
+
+.footer__bottom {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 10px;
+}
+.foote-item{
+    font-size: 16px;
+}
+
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.detail-product{
+    width: 110%;
+}
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    width: 40%;
+    height: 45%;
+    border-radius: 10px;
+}
+#close-detail{
+    position: relative;
+    top: -23px;
+    left: 15px;
+    cursor: pointer;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.image-container{
+    width: 100%;
+    margin-right: 10px;
+    
+}
+.origin{
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.sites{
+    color: #707070;
+}
+.product-price-detail{
+    color: #fe0000;
+    font-weight: bolder;
+    margin-right: 1rem;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.des-product{
+    font-size: 12px;
+    margin-top: 10px
+}
+.input-group{
+    margin-top: 20px;
+}
+.quantity-title{
+    font-size:18px;
+    margin-bottom: 4px;
+}
+/* Các quy tắc CSS khác cho sản phẩm và chi tiết sản phẩm */
+.button-quantity {
+    padding: 8px 12px;
+    margin-top: 10px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    color: #f5f5f5;
+}
+
+.form-control {
+    width: 70px;
+    padding: 8px;
+    text-align: center;
+}
+/* pagination */
