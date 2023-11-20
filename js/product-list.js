@@ -5,7 +5,7 @@ const products = [
     name: 'Chuối',
     price: 5000,
     quantity: 10,
-    img: 'link_to_banana_image.jpg',
+    img: 'Cam-Xoan.jpg',
   },
   {
     manhom: 1,

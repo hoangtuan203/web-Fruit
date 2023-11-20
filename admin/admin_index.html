@@ -123,10 +123,8 @@
           <li class="list-menu-item">
             <h2 class="text title-1 hide-text">MENU</h2>
           </li>
-          <li class="list-menu-item">
+          <li class="list-menu-item" id="productId">
             <?xml version="1.0" ?>
-
-            <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
             <svg
               width="800px"
               height="800px"
@@ -296,66 +294,13 @@
     <!-- CONTENT -->
     <div class="content">
       <!-- SẢN PHẨM -->
-      <div class="product">
-        <div class="header-product">
-          <h1 class="title">QUẢN LÝ SẢN PHẨM</h1>
-          <p id="productQuantity">Tổng sản phẩm: 
-            <span id="quantityValue"></span>
-          </p>
-          <div class="button-header">
-            <button class="btn-add" onclick="addProduct()">Thêm SP</button>
-            <button class="btn-upload-img">Thêm Ảnh</button>
-            <button class="btn-delete-all">Xóa Tất Cả</button>
-          </div>
-        </div>
-        <div class="body-product"></div>
-        <!-- add product -->
-        <div id="addProductModal" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeAddProductModal()">&times;</span>
-            <h2>Thêm sản phẩm mới</h2>
-            <form id="addProductForm">
-              <label for="productName">Tên Sản Phẩm:</label>
-              <input type="text" id="productName" name="productName" placeholder="Input Product Name" />
-
-              <label for="productPrice">Giá:</label>
-              <input
-                type="number"
-                id="productPrice"
-                name="productPrice"
-                placeholder="Input Price"
-                required
-              />
-
-              <label for="productQuantity">Só Lượng:</label>
-              <input
-                type="number"
-                id="productQuantity"
-                name="productQuantity"
-                placeholder="Input Quantity"
-                required
-              />
-
-              <label for="productImage">HÌnh Ảnh:</label>
-              <input type="file" id="productImage" name="productImage" accept="image/*" required>
-
-              <button class="btn-add-product-new" type="button" onclick="addProductNew()">Thêm Sản Phẩm</button>
-            </form>
-          </div>
-        </div>
-
-        <div class="pagination">
-          <ul class="listPage">
-            <li class="active listPage-item">1</li>
-            <li class="listPage-item">2</li>
-            <li class="listPage-item">3</li>
-          </ul>
-        </div>
-      </div>
+      
 
       <!-- Account -->
     </div>
   </body>
+  <script src="../js/admin_product.js"></script>
   <script src="../js/admin.js"></script>
   <script src="../js/product-list.js"></script>
+
 </html>

@@ -14,8 +14,8 @@
 }
 .navbar {
   display: flex;
-  background-color: var(--blackLight); 
-  color: #fff; 
+  background-color: var(--blackLight);
+  color: #fff;
   display: flex;
   justify-content: space-between; /* Canh giữa các phần tử theo chiều ngang */
   align-items: center; /* Canh giữa các phần tử theo chiều dọc */
@@ -63,6 +63,7 @@
   color: #fff;
   overflow-y: auto;
   transition: all ease 0.3s;
+  z-index: 1000;
 }
 
 .list-menu {
@@ -101,12 +102,15 @@
 }
 /* CONTENT */
 /* SAN PHAM */
+.container-thongke{
+  display: flex;
+  justify-content: center;
+}
 .content {
   margin-left: 80px;
   display: flex;
   justify-content: center;
-  background-color: var(--background-primary); 
-
+  background-color: var(--background-primary);
 }
 .product {
   width: 80%;
@@ -235,7 +239,55 @@ label[for="product_price_old"] {
   display: flex;
   justify-content: center;
 }
+/* form upload image */
+.form-upload-image {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  position: fixed;
+  top: 25%;
+  left: 32%;
+  width: 100%;
+}
+.form-upload-image label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
 
+.form-upload-image input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.form-upload-image button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+.headerUpload{
+  display: flex;
+  align-items: center;
+  justify-content: centerclose;
+}
+.closeImage{
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.closeImage:hover{
+  cursor: pointer;
+  color: red;
+}
 /* end thêm sản phẩm */
 
 /* end product  */
@@ -263,8 +315,7 @@ label[for="product_price_old"] {
   opacity: 1;
   color: white;
 }
-.btn-delete-all:hover
-{
+.btn-delete-all:hover {
   cursor: pointer;
   opacity: 0.8;
 }
@@ -283,7 +334,6 @@ label[for="product_price_old"] {
   text-decoration: none;
 }
 table {
- 
   margin-top: 32px;
   border-collapse: collapse;
   width: 100%;
@@ -301,7 +351,7 @@ th {
   background-color: #f2f2f2;
 }
 
-tr{
+tr {
   color: #ff8000;
 }
 tr:hover {
@@ -331,7 +381,7 @@ tbody tr:last-child td {
   margin-left: 20px;
   color: white;
 }
-.btn-upload-img:hover{
+.btn-upload-img:hover {
   cursor: pointer;
   opacity: 0.8;
 }
@@ -372,7 +422,7 @@ tbody tr:last-child td {
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: red;
   text-decoration: none;
   cursor: pointer;
 }
