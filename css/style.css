@@ -22,8 +22,6 @@ html {
   display: flex;
 }
 
-<<<<<<< HEAD
-=======
 .category-container {
   width: 20%; /* Không chiếm không gian, sẽ bị ẩn khi display: none; */
 }
@@ -31,7 +29,7 @@ html {
 .box-container {
   width: 100%; /* Chiếm hết không gian còn lại */
 }
->>>>>>> 282f85eb7cc0c25ec987084bedef0310945513e4
+
 
 .btn {
   margin-top: 1rem;
@@ -154,14 +152,12 @@ header .icons a {
   top: 0;
 }
 /* product starts*/
-<<<<<<< HEAD
+
 .content{
     padding: 0rem 9%;
-   
-=======
+}
 .content {
   padding: 2rem 9%;
->>>>>>> 282f85eb7cc0c25ec987084bedef0310945513e4
 }
 
 .heading {
@@ -186,7 +182,6 @@ header .icons a {
   -webkit-transform: translate(0%, -50%);
   transform: translate(0%, -50%);
 }
-<<<<<<< HEAD
 .title-search{
     font-size: 24px;
     font-weight: 700;
@@ -202,7 +197,7 @@ header .icons a {
     background: #333;
     -webkit-transform: translate(0%,-50%);
     transform: translate(0%,-50%);
-=======
+}
 .heading a::before {
   content: '';
   position: absolute;
@@ -213,7 +208,6 @@ header .icons a {
   background: #333;
   -webkit-transform: translate(0%, -50%);
   transform: translate(0%, -50%);
->>>>>>> 282f85eb7cc0c25ec987084bedef0310945513e4
 }
 .category-container {
     width: 25%; /* Không chiếm không gian, sẽ bị ẩn khi display: none; */
@@ -226,7 +220,7 @@ header .icons a {
 
 .content .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
   gap: 1.5rem;
 }
 .content .box-container .product {
@@ -237,9 +231,8 @@ header .icons a {
   box-shadow: #666;
   position: relative;
 
-  text-align: center;
+  text-align: center; 
 }
-<<<<<<< HEAD
 @media (max-width: 28rem) {
     .content .box-container {
         grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
@@ -257,7 +250,7 @@ header .icons a {
     margin-right: 1rem;
     font-size: 16px;
     margin-top: 10px;
-=======
+}
 .content .box-container .product h3 {
   color: black;
   font-size: 2rem;
@@ -268,7 +261,6 @@ header .icons a {
   font-weight: bolder;
   margin-right: 1rem;
   font-size: 2.5rem;
->>>>>>> 282f85eb7cc0c25ec987084bedef0310945513e4
 }
 .eye,
 .heart {
@@ -295,7 +287,6 @@ header .icons a {
 }
 
 .btn-buy {
-<<<<<<< HEAD
     border: 1px solid #27ae60;
     background-color: #fff;
     color: var(--theme-color);
@@ -328,8 +319,8 @@ header .icons a {
     font-weight: 700;
     font-size: 20px;
     margin-bottom: 10px;
-=======
-  border: 1px solid #27ae60;
+
+  
   background-color: #fff;
   color: var(--theme-color);
   padding: 5px;
@@ -348,7 +339,7 @@ header .icons a {
   width: 100%; /* Đảm bảo ảnh chiếm toàn bộ không gian của thẻ div */
   height: 100%;
   object-fit: cover; /* Hiển thị ảnh mà không làm biến đổi tỷ lệ khung hình */
->>>>>>> 282f85eb7cc0c25ec987084bedef0310945513e4
+
 }
 /* product ends*/
 
@@ -475,13 +466,10 @@ header .icons a {
   width: 25%;
 }
 
-<<<<<<< HEAD
-
-=======
 .content {
   padding-top: 20px;
 }
->>>>>>> 282f85eb7cc0c25ec987084bedef0310945513e4
+
 
 /* carousel*/
 
@@ -600,8 +588,6 @@ header .icons a {
   filter: none;
 }
 
-/*  danh mục sản phẩm */
-<<<<<<< HEAD
 .category-crumb{
     border-bottom: 1px solid #fff;
     margin-bottom: 30px;
@@ -650,14 +636,14 @@ header .icons a {
     text-transform: uppercase; 
     cursor: pointer; 
     font-size: 12px;
-=======
+}
 .cap {
   padding: 8px 10px;
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
   font-size: 12px;
->>>>>>> 282f85eb7cc0c25ec987084bedef0310945513e4
+
 }
 .ct > label {
   margin: 8px 0 8px 30px;
@@ -714,7 +700,7 @@ header .icons a {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
 }
-<<<<<<< HEAD
+
 .ct input { width: 16px; height: 16px; margin-right: 10px;}
 
 /* footer */
@@ -852,6 +838,5 @@ button:hover {
     padding: 8px;
     text-align: center;
 }
+
 /* pagination */
-=======
->>>>>>> 282f85eb7cc0c25ec987084bedef0310945513e4
