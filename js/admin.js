@@ -477,6 +477,7 @@ thongkeitem.addEventListener("click", () => {
 });
 
 // xu ly don hang
+// xu ly don hang
 
 donhangitem.addEventListener("click", () => {
   content.innerHTML = "";
@@ -499,7 +500,8 @@ donhangitem.addEventListener("click", () => {
                         <span class="status">Tất cả</span>
                     </div>
                     <div class="block">
-                        <svg width="30px" height="30px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.706 0.290 C 7.484 0.362,7.356 0.490,7.294 0.699 C 7.259 0.816,7.253 1.088,7.253 2.508 C 7.253 4.389,7.251 4.365,7.443 4.557 C 7.700 4.813,8.300 4.813,8.557 4.557 C 8.749 4.365,8.747 4.389,8.747 2.508 C 8.747 0.688,8.744 0.656,8.596 0.480 C 8.472 0.333,8.339 0.284,8.040 0.276 C 7.893 0.272,7.743 0.278,7.706 0.290 M2.753 2.266 C 2.595 2.338,2.362 2.566,2.281 2.728 C 2.197 2.897,2.193 3.085,2.269 3.253 C 2.343 3.418,4.667 5.750,4.850 5.843 C 5.109 5.976,5.375 5.911,5.643 5.649 C 5.907 5.391,5.977 5.111,5.843 4.850 C 5.750 4.667,3.418 2.343,3.253 2.269 C 3.101 2.200,2.901 2.199,2.753 2.266 M12.853 2.282 C 12.730 2.339,12.520 2.536,11.518 3.541 C 10.597 4.464,10.316 4.762,10.271 4.860 C 10.195 5.025,10.196 5.216,10.272 5.378 C 10.342 5.528,10.572 5.764,10.727 5.845 C 10.884 5.927,11.117 5.926,11.280 5.843 C 11.447 5.757,13.757 3.447,13.843 3.280 C 13.926 3.118,13.927 2.884,13.846 2.729 C 13.764 2.572,13.552 2.364,13.392 2.283 C 13.213 2.192,13.048 2.192,12.853 2.282 M0.699 7.292 C 0.404 7.385,0.258 7.620,0.258 7.999 C 0.259 8.386,0.403 8.618,0.698 8.706 C 0.816 8.741,1.079 8.747,2.508 8.747 C 3.997 8.747,4.196 8.742,4.318 8.702 C 4.498 8.644,4.644 8.498,4.702 8.318 C 4.788 8.053,4.745 7.677,4.608 7.491 C 4.578 7.451,4.492 7.384,4.417 7.343 L 4.280 7.267 2.547 7.261 C 1.152 7.257,0.791 7.263,0.699 7.292 M11.745 7.278 C 11.622 7.308,11.452 7.411,11.392 7.492 C 11.255 7.677,11.212 8.053,11.298 8.318 C 11.356 8.498,11.502 8.644,11.682 8.702 C 11.804 8.742,12.003 8.747,13.492 8.747 C 14.921 8.747,15.184 8.741,15.302 8.706 C 15.597 8.618,15.741 8.386,15.742 7.999 C 15.742 7.614,15.595 7.383,15.290 7.291 C 15.187 7.260,14.864 7.254,13.496 7.256 C 12.578 7.258,11.790 7.268,11.745 7.278 M4.853 10.282 C 4.730 10.339,4.520 10.536,3.518 11.541 C 2.597 12.464,2.316 12.762,2.271 12.860 C 2.195 13.025,2.196 13.216,2.272 13.378 C 2.342 13.528,2.572 13.764,2.727 13.845 C 2.884 13.927,3.117 13.926,3.280 13.843 C 3.447 13.757,5.757 11.447,5.843 11.280 C 5.926 11.118,5.927 10.884,5.846 10.729 C 5.764 10.572,5.552 10.364,5.392 10.283 C 5.213 10.192,5.048 10.192,4.853 10.282 M10.753 10.266 C 10.595 10.338,10.362 10.566,10.281 10.728 C 10.197 10.897,10.193 11.085,10.269 11.253 C 10.343 11.418,12.667 13.750,12.850 13.843 C 13.109 13.976,13.375 13.911,13.643 13.649 C 13.907 13.391,13.977 13.111,13.843 12.850 C 13.750 12.667,11.418 10.343,11.253 10.269 C 11.101 10.200,10.901 10.199,10.753 10.266 M7.745 11.277 C 7.620 11.309,7.451 11.412,7.392 11.492 C 7.254 11.678,7.253 11.691,7.253 13.489 C 7.253 14.921,7.259 15.184,7.294 15.302 C 7.382 15.597,7.615 15.741,8.000 15.741 C 8.385 15.741,8.618 15.597,8.706 15.302 C 8.768 15.090,8.767 11.875,8.704 11.690 C 8.644 11.514,8.575 11.430,8.420 11.346 C 8.310 11.286,8.246 11.271,8.057 11.264 C 7.930 11.259,7.790 11.265,7.745 11.277 " stroke="none" fill-rule="evenodd" fill="#039201"></path></svg>
+<svg width="30px" height="30px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.706 0.290 C 7.484 0.362,7.356 0.490,7.294 0.699 C 7.259 0.816,7.253 1.088,7.253 2.508 C 7.253 4.389,7.251 4.365,7.443 4.557 C 7.700 4.813,8.300 4.813,8.557 4.557 C 8.749 4.365,8.747 4.389,8.747 2.508 C 8.747 0.688,8.744 0.656,8.596 0.480 C 8.472 0.333,8.339 0.284,8.040 0.276 C 7.893 0.272,7.743 0.278,7.706 0.290 M2.753 2.266 C 2.595 2.338,2.362 2.566,2.281 2.728 C 2.197 2.897,2.193 3.085,2.269 3.253 C 2.343 3.418,4.667 5.750,4.850 5.843 C 5.109 5.976,5.375 5.911,5.643 5.649 C 5.907 5.391,5.977 5.111,5.843 4.850 C 5.750 4.667,3.418 2.343,3.253 2.269 C 3.101 2.200,2.901 2.199,2.753 2.266 M12.853 2.282 C 12.730 2.339,12.520 2.536,11.518 3.541 C 10.597 4.464,10.316 4.762,10.271 4.860 C 10.195 5.025,10.196 5.216,10.272 5.378 C 10.342 5.528,10.572 5.764,10.727 5.845 C 10.884 5.927,11.117 5.926,11.280 5.843 C 11.447 5.757,13.757 3.447,13.843 3.280 C 13.926 3.118,13.927 2.884,13.846 2.729 C 13.764 2.572,13.552 2.364,13.392 2.283 C 13.213 2.192,13.048 2.192,12.853 2.282 M0.699 7.292 C 0.404 7.385,0.258 7.620,0.258 7.999 C 0.259 8.386,0.403 8.618,0.698 8.706 C 0.816 8.741,1.079 8.747,2.508 8.747 C 3.997 8.747,4.196 8.742,4.318 8.702 C 4.498 8.644,4.644 8.498,4.702 8.318 C 4.788 8.053,4.745 7.677,4.608 7.491 C 4.578 7.451,4.492 7.384,4.417 7.343 L 4.280 7.267 2.547 7.261 C 1.152 7.257,0.791 7.263,0.699 7.292 M11.745 7.278 C 11.622 7.308,11.452 7.411,11.392 7.492 C 11.255 7.677,11.212 8.053,11.298 8.318 C 11.356 8.498,11.502 8.644,11.682 8.702 C 11.804 8.742,12.003 8.747,13.492 8.747 C 14.921 8.747,15.184 8.741,15.302 8.706 C 15.597 8.618,15.741 8.386,15.742 7.999 C 15.742 7.614,15.595 7.383,15.290 7.291 C 15.187 7.260,14.864 7.254,13.496 7.256 C 12.578 7.258,11.790 7.268,11.745 7.278 M4.853 10.282 C 4.730 10.339,4.520 10.536,3.518 11.541 C 2.597 12.464,2.316 12.762,2.271 12.860 C 2.195 13.025,2.196 13.216,2.272 13.378 C 2.342 13.528,2.572 13.764,2.727 13.845 C 2.884 13.927,3.117 13.926,3.280 13.843 C 3.447 13.757,5.757 11.447,5.843 11.280 C 5.926 11.118,5.927 10.884,5.846 10.729 C 5.764 10.572,5.552 10.364,5.392 10.283 C 5.213 10.192,5.048 10.192,4.853 10.282 M10.753 10.266 C 10.595 10.338,10.362 10.566,10.281 10.728 C 10.197 10.897,10.193 11.085,10.269 11.253 C 10.343 11.418,12.667 13.750,12.850 13.843 C 13.109 13.976,13.375 13.911,13.643 13.649 C 13.907 13.391,13.977 13.111,13.843 12.850 C 13.750 12.667,11.418 10.343,11.253 10.269 C 11.101 10.200,10.901 10.199,10.753 10.266 M7.745 11.277 C 7.620 11.309,7.451 11.412,7.392 11.492 C 7.254 11.678,7.253 11.691,7.253 13.489 C 7.253 14.921,7.259 15.184,7.294 15.302 C 7.382 15.597,7.615 15.741,8.000 15.741 C 8.385 15.741,8.618 15.597,8.706 15.302 C 8.768 15.090,8.767 11.875,8.704 11.690 C 8.644 11.514,8.575 11.430,8.420 11.346 C 8.310 11.286,8.246 11.271,8.057 11.264 C 7.930 11.259,7.790
+11.265,7.745 11.277 " stroke="none" fill-rule="evenodd" fill="#039201"></path></svg>
                         <span class="quantity">3</span>
                         <span class="status">Chờ xử lý</span>
                     </div>
@@ -526,7 +528,7 @@ donhangitem.addEventListener("click", () => {
                         <option value="" selected disabled>Khoảng thời gian</option>
                         <option value="1">Gần đây</option>
                         <option value="3">3 ngày</option>
-                        <option value="7">7 ngày</option>
+<option value="7">7 ngày</option>
                         <option value="30">30 ngày</option>
                     </select>
                 </div>
@@ -576,7 +578,7 @@ donhangitem.addEventListener("click", () => {
                   <ul id="pagination"></ul>
                   <button id="nextButton"><svg fill="white" height="20px" width="20px" version="1.1" id="XMLID_287_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                       viewBox="0 0 24 24" xml:space="preserve">
-                    <g id="next">
+<g id="next">
                       <g>
                         <polygon points="6.8,23.7 5.4,22.3 15.7,12 5.4,1.7 6.8,0.3 18.5,12 		"/>
                       </g>
@@ -585,6 +587,7 @@ donhangitem.addEventListener("click", () => {
                   </button>
                 </div>
             </div>
+            <div id="container-cthd"><div id="chiTietHoaDon"></div></div>
         </div>
     </div>
 `;
@@ -660,23 +663,36 @@ donhangitem.addEventListener("click", () => {
   });
 
   function removeItem(mahoadon) {
-    // Tạo hộp thoại xác nhận
+// Tạo hộp thoại xác nhận
     var dialog = confirm("Bạn có chắc chắn muốn xóa mục này không?");
 
     // Nếu người dùng xác nhận, tiến hành xóa
     if (dialog) {
-      // Xóa mục khỏi danh sách dữ liệu
+      // Xóa hóa đơn khỏi danh sách dữ liệu
       var updatedDataList = dataList.filter(
         (item) => item.mahoadon !== mahoadon
       );
 
-      // Lưu danh sách dữ liệu đã cập nhật vào Local Storage
+      // Lưu danh sách hóa đơn đã cập nhật vào Local Storage
       localStorage.setItem("hoadon", JSON.stringify(updatedDataList));
 
+      // Xóa chi tiết hóa đơn tương ứng từ danh sách chi tiết hóa đơn
+      var chiTietHoaDon =
+        JSON.parse(localStorage.getItem("chitiethoadon")) || [];
+      var updatedChiTietHoaDon = chiTietHoaDon.filter(
+        (item) => item.mahoadon !== mahoadon
+      );
+
+      // Lưu danh sách chi tiết hóa đơn đã cập nhật vào Local Storage
+      localStorage.setItem(
+        "chitiethoadon",
+        JSON.stringify(updatedChiTietHoaDon)
+      );
+
       // Cập nhật dữ liệu bảng ngay lập tức
+      displayData(currentPage);
+      window.location.reload();
     }
-    displayData(currentPage);
-    window.location.reload();
   }
 
   function displayData(page) {
@@ -716,6 +732,8 @@ donhangitem.addEventListener("click", () => {
     updatePaginationButtons();
   }
 
+
+
   // Hàm cập nhật màu sắc của các nút trang
   function updatePaginationButtons() {
     var paginationButtons = document.querySelectorAll("#pagination li");
@@ -734,7 +752,7 @@ donhangitem.addEventListener("click", () => {
   }
 
   function setupPagination() {
-    totalPages = Math.ceil(dataList.length / itemsPerPage);
+totalPages = Math.ceil(dataList.length / itemsPerPage);
     var paginationElement = document.getElementById("pagination");
 
     for (var i = 1; i <= totalPages; i++) {
@@ -755,7 +773,106 @@ donhangitem.addEventListener("click", () => {
   // Initial display
   displayData(currentPage);
   setupPagination();
+
+document
+  .getElementById("myTableBody")
+  .addEventListener("click", function (event) {
+    var target = event.target;
+
+    // Kiểm tra xem phần tử được bấm có phải là hàng (tr) hay không
+    if (
+      target.tagName.toLowerCase() === "td" &&
+      target.parentNode.tagName.toLowerCase() === "tr"
+    ) {
+      // Lấy mã hóa đơn từ hàng
+      var mahoadon =
+        target.parentNode.querySelector("td:nth-child(3)").innerText;
+
+      // Lấy dữ liệu chi tiết đơn hàng từ Local Storage
+      var chiTietHoaDon =
+        JSON.parse(localStorage.getItem("chitiethoadon")) || [];
+
+      // Tìm chi tiết đơn hàng tương ứng với mã hóa đơn
+      var chiTietDonHang = chiTietHoaDon.filter(
+        (item) => item.mahoadon == mahoadon
+      );
+
+      // Hiển thị chi tiết đơn hàng trong modal hoặc div tương ứng
+      displayOrderDetails(chiTietDonHang);
+    }
+  });
+
+function displayOrderDetails(chiTiet) {
+  // Làm gì đó với thông tin chi tiết, có thể hiển thị lên giao diện
+  // Ví dụ: Thêm HTML vào một phần tử div với id là "chiTietHoaDon"
+  var chiTietContainer = document.getElementById("chiTietHoaDon");
+
+  // Xóa nội dung cũ trong container
+  chiTietContainer.innerHTML = "";
+
+  if (chiTietContainer) {
+    // Tạo bảng
+    var table = document.createElement("table");
+    table.border = "1";
+
+    // Tạo hàng đầu tiên của bảng (header)
+    var headerRow = table.insertRow(0);
+    var headers = ["Hình ảnh", "Tên sản phẩm", "Giá", "Số lượng", "Mã hóa đơn"];
+
+    for (var h = 0; h < headers.length; h++) {
+      var headerCell = headerRow.insertCell(h);
+      headerCell.innerHTML = "<b>" + headers[h] + "</b>";
+    }
+
+    // Lặp qua tất cả chi tiết hóa đơn và thêm vào bảng
+    for (var i = 0; i < chiTiet.length; i++) {
+      var currentChiTiet = chiTiet[i];
+      var row = table.insertRow(i + 1);
+
+      // Lấy mã sản phẩm từ chi tiết đơn hàng
+      var maSanPham = currentChiTiet.masanpham;
+      // Lấy thông tin sản phẩm từ bảng products
+      var thongTinSanPham = layThongTinSanPhamTuProducts(maSanPham);
+      // Kiểm tra xem có thông tin sản phẩm không
+      if (thongTinSanPham) {
+// Hiển thị thông tin trong các ô của hàng
+        row.insertCell(
+          0
+        ).innerHTML = `<img src="${thongTinSanPham.img}" alt="Hình ảnh" width="50">`;
+        row.insertCell(1).innerHTML = thongTinSanPham.name;
+        row.insertCell(2).innerHTML = currentChiTiet.gia;
+        row.insertCell(3).innerHTML = currentChiTiet.soluong;
+        row.insertCell(4).innerHTML = currentChiTiet.mahoadon;
+      } else {
+        console.error(
+          "Không tìm thấy thông tin sản phẩm cho mã sản phẩm: ",
+          maSanPham
+        );
+      }
+    }
+
+    // Thêm bảng vào container
+    chiTietContainer.appendChild(table);
+  } else {
+    console.error("Phần tử chiTietHoaDon không tồn tại trong HTML.");
+  }
+}
+
+  function layThongTinSanPhamTuProducts(maSanPham) {
+    // Thực hiện logic để lấy thông tin sản phẩm từ bảng products
+    // Trả về đối tượng chứa thông tin sản phẩm hoặc null nếu không tìm thấy
+
+    // Ví dụ: Lấy dữ liệu từ Local Storage
+    var products = JSON.parse(localStorage.getItem("products")) || [];
+
+    // Tìm sản phẩm trong danh sách products
+    var sanPham = products.find((item) => item.id == maSanPham);
+    return sanPham;
+  }
 });
+
+
+
 //san pham
 showProduct.addEventListener("click", () => {
   content.innerHTML = "";
@@ -1110,3 +1227,5 @@ function uploadImage() {
   });
 }
 loadProductList(1);
+
+
