@@ -3,40 +3,82 @@
   padding: 0;
 }
 body {
-  margin: 30px;
+  margin: 20px 30px;
   display: flex;
   flex-direction: column;
+  min-width: 900px;
 }
-table {
+/* table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   flex: 7;
+  height: fit-content;
+  width: fit-content;
+  font-size: 16px;
 }
 
 td,
 th {
   border: 1px solid #dddddd;
   text-align: center;
-  padding: 8px;
+  padding: 5px;
+} */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  flex: 7;
+  height: fit-content;
 }
 
+th,
+td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #dddddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* tr {
+  color: #f2f2f2;
+} */
+/* tr:hover {
+  background-color: #d8d7d7f4;
+} */
+
+thead {
+  border-bottom: 2px solid #dddddd;
+}
+
+td:last-child {
+  border-right: 2px solid #dddddd;
+}
+
+tbody tr:last-child td {
+  border-bottom: 2px solid #dddddd;
+}
 .bill {
   width: 200px;
   border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   flex: 3;
+  font-weight: bold;
 }
 #order {
   padding: 10px;
   width: 100px;
   border-radius: 6px;
   width: 200px;
-  background-color: #039201;
   align-self: center;
+  font-weight: bold;
 }
 .item {
   display: flex;
@@ -46,7 +88,8 @@ th {
 }
 .container {
   display: flex;
-  gap: 20px;
+  gap: 30px;
+  margin: 0 100px;
 }
 h2 {
   align-self: center;
@@ -64,22 +107,35 @@ h2 {
 a {
   text-decoration: none;
   color: black;
-  font-weight: 800;
   font-size: 16px;
   padding: 10px;
   border-radius: 5px;
-  background-color: #039201;
   margin-top: 30px;
   width: 150px;
   text-align: center;
+  margin-left: 100px;
+  border: 1px solid black;
+  font-weight: bold;
+}
+a:hover {
+  background-color: #27ae60;
 }
 img {
-  height: 40px;
+  height: 90px;
+  width: fit-content;
 }
 button {
   padding: 5px 10px;
   border-radius: 3px;
+  background-color: #fff;
+}
+button:hover {
+  background-color: #27ae60;
 }
 .bill {
   height: fit-content;
+  flex: 3;
+}
+.count {
+  min-width: 25px;
 }

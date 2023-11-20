@@ -250,3 +250,4 @@ const products = [
 ];
 const productsJSON = JSON.stringify(products);
 localStorage.setItem('products', productsJSON);
+

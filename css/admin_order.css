@@ -1,0 +1,308 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    outline: none;
+    border: none;
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+.container-order {
+    width: 100%;
+    margin: auto;
+}
+
+.container-order .order-status-container {
+    width: 100%;
+    background-color: #039201;
+    border-radius: 20px;
+    margin: 30px 0;
+}
+.container-order .order-status-container .container-order-status {
+    padding: 20px;
+}
+.container-order .order-status-container .container-order-status .title-status {
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 200;
+    margin-bottom: 20px;
+}
+.container-order .order-status-container .container-order-status .order-status {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: black;
+    background-color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 200;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.container-order .order-status-container .container-order-status .order-status .block {
+    flex: 1;
+    text-align: center; /* Để căn giữa nội dung trong từng block */
+}
+
+.container-order .order-status-container .container-order-status .order-status .block .quantity {
+    font-weight: 600;
+    font-size: 24px;
+}
+.container-order .order-status-container .container-order-status .order-status .block svg {
+    display: block; /* Chuyển SVG thành phần tử block để sử dụng margin: auto */
+    margin: auto; /* Căn giữa SVG */
+}
+
+
+.container-order .order-status-container .container-order-status .order-status .block .status {
+    color: gray;
+}
+.container-body {
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #fdf8f8;
+}
+.container-body .search-box {
+    position: relative;
+    display: flex;
+    align-items: center; /* Canh giữa các phần tử trong .search-box */
+}
+
+.container-body .search-box svg {
+    position: absolute;
+    left: 10px; /* Điều chỉnh vị trí của SVG từ bên trái */
+    width: 20px; /* Đặt kích thước cho SVG */
+    height: 20px;
+}
+
+.container-body .search-box input {
+    flex: 1; /* Cho phép ô input mở rộng để lấp đầy phần còn lại của .search-box */
+    padding: 15px 40px 15px 40px; /* Điều chỉnh padding để làm cho nội dung không bị che phủ */
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.container-body .search-box input:focus {
+    border: 1px solid #039201;
+}
+
+.container-body .search-box button {
+    padding: 15px 20px;
+    background-color: #039201;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.container-body .filters-function {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.all-filters {
+    display: flex;
+}
+
+.filter {
+    margin-right: 20px; /* Khoảng cách giữa các button */
+}
+
+.btn-filter {
+    color: gray;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+.btn-filter:hover {
+    color: #039201;
+    transition: 0.3s ease;
+}
+.filters {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: gray;
+    border: 1px solid rgb(255, 255, 255);
+    padding: 10px 30px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.filters:hover {
+    color: #039201;
+    border: 1px solid #039201;
+    transition: 0.3s ease;
+}
+.filters:hover svg path {
+    stroke: #039201;
+    transition: stroke 0.3s ease, fill 0.3s ease;
+}
+
+
+.filter-icon svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px; /* Khoảng cách giữa SVG và nội dung button */
+}
+.orders-time-period {
+    margin-right: 30px;
+}
+
+#select-orders {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 200px; /* Điều chỉnh độ rộng của dropdown */
+    cursor: pointer;
+    appearance: none; /* Ẩn kiểu chọn mặc định trên Firefox */
+    background-color: #f9f9f9; /* Màu nền của dropdown */
+}
+
+/* Thiết lập kiểu mũi tên xuống của dropdown */
+#select-orders::after {
+    content: '\25BC'; /* Unicode cho mũi tên xuống */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+/* Định dạng màu sắc và đường viền khi hover và focus */
+#select-orders:hover,
+#select-orders:focus {
+    border-color: #039201;
+    outline: none; /* Loại bỏ đường viền mặc định khi focus */
+}
+
+/* Định dạng màu sắc và đường viền khi mở dropdown */
+#select-orders:active {
+    border-color: #039201;
+}
+
+/* Thiết lập kiểu chữ khi hiển thị danh sách chọn */
+#select-orders option {
+    font-size: 14px;
+    background-color: #f9f9f9; /* Màu nền của mỗi option */
+}
+
+/* Thiết lập kiểu chữ khi mỗi option được hover */
+#select-orders option:hover {
+    background-color: #ddd;
+}
+.container-remove {
+    margin-bottom: 50px;
+}
+.container-remove .remove-all {
+    float: right; 
+    background-color: red; 
+    border-radius: 20px;
+    padding: 10px 20px; 
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    clear: both;
+    cursor: pointer;
+}
+
+
+.orders-table {
+    width: 100%;
+}
+
+table {
+    margin: 30px 0;
+    width: 100%;
+    border-collapse: collapse;
+}
+thead {
+    background-color: #ff8000; /* Màu cam */
+    color: white; /* Màu chữ trắng để đối contrast */
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 12px; /* Tăng giá trị padding để tăng khoảng cách giữa các ô */
+    line-height: 1.5; /* Đặt chiều cao của dòng để tăng khoảng cách giữa các hàng */
+}
+
+tbody tr td .remove-item {
+    border-radius: 20px;
+    padding: 5px 20px;
+    color: white;
+    background-color: red;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+/* Style cho các hàng chẵn */
+tbody tr:nth-child(even) {
+    background-color: #e4e4e4; /* Màu xám */
+}
+
+/* Style cho các hàng lẻ */
+tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* Màu trắng */
+}
+
+tbody tr .status-table {
+    padding: 5px 10px;
+    color: #c72f05;
+    border: 1px solid #c72f05;
+    border-radius: 20px;
+}
+
+/* Style cho checkbox */
+input[type="checkbox"] {
+    transform: scale(1); /* Kích thước bình thường của checkbox */
+    margin-right: 5px; /* Khoảng cách giữa checkbox và text */
+}
+
+/* Style cho hàng được chọn */
+tbody tr:hover {
+    background-color: rgb(239, 190, 158);
+}
+.orders-table #pagination li {
+    margin-right: 5px;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+#pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 20px;
+}
+#pagination-container  {
+    display: flex;
+    justify-content: flex-end;
+}
+#prevButton,
+#nextButton {
+  background-color: #ff8000;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+#prevButton:hover,
+#nextButton:hover {
+  background-color: #ff8000;
+}
+

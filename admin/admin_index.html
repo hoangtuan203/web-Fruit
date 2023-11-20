@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="../css/admin.css"/>
+    <link rel="stylesheet" href="../css/admin_order.css">
   </head>
   <body>
     <div class="header">
@@ -113,15 +114,18 @@
       </div>
       <!-- End navbar -->
       <!-- Menuleft -->
-      <div class="menu-left" onmouseover="PhongSide();" onmouseout="ThuSide()">
+      <div
+        id="menuLeft"
+        class="menu-left"
+        onmouseover="PhongSide()"
+        onmouseout="ThuSide()"
+      >
         <ul class="list-menu">
           <li class="list-menu-item">
             <h2 class="text title-1 hide-text">MENU</h2>
           </li>
-          <li class="list-menu-item">
+          <li class="list-menu-item" id="productId">
             <?xml version="1.0" ?>
-
-            <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
             <svg
               width="800px"
               height="800px"
@@ -261,7 +265,7 @@
             <span class="text">Thống kê</span>
           </li>
 
-          <li class="list-menu-item">
+          <li class="list-menu-item" id="donhang">
             <?xml version="1.0" encoding="utf-8"?>
             <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
             <svg
@@ -291,153 +295,13 @@
     <!-- CONTENT -->
     <div class="content">
       <!-- SẢN PHẨM -->
-      <div class="product">
-        <div class="header-product">
-          <h1 class="title">QUẢN LÝ SẢN PHẨM</h1>
-          <div class="button-header">
-            <button class="btn-add">
-              <a href="" id="add-data">ADD</a>
-            </button>
-          </div>
-        </div>
-        <div class="body-product">
-          <table>
-            <thead>
-              <tr>
-                <th>STT</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá</th>
-                <th>Tình trạng</th>
-                <th>Check</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody class="list-product">
-              <tr class="item">
-                <td>1</td>
-                <td>Sản phẩm A</td>
-                <td>100,000 VND</td>
-                <td>Còn hàng</td>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <button class="btn-edit">Sửa</button
-                  ><button class="btn-delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="item">
-                <td>2</td>
-                <td>Sản phẩm B</td>
-                <td>150,000 VND</td>
-                <td>Hết hàng</td>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <button class="btn-edit">Sửa</button
-                  ><button class="btn-delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="item">
-                <td>3</td>
-                <td>Sản phẩm C</td>
-                <td>150,000 VND</td>
-                <td>Hết hàng</td>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <button class="btn-edit">Sửa</button
-                  ><button class="btn-delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="item">
-                <td>4</td>
-                <td>Sản phẩm D</td>
-                <td>150,000 VND</td>
-                <td>Hết hàng</td>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <button class="btn-edit">Sửa</button
-                  ><button class="btn-delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="item">
-                <td>5</td>
-                <td>Sản phẩm E</td>
-                <td>150,000 VND</td>
-                <td>Hết hàng</td>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <button class="btn-edit">Sửa</button
-                  ><button class="btn-delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="item">
-                <td>5</td>
-                <td>Sản phẩm E</td>
-                <td>150,000 VND</td>
-                <td>Hết hàng</td>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <button class="btn-edit">Sửa</button
-                  ><button class="btn-delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="item">
-                <td>5</td>
-                <td>Sản phẩm E</td>
-                <td>150,000 VND</td>
-                <td>Hết hàng</td>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <button class="btn-edit">Sửa</button
-                  ><button class="btn-delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="item">
-                <td>5</td>
-                <td>Sản phẩm E</td>
-                <td>150,000 VND</td>
-                <td>Hết hàng</td>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <button class="btn-edit">Sửa</button
-                  ><button class="btn-delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="item">
-                <td>5</td>
-                <td>Sản phẩm E</td>
-                <td>150,000 VND</td>
-                <td>Hết hàng</td>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <button class="btn-edit">Sửa</button
-                  ><button class="btn-delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="item">
-                <td>5</td>
-                <td>Sản phẩm E</td>
-                <td>150,000 VND</td>
-                <td>Hết hàng</td>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <button class="btn-edit">Sửa</button
-                  ><button class="btn-delete">Xóa</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="pagination">
-          <ul class="listPage">
-            <li class="active listPage-item">1</li>
-            <li class="listPage-item">2</li>
-            <li class="listPage-item">3</li>
-          </ul>
-        </div>
-      </div>
+      
 
       <!-- Account -->
     </div>
   </body>
+  <script src="../js/admin_product.js"></script>
   <script src="../js/admin.js"></script>
+  <script src="../js/product-list.js"></script>
+
 </html>
