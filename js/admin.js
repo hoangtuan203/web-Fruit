@@ -971,8 +971,8 @@ function createTableRow(item, index) {
     <td><img src="../image/product-fresh/${
       item.img
     }" style="max-width: 50px; max-height: 50px; background-color:transparent;"></td>
-    <td>  
-      <input type="checkbox" class="product-checkbox" id="checkbox-${item.id}">
+    <td class="product-checkbox" >  
+      <input  type="checkbox" id="checkbox-${item.id}">
     </td>
     <td>
       <button class="btn-edit-product" onclick="editProduct(${
