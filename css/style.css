@@ -158,6 +158,11 @@ header .icons a {
     padding: 0rem 9%;
 
 }
+.content {
+  padding: 2rem 9%;
+
+
+}
 
 .content {
   padding: 2rem 9%;
@@ -214,6 +219,8 @@ header .icons a {
   -webkit-transform: translate(0%, -50%);
   transform: translate(0%, -50%);
 
+
+
 }
 .category-container {
     width: 25%; /* Không chiếm không gian, sẽ bị ẩn khi display: none; */
@@ -226,7 +233,7 @@ header .icons a {
 
 .content .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
   gap: 1.5rem;
 }
 .content .box-container .product {
@@ -237,8 +244,9 @@ header .icons a {
   box-shadow: #666;
   position: relative;
 
-  text-align: center;
+  text-align: center; 
 }
+
 
 @media (max-width: 28rem) {
     .content .box-container {
@@ -295,7 +303,6 @@ header .icons a {
 }
 
 .btn-buy {
-
     border: 1px solid #27ae60;
     background-color: #fff;
     color: var(--theme-color);
@@ -329,7 +336,8 @@ header .icons a {
     font-size: 20px;
     margin-bottom: 10px;
 
-  border: 1px solid #27ae60;
+
+
   background-color: #fff;
   color: var(--theme-color);
   padding: 5px;
@@ -474,6 +482,7 @@ header .icons a {
 .grid_col-2-4 {
   width: 25%;
 }
+
 .content {
   padding-top: 20px;
 }
@@ -596,7 +605,6 @@ header .icons a {
   filter: none;
 }
 
-/*  danh mục sản phẩm */
 
 .category-crumb{
     border-bottom: 1px solid #fff;
@@ -848,5 +856,5 @@ button:hover {
     padding: 8px;
     text-align: center;
 }
-/* pagination */
 
+/* pagination */
