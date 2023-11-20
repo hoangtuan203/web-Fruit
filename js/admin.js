@@ -5,7 +5,6 @@ const content = document.getElementsByClassName("content")[0];
 const donhangitem = document.getElementById("donhang");
 const showProduct = document.getElementById("productId");
 const productsPerPage = 10;
-
 //hien thi menu left
 
 const menu_left = document.getElementById("menuLeft");
@@ -29,19 +28,19 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //thong ke
-const chitiethoadon = JSON.parse(localStorage.getItem('chitiethoadon')) || [];
-const hoadon = JSON.parse(localStorage.getItem('hoadon')) || [];
-const nhomsanpham = JSON.parse(localStorage.getItem('nhom')) || [
+const chitiethoadon = JSON.parse(localStorage.getItem("chitiethoadon")) || [];
+const hoadon = JSON.parse(localStorage.getItem("hoadon")) || [];
+const nhomsanpham = JSON.parse(localStorage.getItem("nhom")) || [
   {
     manhom: 1,
-    tennhom: 'Nhóm 1',
+    tennhom: "Nhóm 1",
   },
   {
     manhom: 2,
-    tennhom: 'Nhóm 2',
+    tennhom: "Nhóm 2",
   },
 ];
-const sanpham = JSON.parse(localStorage.getItem('sanpham')) || [
+const sanpham = JSON.parse(localStorage.getItem("sanpham")) || [
   {
     manhom: 1,
     id: 1,
@@ -285,7 +284,6 @@ const sanpham = JSON.parse(localStorage.getItem('sanpham')) || [
   },
 ];
 
-
 let today = new Date().toISOString().slice(0, 10);
 let doanhthu = (chitiethoadon) => {
   let map = new Map();
@@ -478,7 +476,6 @@ thongkeitem.addEventListener("click", () => {
   });
 });
 
-
 // xu ly don hang
 
 donhangitem.addEventListener("click", () => {
@@ -662,26 +659,25 @@ donhangitem.addEventListener("click", () => {
     }
   });
 
-    function removeItem(mahoadon) {
-      // Tạo hộp thoại xác nhận
-      var dialog = confirm("Bạn có chắc chắn muốn xóa mục này không?");
+  function removeItem(mahoadon) {
+    // Tạo hộp thoại xác nhận
+    var dialog = confirm("Bạn có chắc chắn muốn xóa mục này không?");
 
-      // Nếu người dùng xác nhận, tiến hành xóa
-      if (dialog) {
-        // Xóa mục khỏi danh sách dữ liệu
-        var updatedDataList = dataList.filter(
-          (item) => item.mahoadon !== mahoadon
-        );
+    // Nếu người dùng xác nhận, tiến hành xóa
+    if (dialog) {
+      // Xóa mục khỏi danh sách dữ liệu
+      var updatedDataList = dataList.filter(
+        (item) => item.mahoadon !== mahoadon
+      );
 
-        // Lưu danh sách dữ liệu đã cập nhật vào Local Storage
-        localStorage.setItem("hoadon", JSON.stringify(updatedDataList));
+      // Lưu danh sách dữ liệu đã cập nhật vào Local Storage
+      localStorage.setItem("hoadon", JSON.stringify(updatedDataList));
 
-        // Cập nhật dữ liệu bảng ngay lập tức
-      }
-      displayData(currentPage);
-      window.location.reload();
+      // Cập nhật dữ liệu bảng ngay lập tức
     }
-
+    displayData(currentPage);
+    window.location.reload();
+  }
 
   function displayData(page) {
     var start = (page - 1) * itemsPerPage;
@@ -719,8 +715,6 @@ donhangitem.addEventListener("click", () => {
     // Cập nhật màu sắc của các nút trang
     updatePaginationButtons();
   }
-
-
 
   // Hàm cập nhật màu sắc của các nút trang
   function updatePaginationButtons() {
@@ -801,7 +795,7 @@ showProduct.addEventListener("click", () => {
             type="text"
             id="productName"
             name="productName"
-            placeholder="Input Product Name"
+            placeholder="Tên Sản Phẩm"
           />
 
           <label for="productPrice">Giá:</label>
@@ -809,7 +803,7 @@ showProduct.addEventListener("click", () => {
             type="number"
             id="productPrice"
             name="productPrice"
-            placeholder="Input Price"
+            placeholder="Giá"
             required
           />
 
@@ -818,7 +812,7 @@ showProduct.addEventListener("click", () => {
             type="number"
             id="productQuantity"
             name="productQuantity"
-            placeholder="Input Quantity"
+            placeholder="Số Lượng"
             required
           />
 
@@ -830,7 +824,14 @@ showProduct.addEventListener("click", () => {
             accept="image/*"
             required
           />
-
+          <label for="productQuantity">Loại Sản Phẩm:</label>
+          <input
+            type="text"
+            id="categoryName"
+            name="productQuantity"
+            placeholder="Loại Sản Phẩm"
+            required
+          />
           <button
             class="btn-add-product-new"
             type="button"
@@ -874,15 +875,10 @@ showProduct.addEventListener("click", () => {
   content.appendChild(div);
   loadProductList(1);
 });
-//hien thi menu left
 
 //phan trang
 
 function getTotalPages() {
-  const storedProductsJSON = localStorage.getItem("storedProducts");
-  const storedProducts = storedProductsJSON
-    ? JSON.parse(storedProductsJSON)
-    : [];
   return Math.ceil(storedProducts.length / productsPerPage);
 }
 function createPagination(totalPages, currentPage) {
@@ -912,16 +908,13 @@ function createPagination(totalPages, currentPage) {
 function loadProductList(currentPage) {
   const bodyProduct = document.getElementById("tableProduct");
   console.log(bodyProduct);
-  const existingTable = document.getElementById("tbl-product");
-  if (existingTable) {
-    existingTable.parentNode.removeChild(existingTable);
-  }
-  // Create a new table
+
   const table = document.createElement("table");
   table.id = "tbl-product";
   const thead = document.createElement("thead");
   const tbody = document.createElement("tbody");
   const headerRow = document.createElement("tr");
+  
   headerRow.innerHTML = `
       <th>STT</th>
       <th>ID</th>
@@ -929,6 +922,7 @@ function loadProductList(currentPage) {
       <th>Giá(VNĐ)</th>
       <th>Số Lượng</th>
       <th>Hình Ảnh</th>
+      <th>Loại SP</th>
       <th>Chọn</th>
       <th>Chức Năng</th>
   `;
@@ -936,23 +930,17 @@ function loadProductList(currentPage) {
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
-  const storedProductsJSON = localStorage.getItem("storedProducts");
-  const storedProducts = storedProductsJSON
-    ? JSON.parse(storedProductsJSON)
-    : [];
-
-
   currentPage = currentPage || 1;
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
   displayedProducts = storedProducts.slice(startIndex, endIndex);
-
   displayedProducts.forEach((item, index) => {
     const row = createTableRow(item, startIndex + index);
     tbody.appendChild(row);
   });
 
   table.appendChild(tbody);
+  bodyProduct.innerHTML = "";
   bodyProduct.appendChild(table);
 
   const totalPages = getTotalPages();
@@ -968,9 +956,10 @@ function createTableRow(item, index) {
     <td>${item.name}</td>
     <td>${item.price}</td>
     <td>${item.quantity}</td>
-    <td><img src="../image/product-fresh/${
+    <td><img src="${
       item.img
     }" style="max-width: 50px; max-height: 50px; background-color:transparent;"></td>
+    <td>${item.categoryName}</td>
     <td class="product-checkbox" >  
       <input  type="checkbox" id="checkbox-${item.id}">
     </td>
@@ -1000,45 +989,49 @@ function addProduct() {
   const modal = document.getElementById("addProductModal");
   modal.style.display = "block";
 }
+
+//them san pham
 function addProductNew() {
   const productName = document.getElementById("productName").value.trim();
-  const productPrice = parseFloat(
-    document.getElementById("productPrice").value
-  );
-  const productQuantity = parseInt(
-    document.getElementById("productQuantity").value
-  );
+  const productPrice = parseFloat(document.getElementById("productPrice").value);
+  const productQuantityInput = document.getElementById("productQuantity").value;
+  const productQuantity = productQuantityInput.trim() !== '' ? parseInt(productQuantityInput) : 0;
+
   const productImageInput = document.getElementById("productImage");
+  const productImage = productImageInput.files[0] ? productImageInput.files[0].name : "";
 
-  // Extract only the file name from the full path
-  const productImage = productImageInput.files[0]
-    ? productImageInput.files[0].name
-    : "";
+  const categoryName = document.getElementById("categoryName").value.trim();
 
-  const storedProductsJSON = localStorage.getItem("storedProducts");
-  const storedProducts = storedProductsJSON
-    ? JSON.parse(storedProductsJSON)
-    : [];
+  // // Input validation
+  // if (!productName || isNaN(productPrice) || isNaN(productQuantity) || !categoryName) {
+  //   alert("Vui lòng nhập đầy đủ thông tin và giá trị hợp lệ.");
+  //   return;
+  // }
 
   const maxId = storedProducts.reduce(
     (max, product) => (product.id > max ? product.id : max),
     0
   );
 
+  const imagePath = '../image/product-fresh/';
+  console.log(imagePath + productImage);
+
   const newProduct = {
     id: maxId + 1,
     name: productName,
     price: productPrice,
     quantity: productQuantity,
-    img: productImage,
+    img: imagePath + productImage,
+    categoryName: categoryName
   };
 
   storedProducts.push(newProduct);
-  localStorage.setItem("storedProducts", JSON.stringify(storedProducts));
+  localStorage.setItem("products", JSON.stringify(storedProducts));
+  alert("Thêm sản phẩm thành công!");
   loadProductList();
-  alert("Thêm Sản Phẩm Thành Công !");
   closeAddProductModal();
 }
+
 
 //delete product
 function deleteProduct(productId) {
@@ -1048,7 +1041,7 @@ function deleteProduct(productId) {
 
     if (confirmation) {
       const deletedProduct = storedProducts.splice(index, 1)[0]; // Remove and get the deleted product
-      localStorage.setItem("storedProducts", JSON.stringify(storedProducts));
+      localStorage.setItem("products", JSON.stringify(storedProducts));
       const table = document.getElementById("tbl-product");
       if (table) {
         table.parentNode.removeChild(table);
@@ -1077,7 +1070,7 @@ function deleteSelectedProducts() {
     const updatedProducts = storedProducts.filter(
       (product) => !selectedProductIds.includes(product.id)
     );
-    localStorage.setItem("storedProducts", JSON.stringify(updatedProducts));
+    localStorage.setItem("products", JSON.stringify(updatedProducts));
     loadProductList();
   }
 }
@@ -1088,10 +1081,6 @@ function quantityProduct() {
   document.getElementById("quantityValue").innerText = numberOfProducts;
 }
 function getNumberOfProducts() {
-  const storedProductsJSON = localStorage.getItem("storedProducts");
-  const storedProducts = storedProductsJSON
-    ? JSON.parse(storedProductsJSON)
-    : [];
   return storedProducts.length;
 }
 function showUploadImage() {
@@ -1120,5 +1109,4 @@ function uploadImage() {
     }
   });
 }
-loadProductList(1)
-
+loadProductList(1);
