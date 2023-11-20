@@ -348,7 +348,7 @@ header .icons a {
 }
 
 .image-product {
-  height: 200px;
+height: 200px;
 
   overflow: hidden;
 }
@@ -538,7 +538,7 @@ header .icons a {
 
 #next-button:hover {
   right: 20px;
-  transition: all 0.5s;
+transition: all 0.5s;
 }
 
 #previous-button:hover {
@@ -704,7 +704,6 @@ header .icons a {
   text-decoration: none;
   display: block;
 }
-
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
   background-color: #ddd;
