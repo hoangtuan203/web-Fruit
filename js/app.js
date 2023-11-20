@@ -340,3 +340,4 @@ let addtocart = (product_id) => {
 
   countquantity();
 };
+// 3

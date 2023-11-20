@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('.form_signup');
   const emailField = form.querySelector('input[name="email"]');
   const passwordField = form.querySelector('input[name="password"]');
+  const nameField = form.querySelector('input[name="name"]');
   const errorMessage = document.querySelector('.error');
+  const errorName = document.getElementById('errorName');
   const validationItems = document.querySelectorAll('.validation_form');
   const passwordInput = document.getElementById('password_input');
   const showPasswordButton = document.getElementById('showPassword');
@@ -54,12 +56,24 @@ document.addEventListener('DOMContentLoaded', function () {
       emailField.classList.add('input_error');
     } else if (!isEmail(emailField.value)) {
       valid = false;
-      emailErrMessage = 'Looks like you forgot something';
+      emailErrMessage = 'Email không hợp lệ';
       errorMessage.innerHTML = emailErrMessage;
       emailField.classList.add('input_error');
     } else {
       errorMessage.innerHTML = ''; // Clear error message if email is valid
       emailField.classList.remove('input_error'); // remove the class when there is no error
+    }
+    //check
+    if (button.getAttribute('data-action') == 'login') {
+    } else {
+      if (nameField.value == '' || nameField.value.length < 5) {
+        valid = false;
+        errorName.innerHTML = 'Tên không để trống và ít nhất 5 ký tự';
+        nameField.classList.add('input_error');
+      } else {
+        errorName.innerHTML = '';
+        nameField.classList.remove('input_error');
+      }
     }
 
     if (passwordValid === false) {
@@ -100,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
           user_id: usersList.length + 1,
           email: emailField.value,
           password: passwordField.value,
+          username: nameField.value,
         });
         errorMessage.innerHTML = '';
         localStorage.setItem('users', JSON.stringify(usersList));

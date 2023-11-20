@@ -2,7 +2,7 @@
   box-sizing: inherit;
   margin: 0 auto;
   padding: 0;
-  font-family: "Tahoma Geneva", sans-serif;
+  font-family: 'Tahoma Geneva', sans-serif;
   color: #000;
 }
 :root {
@@ -213,9 +213,9 @@ input {
   margin: 10px 0;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="file"] {
+input[type='text'],
+input[type='number'],
+input[type='file'] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -223,16 +223,16 @@ input[type="file"] {
 }
 
 /* Định dạng cho hình ảnh được tải lên */
-input[type="file"] {
+input[type='file'] {
   padding: 0;
 }
 
 /* Chỉnh màu chữ mặc định cho required field */
-label[for="product_id"],
-label[for="product_name"],
-label[for="product_price_new"],
-label[for="product_image"],
-label[for="product_price_old"] {
+label[for='product_id'],
+label[for='product_name'],
+label[for='product_price_new'],
+label[for='product_image'],
+label[for='product_price_old'] {
   color: #007bff;
 }
 .list-btn {
@@ -508,6 +508,7 @@ tbody tr:last-child td {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  border-radius: 10px;
 }
 .text-form {
   text-align: center;
@@ -563,8 +564,14 @@ tbody tr:last-child td {
 .item {
   align-items: center;
 }
+.item label {
+  margin: 0;
+}
 .form-select {
   display: flex;
   gap: 5px;
   align-items: center;
+}
+#productTable {
+  margin: 0;
 }
