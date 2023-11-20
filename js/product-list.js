@@ -207,7 +207,6 @@ const products = [
       img: './image/product-cart/hop-trai-cay-qua-tang-nho-xanh-khong-hat.jpg',
       categoryName:'box-fruit',
   },
-
   {
       id: 27,
       name: 'Hộp Trái Cây',
