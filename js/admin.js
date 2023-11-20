@@ -1226,6 +1226,4 @@ function uploadImage() {
     }
   });
 }
-loadProductList(1);
-
 
