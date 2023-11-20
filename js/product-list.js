@@ -248,3 +248,5 @@ const products = [
       categoryName:'fresh-fruit',
   },
 ];
+const productsJSON = JSON.stringify(products);
+localStorage.setItem('products', productsJSON);
