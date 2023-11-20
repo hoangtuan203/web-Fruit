@@ -588,6 +588,7 @@ donhangitem.addEventListener("click", () => {
                   </button>
                 </div>
             </div>
+            <div id="container-cthd"><div id="chiTietHoaDon"></div></div>
         </div>
     </div>
 `;
@@ -662,26 +663,38 @@ donhangitem.addEventListener("click", () => {
     }
   });
 
-    function removeItem(mahoadon) {
-      // Tạo hộp thoại xác nhận
-      var dialog = confirm("Bạn có chắc chắn muốn xóa mục này không?");
+  function removeItem(mahoadon) {
+    // Tạo hộp thoại xác nhận
+    var dialog = confirm("Bạn có chắc chắn muốn xóa mục này không?");
 
-      // Nếu người dùng xác nhận, tiến hành xóa
-      if (dialog) {
-        // Xóa mục khỏi danh sách dữ liệu
-        var updatedDataList = dataList.filter(
-          (item) => item.mahoadon !== mahoadon
-        );
+    // Nếu người dùng xác nhận, tiến hành xóa
+    if (dialog) {
+      // Xóa hóa đơn khỏi danh sách dữ liệu
+      var updatedDataList = dataList.filter(
+        (item) => item.mahoadon !== mahoadon
+      );
 
-        // Lưu danh sách dữ liệu đã cập nhật vào Local Storage
-        localStorage.setItem("hoadon", JSON.stringify(updatedDataList));
+      // Lưu danh sách hóa đơn đã cập nhật vào Local Storage
+      localStorage.setItem("hoadon", JSON.stringify(updatedDataList));
 
-        // Cập nhật dữ liệu bảng ngay lập tức
-      }
+      // Xóa chi tiết hóa đơn tương ứng từ danh sách chi tiết hóa đơn
+      var chiTietHoaDon =
+        JSON.parse(localStorage.getItem("chitiethoadon")) || [];
+      var updatedChiTietHoaDon = chiTietHoaDon.filter(
+        (item) => item.mahoadon !== mahoadon
+      );
+
+      // Lưu danh sách chi tiết hóa đơn đã cập nhật vào Local Storage
+      localStorage.setItem(
+        "chitiethoadon",
+        JSON.stringify(updatedChiTietHoaDon)
+      );
+
+      // Cập nhật dữ liệu bảng ngay lập tức
       displayData(currentPage);
       window.location.reload();
     }
-
+  }
 
   function displayData(page) {
     var start = (page - 1) * itemsPerPage;
@@ -761,7 +774,104 @@ donhangitem.addEventListener("click", () => {
   // Initial display
   displayData(currentPage);
   setupPagination();
+
+document
+  .getElementById("myTableBody")
+  .addEventListener("click", function (event) {
+    var target = event.target;
+
+    // Kiểm tra xem phần tử được bấm có phải là hàng (tr) hay không
+    if (
+      target.tagName.toLowerCase() === "td" &&
+      target.parentNode.tagName.toLowerCase() === "tr"
+    ) {
+      // Lấy mã hóa đơn từ hàng
+      var mahoadon =
+        target.parentNode.querySelector("td:nth-child(3)").innerText;
+
+      // Lấy dữ liệu chi tiết đơn hàng từ Local Storage
+      var chiTietHoaDon =
+        JSON.parse(localStorage.getItem("chitiethoadon")) || [];
+
+      // Tìm chi tiết đơn hàng tương ứng với mã hóa đơn
+      var chiTietDonHang = chiTietHoaDon.filter(
+        (item) => item.mahoadon == mahoadon
+      );
+
+      // Hiển thị chi tiết đơn hàng trong modal hoặc div tương ứng
+      displayOrderDetails(chiTietDonHang);
+    }
+  });
+
+function displayOrderDetails(chiTiet) {
+  // Làm gì đó với thông tin chi tiết, có thể hiển thị lên giao diện
+  // Ví dụ: Thêm HTML vào một phần tử div với id là "chiTietHoaDon"
+  var chiTietContainer = document.getElementById("chiTietHoaDon");
+
+  // Xóa nội dung cũ trong container
+  chiTietContainer.innerHTML = "";
+
+  if (chiTietContainer) {
+    // Tạo bảng
+    var table = document.createElement("table");
+    table.border = "1";
+
+    // Tạo hàng đầu tiên của bảng (header)
+    var headerRow = table.insertRow(0);
+    var headers = ["Hình ảnh", "Tên sản phẩm", "Giá", "Số lượng", "Mã hóa đơn"];
+
+    for (var h = 0; h < headers.length; h++) {
+      var headerCell = headerRow.insertCell(h);
+      headerCell.innerHTML = "<b>" + headers[h] + "</b>";
+    }
+
+    // Lặp qua tất cả chi tiết hóa đơn và thêm vào bảng
+    for (var i = 0; i < chiTiet.length; i++) {
+      var currentChiTiet = chiTiet[i];
+      var row = table.insertRow(i + 1);
+
+      // Lấy mã sản phẩm từ chi tiết đơn hàng
+      var maSanPham = currentChiTiet.masanpham;
+      // Lấy thông tin sản phẩm từ bảng products
+      var thongTinSanPham = layThongTinSanPhamTuProducts(maSanPham);
+      // Kiểm tra xem có thông tin sản phẩm không
+      if (thongTinSanPham) {
+        // Hiển thị thông tin trong các ô của hàng
+        row.insertCell(
+          0
+        ).innerHTML = `<img src="${thongTinSanPham.img}" alt="Hình ảnh" width="50">`;
+        row.insertCell(1).innerHTML = thongTinSanPham.name;
+        row.insertCell(2).innerHTML = currentChiTiet.gia;
+        row.insertCell(3).innerHTML = currentChiTiet.soluong;
+        row.insertCell(4).innerHTML = currentChiTiet.mahoadon;
+      } else {
+        console.error(
+          "Không tìm thấy thông tin sản phẩm cho mã sản phẩm: ",
+          maSanPham
+        );
+      }
+    }
+
+    // Thêm bảng vào container
+    chiTietContainer.appendChild(table);
+  } else {
+    console.error("Phần tử chiTietHoaDon không tồn tại trong HTML.");
+  }
+}
+
+  function layThongTinSanPhamTuProducts(maSanPham) {
+    // Thực hiện logic để lấy thông tin sản phẩm từ bảng products
+    // Trả về đối tượng chứa thông tin sản phẩm hoặc null nếu không tìm thấy
+
+    // Ví dụ: Lấy dữ liệu từ Local Storage
+    var products = JSON.parse(localStorage.getItem("products")) || [];
+
+    // Tìm sản phẩm trong danh sách products
+    var sanPham = products.find((item) => item.id == maSanPham);
+    return sanPham;
+  }
 });
+
 //san pham
 showProduct.addEventListener("click", () => {
   content.innerHTML = "";
