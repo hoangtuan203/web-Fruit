@@ -5,6 +5,7 @@ const content = document.getElementsByClassName("content")[0];
 const donhangitem = document.getElementById("donhang");
 const showProduct = document.getElementById("productId");
 const productsPerPage = 10;
+
 //hien thi menu left
 
 const menu_left = document.getElementById("menuLeft");
@@ -761,7 +762,6 @@ donhangitem.addEventListener("click", () => {
   displayData(currentPage);
   setupPagination();
 });
-
 //san pham
 showProduct.addEventListener("click", () => {
   content.innerHTML = "";
@@ -1121,3 +1121,4 @@ function uploadImage() {
   });
 }
 loadProductList(1)
+

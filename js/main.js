@@ -210,16 +210,3 @@ const products = [
     img: 'link_to_dried_mango_image.jpg',
   },
 ];
-<<<<<<< HEAD
-
-import search from './search.js';
-import product from './product.js';
-import { main } from './app.js';
-import admin from  './admin.js';
-
-search.start();
-product.start();
-// admin.start();
-main();
-=======
->>>>>>> 837f83e9dd39068758a62fee049dcf5bde8826bc
