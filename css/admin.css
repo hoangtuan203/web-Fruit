@@ -28,9 +28,10 @@
   position: relative;
   justify-content: center;
   align-items: center;
+  margin-left: 40px;
 }
 .navbar-title p {
-  margin-left: 100px;
+  /* margin-left: 100px; */
   color: white;
   font-weight: 800;
 }
@@ -80,9 +81,10 @@
   font-size: 30px;
   text-align: center;
 }
-.list-menu-item:hover {
-  transform: scale(1.1);
-  background-color: #ccc;
+.active:hover {
+  cursor: pointer;
+  transform: scale(1.15);
+  background-color: #a5a0a0;
 }
 .list-menu-item .text {
   font-size: 16px;
@@ -307,11 +309,11 @@ label[for='product_price_old'] {
 }
 .btn-delete-all {
   padding: 8px 16px;
-  background-color: rgba(212, 23, 23, 0.712);
+  background-color: red;
   margin-left: 16px;
   border: none;
   border-radius: 5px;
-  box-shadow: 2px 2px rgba(212, 23, 23, 0.712);
+  box-shadow: 2px 2px red;
   opacity: 1;
   color: white;
 }
@@ -326,7 +328,7 @@ label[for='product_price_old'] {
 }
 .btn-add {
   padding: 8px 16px;
-  background-color: #4caf50;
+  background-color: #039201;
   margin-left: 140px;
 }
 .btn-add a {
@@ -337,7 +339,7 @@ table {
   margin-top: 32px;
   border-collapse: collapse;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
+  /* background-color: rgba(255, 255, 255, 0.5); */
 }
 
 th,
@@ -355,7 +357,7 @@ tr {
   color: #ff8000;
 }
 tr:hover {
-  background-color: #d8d7d7f4;
+  background-color: #d8d7d7f4;  
 }
 
 thead {
@@ -372,11 +374,11 @@ tbody tr:last-child td {
 
 .btn-upload-img {
   padding: 8px 16px;
-  background-color: #4caf50;
+  background-color: #039201;
   margin-left: 140px;
   border: none;
   border-radius: 5px;
-  box-shadow: 2px 2px green;
+  box-shadow: 2px 2px #039201;
   opacity: 1;
   margin-left: 20px;
   color: white;
@@ -440,7 +442,7 @@ tbody tr:last-child td {
   cursor: pointer;
 }
 .btn-edit-product {
-  background-color: #3498db;
+  background-color: rgb(206, 206, 27);
   border: 1px solid;
   border-radius: 5px;
   padding: 8px;
@@ -454,7 +456,7 @@ tbody tr:last-child td {
 }
 .btn-delete-product {
   cursor: pointer;
-  background-color: rgba(212, 23, 23, 0.712);
+  background-color: red;
   border: 1px solid;
   border-radius: 5px;
   padding: 8px;
@@ -464,7 +466,12 @@ tbody tr:last-child td {
 .btn-delete-product:hover {
   opacity: 0.8;
 }
-
+.product-checkbox{  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 26px;
+}
 /* end product  */
 /* pagination */
 .listPage {
@@ -485,7 +492,7 @@ tbody tr:last-child td {
   opacity: 0.6;
 }
 .listPage .active {
-  background-color: #b192ef;
+  background-color: #ff8000;
   color: #fff;
 }
 

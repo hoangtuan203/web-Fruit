@@ -22,6 +22,7 @@ html {
   display: flex;
 }
 
+
 .category-container {
   width: 20%; /* Không chiếm không gian, sẽ bị ẩn khi display: none; */
 }
@@ -155,9 +156,17 @@ header .icons a {
 
 .content{
     padding: 0rem 9%;
+
 }
 .content {
   padding: 2rem 9%;
+
+
+}
+
+.content {
+  padding: 2rem 9%;
+
 }
 
 .heading {
@@ -182,6 +191,7 @@ header .icons a {
   -webkit-transform: translate(0%, -50%);
   transform: translate(0%, -50%);
 }
+
 .title-search{
     font-size: 24px;
     font-weight: 700;
@@ -208,6 +218,9 @@ header .icons a {
   background: #333;
   -webkit-transform: translate(0%, -50%);
   transform: translate(0%, -50%);
+
+
+
 }
 .category-container {
     width: 25%; /* Không chiếm không gian, sẽ bị ẩn khi display: none; */
@@ -233,6 +246,8 @@ header .icons a {
 
   text-align: center; 
 }
+
+
 @media (max-width: 28rem) {
     .content .box-container {
         grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
@@ -261,6 +276,7 @@ header .icons a {
   font-weight: bolder;
   margin-right: 1rem;
   font-size: 2.5rem;
+
 }
 .eye,
 .heart {
@@ -320,7 +336,8 @@ header .icons a {
     font-size: 20px;
     margin-bottom: 10px;
 
-  
+
+
   background-color: #fff;
   color: var(--theme-color);
   padding: 5px;
@@ -587,6 +604,7 @@ header .icons a {
 .home-product-item:not(:hover) .product_image {
   filter: none;
 }
+
 
 .category-crumb{
     border-bottom: 1px solid #fff;
