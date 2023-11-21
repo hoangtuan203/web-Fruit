@@ -1,28 +1,29 @@
-const storedProductsJSON = localStorage.getItem("products");
+const storedProductsJSON = localStorage.getItem('products');
 const productHomes = JSON.parse(storedProductsJSON);
 const handleEvent = function () {
-    const productEvent = document.querySelector('#product');
-    const categoryContainer = document.querySelector('.category-container');
-    const checkboxs = categoryContainer.querySelectorAll('.menu-product');
-    const self = this;
-    productEvent.onclick = function (event) {
-        event.preventDefault();
-        categoryContainer.style.display = 'block';
-        checkboxs.forEach(checkbox => {
-            checkbox.addEventListener('change', function () {
-                if (this.checked) {
-                   search()
-                }
-            });
-        });
-        renderCategoryMenu()
-       
-    };  
+  const productEvent = document.querySelector('#product');
+  const categoryContainer = document.querySelector('.category-container');
+  const checkboxs = categoryContainer.querySelectorAll('.menu-product');
+  const self = this;
+  productEvent.onclick = function (event) {
+    event.preventDefault();
+    categoryContainer.style.display = 'block';
+    checkboxs.forEach((checkbox) => {
+      checkbox.addEventListener('change', function () {
+        if (this.checked) {
+          search();
+        }
+      });
+    });
+    renderCategoryMenu();
+  };
 };
 
-const renderCategoryMenu=function(){
-    const category_crumb_container=document.querySelector('.category-crumb-container');
-    category_crumb_container.innerHTML=`
+const renderCategoryMenu = function () {
+  const category_crumb_container = document.querySelector(
+    '.category-crumb-container'
+  );
+  category_crumb_container.innerHTML = `
     <div class="row-container-category">
     <div class="category-crumb-right">
         <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,23 +44,29 @@ const renderCategoryMenu=function(){
         <span class="category-title-name" >Trái Cây Khô</span>
     </div>
 </div>
-    `
-}
+    `;
+};
 //  phân trang home
 const renderProducts = function (page) {
-    let start = (page - 1) * page_size;
-    let end = start + page_size;
-    const container = document.querySelector('.box-container');
-    const categoryContainer = document.querySelector('.category-container');
-    categoryContainer.style.display = (categoryContainer.style.display !== 'block') ? 'none' : categoryContainer.style.display;
-    const paginatedProducts =productHomes.slice(start, end);
-   
-    container.innerHTML = '';
-    paginatedProducts.forEach(item => {
-        const productElement = document.createElement('div');
-        const formattedPrice = item.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-        productElement.classList.add('product');
-        productElement.innerHTML = `
+  let start = (page - 1) * page_size;
+  let end = start + page_size;
+  const container = document.querySelector('.box-container');
+  const categoryContainer = document.querySelector('.category-container');
+  categoryContainer.style.display =
+    categoryContainer.style.display !== 'block'
+      ? 'none'
+      : categoryContainer.style.display;
+  const paginatedProducts = productHomes.slice(start, end);
+
+  container.innerHTML = '';
+  paginatedProducts.forEach((item) => {
+    const productElement = document.createElement('div');
+    const formattedPrice = item.price.toLocaleString('vi-VN', {
+      style: 'currency',
+      currency: 'VND',
+    });
+    productElement.classList.add('product');
+    productElement.innerHTML = `
         <div class="image-product">
                 <a  class="eye-button eye" href="" data-product-id="${item.id}" href="">
                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,11 +80,10 @@ const renderProducts = function (page) {
                 </a> 
             <img src="${item.img}" alt="">
         </div>
-
         <div class="title">
             <p class="heading-name">${item.name}</p>
             <span class="product-price">${formattedPrice}</span>
-            <div class="btn-buy" data-product="${item.id}">
+            <div class="btn-buy" onclick="addEventCart(${item.id},1)">
                 <svg  width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -85,18 +91,21 @@ const renderProducts = function (page) {
             </div>
         </div>
         `;
-        container.appendChild(productElement);
-    })
-}
+    container.appendChild(productElement);
+  });
+};
 // tìm kiếm sản phẩm theo thên
 const renderProductsByName = function (filteredProducts) {
-    const container = document.querySelector('.box-container');
-    container.innerHTML = '';
-    filteredProducts.forEach(item => {
-        const productElement = document.createElement('div');
-        const formattedPrice = item.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-        productElement.classList.add('product');
-        productElement.innerHTML = `
+  const container = document.querySelector('.box-container');
+  container.innerHTML = '';
+  filteredProducts.forEach((item) => {
+    const productElement = document.createElement('div');
+    const formattedPrice = item.price.toLocaleString('vi-VN', {
+      style: 'currency',
+      currency: 'VND',
+    });
+    productElement.classList.add('product');
+    productElement.innerHTML = `
             <div class="image-product">
                 <img src="${item.img}" alt="">
                 <a class="eye-button eye" href="">
@@ -113,7 +122,7 @@ const renderProductsByName = function (filteredProducts) {
             <div class="title">
                 <p class="heading-name">${item.name}</p>
                 <span class="product-price">${formattedPrice}</span>
-                <div class="btn-buy">
+                <div class="btn-buy" onclick="addEventCart(${item.id},1)>
                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -121,66 +130,71 @@ const renderProductsByName = function (filteredProducts) {
                 </div>
             </div>
             `;
-        container.appendChild(productElement);
-    });
+    container.appendChild(productElement);
+  });
 };
 
 let page_size = 6;
 let currentPage = 1;
-let totalPage =Math.ceil( (productHomes.length) / page_size);
+let totalPage = Math.ceil(productHomes.length / page_size);
 
 const pagination = function () {
-    const next = document.querySelector('#next-pag')
-    const prev = document.querySelector('#prev-pag');
-    const pagination_item__link = document.querySelectorAll('.pagination-item__link');
-    next.addEventListener('click', function (event) {
-        event.preventDefault();
-        currentPage++;
-        if (currentPage > totalPage) {
-            currentPage = 1;
-        }
-        renderProducts(currentPage);
-        updatePaginationActive();
-
-    })
-    prev.addEventListener('click', function (event) {
-        event.preventDefault();
-        currentPage--;
-        if (currentPage == 0) {
-            currentPage = totalPage;
-        }
-        renderProducts(currentPage);
-        updatePaginationActive();
-    })
-
-    const updatePaginationActive = function () {
-        pagination_item__link.forEach((item, index) => {
-            if (index === currentPage) {
-                item.classList.add('pagination-active')
-            } else {
-                item.classList.remove('pagination-active');
-            }
-
-        })
+  const next = document.querySelector('#next-pag');
+  const prev = document.querySelector('#prev-pag');
+  const pagination_item__link = document.querySelectorAll(
+    '.pagination-item__link'
+  );
+  next.addEventListener('click', function (event) {
+    event.preventDefault();
+    currentPage++;
+    if (currentPage > totalPage) {
+      currentPage = 1;
     }
     renderProducts(currentPage);
     updatePaginationActive();
-}
+  });
+  prev.addEventListener('click', function (event) {
+    event.preventDefault();
+    currentPage--;
+    if (currentPage == 0) {
+      currentPage = totalPage;
+    }
+    renderProducts(currentPage);
+    updatePaginationActive();
+  });
+
+  const updatePaginationActive = function () {
+    pagination_item__link.forEach((item, index) => {
+      if (index === currentPage) {
+        item.classList.add('pagination-active');
+      } else {
+        item.classList.remove('pagination-active');
+      }
+    });
+  };
+  renderProducts(currentPage);
+  updatePaginationActive();
+};
 
 const modal = function () {
-    const eyeButtons = document.querySelectorAll('.eye-button');
-    const modalContainer = document.getElementById('modal');
+  const eyeButtons = document.querySelectorAll('.eye-button');
+  const modalContainer = document.getElementById('modal');
 
-    eyeButtons.forEach(button => {
-        button.addEventListener('click', function (event) {
-            event.preventDefault();
-            modalContainer.style.display = 'block';
-            // Assume you have a data attribute for the product ID
-            const productId = this.getAttribute('data-product-id');
-            const product = productHomes.find(item => item.id === parseInt(productId));
-            const formattedPrice = product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-            // Create modal content
-            modalContainer.innerHTML = `
+  eyeButtons.forEach((button) => {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      modalContainer.style.display = 'block';
+      // Assume you have a data attribute for the product ID
+      const productId = this.getAttribute('data-product-id');
+      const product = productHomes.find(
+        (item) => item.id === parseInt(productId)
+      );
+      const formattedPrice = product.price.toLocaleString('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+      });
+      // Create modal content
+      modalContainer.innerHTML = `
                 <div class="modal-content">
                     <div class="image-container">
                         <div class="image-product">
@@ -200,7 +214,7 @@ const modal = function () {
                             <button class="button-quantity increase">+</button>
                         </div>
                         
-                        <div style="margin-top: 30px;" class="btn-buy">
+                        <div style="margin-top: 30px;"class="btn-buy">
                             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -213,67 +227,72 @@ const modal = function () {
                     </svg>
                 </div>
             `;
-            const close_details = document.querySelector('#close-detail');
-            close_details.addEventListener('click', function () {
-                modalContainer.style.display = 'none';
-            })
-            window.addEventListener('click', function (event) {
-                if (event.target === modalContainer) {
-                    modalContainer.style.display = 'none';
-                }
-            });
-        });
-
-
+      const close_details = document.querySelector('#close-detail');
+      close_details.addEventListener('click', function () {
+        modalContainer.style.display = 'none';
+      });
+      window.addEventListener('click', function (event) {
+        if (event.target === modalContainer) {
+          modalContainer.style.display = 'none';
+        }
+      });
+      // add detail product
     });
+  });
+};
 
-
-}
 // search
 const search = function () {
-   
-    // button
-    const categoryRadioButtons = document.querySelectorAll('.menu-product:checked')
-    const priceRadioButtons = document.querySelectorAll('.menu-price:checked');
-    const nameInput = document.querySelector('#search-box').value.trim().toLowerCase()
-    const selectedCategories = Array.from(categoryRadioButtons).map(radio => radio.value);
-    const selectedPrices = Array.from(priceRadioButtons).map(radio => parseInt(radio.value));
-    
-    const filteredProducts = productHomes.filter(product => {
-        const matchesName = product.name.toLowerCase().includes(nameInput);
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(product.categoryName);
-        const matchesPrice = selectedPrices.length === 0 || selectedPrices.includes(product.price);
-        console.log(matchesCategory)
-        return matchesName && matchesCategory && matchesPrice;
-    });
-    renderProductsByName(filteredProducts);
-   
-}
-const renderSearch=function(){
-    
-}
-const search_icon = document.querySelector('#search-icon')
-const searchForm = document.querySelector('#search-form')
-const close = document.querySelector('#close')
-const searchBox = document.querySelector('#search-box')
+  // button
+  const categoryRadioButtons = document.querySelectorAll(
+    '.menu-product:checked'
+  );
+  const priceRadioButtons = document.querySelectorAll('.menu-price:checked');
+  const nameInput = document
+    .querySelector('#search-box')
+    .value.trim()
+    .toLowerCase();
+  const selectedCategories = Array.from(categoryRadioButtons).map(
+    (radio) => radio.value
+  );
+  const selectedPrices = Array.from(priceRadioButtons).map((radio) =>
+    parseInt(radio.value)
+  );
+
+  const filteredProducts = productHomes.filter((product) => {
+    const matchesName = product.name.toLowerCase().includes(nameInput);
+    const matchesCategory =
+      selectedCategories.length === 0 ||
+      selectedCategories.includes(product.categoryName);
+    const matchesPrice =
+      selectedPrices.length === 0 || selectedPrices.includes(product.price);
+    console.log(matchesCategory);
+    return matchesName && matchesCategory && matchesPrice;
+  });
+  renderProductsByName(filteredProducts);
+};
+const renderSearch = function () {};
+const search_icon = document.querySelector('#search-icon');
+const searchForm = document.querySelector('#search-form');
+const close = document.querySelector('#close');
+const searchBox = document.querySelector('#search-box');
 search_icon.onclick = () => {
-    searchForm.classList.toggle('active');
-    searchBox.focus();
-}
+  searchForm.classList.toggle('active');
+  searchBox.focus();
+};
 close.onclick = () => {
-    searchForm.classList.toggle('active');
-}
+  searchForm.classList.toggle('active');
+};
 
 const search_button = document.querySelector('#search-button');
 search_button.addEventListener('click', () => {
-    search();
-    
+  search();
 });
 // category-crumb
-const category_crumb_render = function(){
-   const category_crumb= document.querySelector('.category-crumb');
-   category_crumb.style.display="block";
-}
+const category_crumb_render = function () {
+  const category_crumb = document.querySelector('.category-crumb');
+  category_crumb.style.display = 'block';
+};
 
 pagination();
 handleEvent();

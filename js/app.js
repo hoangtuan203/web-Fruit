@@ -3,7 +3,7 @@ const slides = document.querySelectorAll('.slide');
 const nextButton = document.getElementById('next-button');
 const previousButton = document.getElementById('previous-button');
 const dangnhap = document.getElementById('dangnhap');
-const addcart = document.getElementsByClassName('btn-buy');
+
 const dangky = document.getElementById('dangky');
 const login = document.getElementsByClassName('login-register')[0];
 
@@ -251,6 +251,14 @@ const sanpham = JSON.parse(localStorage.getItem('sanpham')) || [
     quantity: 14,
     img: './image/product-cart/sinh-nhat.jpg',
   },
+  {
+    id: 31,
+    name: 'Chôm',
+    price: 5000,
+    quantity: 10,
+    img: './image/product-fresh/chom-chom.jpg',
+    categoryName: 'fresh-fruit',
+  },
 ];
 
 // get user and cart
@@ -282,14 +290,10 @@ if (currentuser) {
   } else {
   }
 }
-
-for (let i = 0; i < addcart.length; i++) {
-  addcart[i].addEventListener('click', () => {
-    let product_id = parseInt(addcart[i].getAttribute('data-product'));
-
-    addtocart(product_id);
-  });
+function addEventCart(id, quantity) {
+  addtocart(id, quantity);
 }
+
 // count quantiy
 
 let countquantity = () => {
@@ -307,35 +311,39 @@ let countquantity = () => {
 countquantity();
 // add to cart
 
-let addtocart = (product_id) => {
+let addtocart = (product_id, quantity) => {
   let product = sanpham.find((x) => x.id == product_id);
 
   if (currentcart.length > 0) {
     let checkcart = currentcart.findIndex((x) => x.masanpham == product_id);
 
     if (checkcart != -1) {
+      console.log(1);
       let updatecart = currentcart[checkcart];
-
-      updatecart.soluong = updatecart.soluong + 1;
+      updatecart.soluong = updatecart.soluong + quantity;
       currentcart[checkcart] = updatecart;
       localStorage.setItem('currentcart', JSON.stringify(currentcart));
+      alert('Thêm sản phẩm vào giỏ thành công');
     } else {
+      console.log(2);
       currentcart.push({
         masanpham: product.id,
         gia: product.price,
-        soluong: 1,
+        soluong: quantity,
       });
 
       localStorage.setItem('currentcart', JSON.stringify(currentcart));
+      alert('Thêm sản phẩm vào giỏ thành công');
     }
   } else {
+    console.log(3);
     currentcart.push({
       masanpham: product.id,
       gia: product.price,
-      soluong: 1,
+      soluong: quantity,
     });
-
     localStorage.setItem('currentcart', JSON.stringify(currentcart));
+    alert('Thêm sản phẩm vào giỏ thành công');
   }
 
   countquantity();
