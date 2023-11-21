@@ -7,6 +7,9 @@
     font-family: 'Lato', sans-serif;
     box-sizing: border-box;
 }
+.body {
+    position: relative;
+}
 .container-order {
     width: 100%;
     margin: auto;
@@ -306,3 +309,41 @@ tbody tr:hover {
   background-color: #ff8000;
 }
 
+#container-cthd {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#container-cthd #container-chiTietHoaDon {
+    position: fixed;
+    top: 16%;
+    left: 20%;
+    background-color: rgb(255, 255, 255);
+    padding: 40px;
+    border-radius: 20px;
+    width: 1000px;
+    height: 500px;
+}
+
+#container-cthd #container-chiTietHoaDon svg {
+    cursor: pointer;
+    float: right;
+    clear: both;
+}
+
+#cthd-main {
+    height: 100%;
+    overflow-y: auto;
+    width: 100%;
+}
+
+#title-cthd {
+    font-size: 20px;
+    text-transform: uppercase;
+
+}
