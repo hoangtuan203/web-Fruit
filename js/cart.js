@@ -94,7 +94,7 @@ const sanpham = JSON.parse(localStorage.getItem('sanpham')) || [
     name: 'Cam Ai Cập',
     price: 6500,
     quantity: 25,
-    img: '../image/product-import/cam-ai-cap.jpg',
+    img: './image/product-import/cam-ai-cap.jpg',
     categoryName: 'imported-fruit',
   },
   {

@@ -590,8 +590,15 @@ donhangitem.addEventListener('click', () => {
                   </button>
                 </div>
             </div>
-            <div id="container-cthd"><div id="chiTietHoaDon"></div></div>
         </div>
+    </div>
+    <div id="container-cthd">
+      <div id="container-chiTietHoaDon">
+        <span id="title-cthd">Chi tiết hóa đơn</span>
+        <svg id="mySvg" width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="#000000" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/></svg>
+        <div id="cthd-main"><div id="chiTietHoaDon"></div></div>
+        
+      </div>
     </div>
 `;
   content.appendChild(div);
@@ -642,7 +649,7 @@ donhangitem.addEventListener('click', () => {
   // Lấy danh sách từ Local Storage
   var storedData = localStorage.getItem('hoadon');
   var dataList = JSON.parse(storedData) || [];
-  var itemsPerPage = 10;
+  var itemsPerPage = 5;
   var currentPage = 1;
   // Lấy tham chiếu đến các nút "Next" và "Previous"
   var prevButton = document.getElementById('prevButton');
@@ -694,7 +701,6 @@ donhangitem.addEventListener('click', () => {
 
       // Cập nhật dữ liệu bảng ngay lập tức
       displayData(currentPage);
-      window.location.reload();
     }
   }
 
@@ -775,6 +781,17 @@ donhangitem.addEventListener('click', () => {
   displayData(currentPage);
   setupPagination();
 
+  const svgElement = document.getElementById('mySvg');
+
+  // Lấy tham chiếu đến phần tử #container-cthd
+  const containerCthd = document.getElementById('container-cthd');
+
+  // Thêm sự kiện click cho SVG
+  svgElement.addEventListener('click', function () {
+    // Thay đổi style của #container-cthd thành 'none'
+    containerCthd.style.display = 'none';
+  });
+
   document
     .getElementById('myTableBody')
     .addEventListener('click', function (event) {
@@ -804,19 +821,18 @@ donhangitem.addEventListener('click', () => {
     });
 
   function displayOrderDetails(chiTiet) {
-    // Làm gì đó với thông tin chi tiết, có thể hiển thị lên giao diện
-    // Ví dụ: Thêm HTML vào một phần tử div với id là "chiTietHoaDon"
+    // Get the container for displaying order details
     var chiTietContainer = document.getElementById('chiTietHoaDon');
 
-    // Xóa nội dung cũ trong container
+    // Clear existing content in the container
     chiTietContainer.innerHTML = '';
 
     if (chiTietContainer) {
-      // Tạo bảng
+      // Create a table
       var table = document.createElement('table');
       table.border = '1';
 
-      // Tạo hàng đầu tiên của bảng (header)
+      // Create header row
       var headerRow = table.insertRow(0);
       var headers = [
         'Hình ảnh',
@@ -826,23 +842,24 @@ donhangitem.addEventListener('click', () => {
         'Mã hóa đơn',
       ];
 
+      // Insert header cells
       for (var h = 0; h < headers.length; h++) {
         var headerCell = headerRow.insertCell(h);
         headerCell.innerHTML = '<b>' + headers[h] + '</b>';
       }
 
-      // Lặp qua tất cả chi tiết hóa đơn và thêm vào bảng
+      // Loop through each order detail and add to the table
       for (var i = 0; i < chiTiet.length; i++) {
         var currentChiTiet = chiTiet[i];
         var row = table.insertRow(i + 1);
 
-        // Lấy mã sản phẩm từ chi tiết đơn hàng
+        // Get product information from the 'products' table
         var maSanPham = currentChiTiet.masanpham;
-        // Lấy thông tin sản phẩm từ bảng products
         var thongTinSanPham = layThongTinSanPhamTuProducts(maSanPham);
-        // Kiểm tra xem có thông tin sản phẩm không
+
+        // Check if product information is found
         if (thongTinSanPham) {
-          // Hiển thị thông tin trong các ô của hàng
+          // Display information in the cells of the row
           row.insertCell(
             0
           ).innerHTML = `<img src="${thongTinSanPham.img}" alt="Hình ảnh" width="50">`;
@@ -850,6 +867,13 @@ donhangitem.addEventListener('click', () => {
           row.insertCell(2).innerHTML = currentChiTiet.gia;
           row.insertCell(3).innerHTML = currentChiTiet.soluong;
           row.insertCell(4).innerHTML = currentChiTiet.mahoadon;
+
+          var containerCthd = document.getElementById('container-cthd');
+          if (containerCthd) {
+            containerCthd.style.display = 'block';
+          } else {
+            console.error('Phần tử container-cthd không tồn tại trong HTML.');
+          }
         } else {
           console.error(
             'Không tìm thấy thông tin sản phẩm cho mã sản phẩm: ',
@@ -857,24 +881,23 @@ donhangitem.addEventListener('click', () => {
           );
         }
       }
-
-      // Thêm bảng vào container
+      // Add the table to the container
       chiTietContainer.appendChild(table);
     } else {
       console.error('Phần tử chiTietHoaDon không tồn tại trong HTML.');
     }
-  }
 
-  function layThongTinSanPhamTuProducts(maSanPham) {
-    // Thực hiện logic để lấy thông tin sản phẩm từ bảng products
-    // Trả về đối tượng chứa thông tin sản phẩm hoặc null nếu không tìm thấy
+    function layThongTinSanPhamTuProducts(maSanPham) {
+      // Thực hiện logic để lấy thông tin sản phẩm từ bảng products
+      // Trả về đối tượng chứa thông tin sản phẩm hoặc null nếu không tìm thấy
 
-    // Ví dụ: Lấy dữ liệu từ Local Storage
-    var products = JSON.parse(localStorage.getItem('products')) || [];
+      // Ví dụ: Lấy dữ liệu từ Local Storage
+      var products = JSON.parse(localStorage.getItem('products')) || [];
 
-    // Tìm sản phẩm trong danh sách products
-    var sanPham = products.find((item) => item.id == maSanPham);
-    return sanPham;
+      // Tìm sản phẩm trong danh sách products
+      var sanPham = products.find((item) => item.id == maSanPham);
+      return sanPham;
+    }
   }
 });
 
