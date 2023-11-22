@@ -862,7 +862,7 @@ donhangitem.addEventListener('click', () => {
           // Display information in the cells of the row
           row.insertCell(
             0
-          ).innerHTML = `<img src="${thongTinSanPham.img}" alt="Hình ảnh" width="50">`;
+          ).innerHTML = `<img src=".${thongTinSanPham.img}" alt="Hình ảnh" width="50">`;
           row.insertCell(1).innerHTML = thongTinSanPham.name;
           row.insertCell(2).innerHTML = currentChiTiet.gia;
           row.insertCell(3).innerHTML = currentChiTiet.soluong;
@@ -1101,7 +1101,7 @@ function createTableRow(item, index) {
     <td>${item.name}</td>
     <td>${item.price}</td>
     <td>${item.quantity}</td>
-    <td><img src="${
+    <td><img src=".${
       item.img
     }" style="max-width: 50px; max-height: 50px; background-color:transparent;"></td>
     <td>${item.categoryName}</td>
