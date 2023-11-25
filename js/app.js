@@ -39,7 +39,7 @@ nextButton.addEventListener('click', nextSlide);
 // Initial setup
 updateSlider();
 
-const sanpham = JSON.parse(localStorage.getItem('sanpham')) || [
+const sanpham = JSON.parse(localStorage.getItem('products')) || [
   {
     id: 1,
     name: 'Chôm Chôm',
@@ -290,8 +290,37 @@ if (currentuser) {
   } else {
   }
 }
+// add detail
 function addEventCart(id, quantity) {
   addtocart(id, quantity);
+}
+function changeQuantity(action, event) {
+  let parentNode = event.target.parentNode;
+  console.log(parentNode);
+  let input = parentNode.querySelector('.form-control');
+  if (action == 2) {
+    if (parseInt(input.max) == parseInt(input.value)) {
+      return;
+    } else {
+      input.value = parseInt(input.value) + 1;
+    }
+  } else {
+    console.log(1);
+    if (parseInt(input.value) > 1) {
+      input.value = parseInt(input.value) - 1;
+    } else {
+      return;
+    }
+  }
+}
+function add(event) {
+  let i = event.target.parentNode
+    .querySelector('.input-group')
+    .querySelector('.form-control');
+  let id = parseInt(i.getAttribute('data-id'));
+
+  addEventCart(id, parseInt(i.value));
+  i.value = 1;
 }
 
 // count quantiy

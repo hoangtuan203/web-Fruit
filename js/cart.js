@@ -8,7 +8,7 @@ const currentuser = JSON.parse(localStorage.getItem('currentuser')) || '';
 const hoadon = JSON.parse(localStorage.getItem('hoadon')) || [];
 const cart = JSON.parse(localStorage.getItem('currentcart')) || [];
 const chitiethoadon = JSON.parse(localStorage.getItem('chitiethoadon')) || [];
-const sanpham = JSON.parse(localStorage.getItem('sanpham')) || [
+const sanpham = JSON.parse(localStorage.getItem('products')) || [
   {
     id: 1,
     name: 'Chôm Chôm',
@@ -349,5 +349,6 @@ order.addEventListener('click', () => {
     window.location.href = '../index.html';
   } else {
     alert('Đăng nhập trước khi mua');
+    window.location.href = '../block/login.html';
   }
 });

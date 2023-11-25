@@ -36,7 +36,7 @@ const theloai = JSON.parse(localStorage.getItem('theloai')) || [
   { id: 3, categoryName: 'box-fruit' },
 ];
 
-const sanpham = JSON.parse(localStorage.getItem('sanpham')) || [
+const sanpham = JSON.parse(localStorage.getItem('products')) || [
   {
     id: 1,
     name: 'Chôm Chôm',
@@ -440,7 +440,7 @@ thongkeitem.addEventListener('click', () => {
       </div>
     </div>
     <div class="form-select">
-      <label for="cars">Chọn nhóm:</label>
+      <label for="cars">Chọn thể loại:</label>
       <select name="nhom" id="nhom"></select>
     </div>
     <button class="form-button" type="submit">Thống kê ngay</button>
