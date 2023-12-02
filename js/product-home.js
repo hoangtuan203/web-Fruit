@@ -128,7 +128,9 @@ const renderProductsByName = function (filteredProducts) {
             </div>
             `;
         container.appendChild(productElement);
+      
     });
+    
 };
 let page_size = 6;
 let currentPage = 1;
