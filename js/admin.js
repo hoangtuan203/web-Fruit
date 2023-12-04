@@ -594,21 +594,21 @@ donhangitem.addEventListener("click", () => {
         <span id="title-cthd">Chi tiết hóa đơn</span>
         <svg id="mySvg" width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="#000000" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/></svg>
         <div id="cthd-main"><div id="chiTietHoaDon"></div></div>
-        
+        <div id="check-status">
+          Trạng thái hóa đơn:
+          <button id="btn-check-status"></button>
+        </div>
       </div>
     </div>
 `;
   content.appendChild(div);
-  // Lấy dữ liệu từ Local Storage
   var storedData = localStorage.getItem("hoadon");
   var dataList = JSON.parse(storedData) || [];
 
-  // Định danh các khối HTML
   var allBlock = document.querySelector(".block:nth-child(1)");
   var processingBlock = document.querySelector(".block:nth-child(2)");
   var processedBlock = document.querySelector(".block:nth-child(3)");
 
-  // Lọc dữ liệu theo trạng thái
   var allData = dataList.length;
   var processingData = dataList.filter(
     (item) => item.trangthaihoadon === "Chờ xử lý"
@@ -617,18 +617,15 @@ donhangitem.addEventListener("click", () => {
     (item) => item.trangthaihoadon === "Đã xử lý"
   ).length;
 
-  // Gán dữ liệu vào các phần tử HTML
   allBlock.querySelector(".quantity").innerText = allData;
   processingBlock.querySelector(".quantity").innerText = processingData;
   processedBlock.querySelector(".quantity").innerText = processedData;
 
-  // Đếm số lượng hóa đơn và số lượng hóa đơn đã xử lý
   var totalOrders = dataList.length;
   var processedOrders = dataList.filter(
     (item) => item.trangthaihoadon === "Đã xử lý"
   ).length;
 
-  // Gán số liệu vào các nút lọc
   var allFilter = document.querySelector(
     ".all-filters .filter:nth-child(1) .btn-filter"
   );
@@ -643,17 +640,15 @@ donhangitem.addEventListener("click", () => {
   processingFilter.innerHTML = `Chờ xử lý (${totalOrders - processedOrders})`;
   processedFilter.innerHTML = `Đã xử lý (${processedOrders})`;
 
-  // Lấy danh sách từ Local Storage
   var storedData = localStorage.getItem("hoadon");
   var dataList = JSON.parse(storedData) || [];
   var itemsPerPage = 5;
   var currentPage = 1;
-  // Lấy tham chiếu đến các nút "Next" và "Previous"
+
   var prevButton = document.getElementById("prevButton");
   var nextButton = document.getElementById("nextButton");
   var totalPages;
 
-  // Thêm sự kiện click cho nút "Next"
   nextButton.addEventListener("click", function () {
     if (currentPage < totalPages) {
       currentPage++;
@@ -661,7 +656,6 @@ donhangitem.addEventListener("click", () => {
     }
   });
 
-  // Thêm sự kiện click cho nút "Previous"
   prevButton.addEventListener("click", function () {
     if (currentPage > 1) {
       currentPage--;
@@ -669,35 +663,45 @@ donhangitem.addEventListener("click", () => {
     }
   });
 
+  function clickDonHangItem() {
+    if (donhangitem) {
+      donhangitem.click();
+      console.log('df');
+    } else {
+      console.error("Không tìm thấy phần tử với ID: donhangitem");
+    }
+  }
+
   function removeItem(mahoadon) {
-// Tạo hộp thoại xác nhận
     var dialog = confirm("Bạn có chắc chắn muốn xóa mục này không?");
 
-    // Nếu người dùng xác nhận, tiến hành xóa
     if (dialog) {
-      // Xóa hóa đơn khỏi danh sách dữ liệu
       var updatedDataList = dataList.filter(
         (item) => item.mahoadon !== mahoadon
       );
 
-      // Lưu danh sách hóa đơn đã cập nhật vào Local Storage
       localStorage.setItem("hoadon", JSON.stringify(updatedDataList));
-
-      // Xóa chi tiết hóa đơn tương ứng từ danh sách chi tiết hóa đơn
       var chiTietHoaDon =
         JSON.parse(localStorage.getItem("chitiethoadon")) || [];
       var updatedChiTietHoaDon = chiTietHoaDon.filter(
         (item) => item.mahoadon !== mahoadon
       );
-
-      // Lưu danh sách chi tiết hóa đơn đã cập nhật vào Local Storage
       localStorage.setItem(
         "chitiethoadon",
         JSON.stringify(updatedChiTietHoaDon)
       );
 
-      // Cập nhật dữ liệu bảng ngay lập tức
+      var table = document.getElementById("myTableBody");
+      var rows = table.getElementsByTagName("tr");
+      for (var i = 0; i < rows.length; i++) {
+        var currentRow = rows[i];
+        if (currentRow.cells[2].textContent === mahoadon) {
+          currentRow.parentNode.removeChild(currentRow);
+          break;
+        }
+      }
       displayData(currentPage);
+      clickDonHangItem();
     }
   }
 
@@ -706,10 +710,8 @@ donhangitem.addEventListener("click", () => {
     var end = start + itemsPerPage;
     var pageData = dataList.slice(start, end);
 
-    // Clear existing table body content
     document.getElementById("myTableBody").innerHTML = "";
 
-    // Display data in the table
     pageData.forEach(function (item) {
       var row = document.createElement("tr");
       row.innerHTML = `
@@ -725,7 +727,6 @@ donhangitem.addEventListener("click", () => {
   `;
       document.getElementById("myTableBody").appendChild(row);
 
-      // Add event listener to the "Xóa" button
       var removeButton = row.querySelector(".remove-item");
       removeButton.addEventListener("click", function () {
         removeItem(item.mahoadon);
@@ -734,23 +735,18 @@ donhangitem.addEventListener("click", () => {
 
     currentPage = page;
 
-    // Cập nhật màu sắc của các nút trang
     updatePaginationButtons();
   }
 
 
-
-  // Hàm cập nhật màu sắc của các nút trang
   function updatePaginationButtons() {
     var paginationButtons = document.querySelectorAll("#pagination li");
 
     paginationButtons.forEach(function (button, index) {
-      // Nếu nút đang được bấm là trang hiện tại, thay đổi màu sắc
       if (index + 1 === currentPage) {
-        button.style.backgroundColor = "#ff8000"; // Hoặc bất kỳ màu sắc nào bạn muốn
-        button.style.color = "white"; // Đổi màu chữ nếu cần thiết
+        button.style.backgroundColor = "#ff8000";
+        button.style.color = "white";
       } else {
-        // Nếu không, đặt lại màu sắc gốc
         button.style.backgroundColor = "";
         button.style.color = "";
       }
@@ -776,120 +772,198 @@ donhangitem.addEventListener("click", () => {
     }
   }
 
-  // Initial display
   displayData(currentPage);
   setupPagination();
 
   const svgElement = document.getElementById("mySvg");
-
-  // Lấy tham chiếu đến phần tử #container-cthd
   const containerCthd = document.getElementById("container-cthd");
-
-  // Thêm sự kiện click cho SVG
   svgElement.addEventListener("click", function () {
-    // Thay đổi style của #container-cthd thành 'none'
     containerCthd.style.display = "none";
   });
 
-document
-  .getElementById("myTableBody")
-  .addEventListener("click", function (event) {
-    var target = event.target;
+  var statusCells = document.querySelectorAll("#myTableBody .status-table");
 
-    // Kiểm tra xem phần tử được bấm có phải là hàng (tr) hay không
-    if (
-      target.tagName.toLowerCase() === "td" &&
-      target.parentNode.tagName.toLowerCase() === "tr"
-    ) {
-      // Lấy mã hóa đơn từ hàng
-      var mahoadon =
-        target.parentNode.querySelector("td:nth-child(3)").innerText;
-
-      // Lấy dữ liệu chi tiết đơn hàng từ Local Storage
-      var chiTietHoaDon =
-        JSON.parse(localStorage.getItem("chitiethoadon")) || [];
-
-      // Tìm chi tiết đơn hàng tương ứng với mã hóa đơn
-      var chiTietDonHang = chiTietHoaDon.filter(
-        (item) => item.mahoadon == mahoadon
-      );
-
-      // Hiển thị chi tiết đơn hàng trong modal hoặc div tương ứng
-      displayOrderDetails(chiTietDonHang);
+  statusCells.forEach(function (statusCell) {
+    var status = statusCell.innerText.trim();
+    if (status == "Đã xử lý") {
+      statusCell.style.color = "#05a0c7";
+      statusCell.style.border = "1px solid #05a0c7";
+    } else if (status == "Chờ xử lý") {
+      statusCell.style.color = "#c72f05";
+      statusCell.style.border = "1px solid #c72f05";
     }
   });
 
-
-function displayOrderDetails(chiTiet) {
-  // Get the container for displaying order details
-  var chiTietContainer = document.getElementById("chiTietHoaDon");
-
-  // Clear existing content in the container
-  chiTietContainer.innerHTML = "";
-
-  if (chiTietContainer) {
-    // Create a table
-    var table = document.createElement("table");
-    table.border = "1";
-
-    // Create header row
-    var headerRow = table.insertRow(0);
-    var headers = ["Hình ảnh", "Tên sản phẩm", "Giá", "Số lượng", "Mã hóa đơn"];
-
-    // Insert header cells
-    for (var h = 0; h < headers.length; h++) {
-      var headerCell = headerRow.insertCell(h);
-      headerCell.innerHTML = "<b>" + headers[h] + "</b>";
-    }
-
-    // Loop through each order detail and add to the table
-    for (var i = 0; i < chiTiet.length; i++) {
-      var currentChiTiet = chiTiet[i];
-      var row = table.insertRow(i + 1);
-
-      // Get product information from the 'products' table
-      var maSanPham = currentChiTiet.masanpham;
-      var thongTinSanPham = layThongTinSanPhamTuProducts(maSanPham);
-
-      // Check if product information is found
-      if (thongTinSanPham) {
-        // Display information in the cells of the row
-        row.insertCell(
-          0
-        ).innerHTML = `<img src="${thongTinSanPham.img}" alt="Hình ảnh" width="50">`;
-        row.insertCell(1).innerHTML = thongTinSanPham.name;
-        row.insertCell(2).innerHTML = currentChiTiet.gia;
-        row.insertCell(3).innerHTML = currentChiTiet.soluong;
-        row.insertCell(4).innerHTML = currentChiTiet.mahoadon;
-
-        var containerCthd = document.getElementById("container-cthd");
-        if (containerCthd) {
-          containerCthd.style.display = "block";
-        } else {
-          console.error("Phần tử container-cthd không tồn tại trong HTML.");
-        }
-      } else {
-        console.error(
-          "Không tìm thấy thông tin sản phẩm cho mã sản phẩm: ",
-          maSanPham
+  function clickHandler(event) {
+    // Kiểm tra xem sự kiện click đã được xử lý trước đó chưa
+    if (event.handled !== true) {
+      var target = event.target;
+      if (
+        target.tagName.toLowerCase() === "td" &&
+        target.parentNode.tagName.toLowerCase() === "tr"
+      ) {
+        var mahoadon =
+          target.parentNode.querySelector("td:nth-child(3)").innerText;
+        var chiTietHoaDon =
+          JSON.parse(localStorage.getItem("chitiethoadon")) || [];
+        var chiTietDonHang = chiTietHoaDon.filter(
+          (item) => item.mahoadon == mahoadon
         );
+
+        // Đánh dấu sự kiện đã được xử lý
+        event.handled = true;
+
+        // Gọi hàm xử lý chi tiết đơn hàng
+        displayOrderDetails(chiTietDonHang, mahoadon);
       }
     }
-    // Add the table to the container
-    chiTietContainer.appendChild(table);
-  } else {
-    console.error("Phần tử chiTietHoaDon không tồn tại trong HTML.");
   }
-}
+
+  document.getElementById("myTableBody").addEventListener("click", clickHandler);
+
+
+  function displayOrderDetails(chiTiet, mahoadon) {
+    var chiTietContainer = document.getElementById("chiTietHoaDon");
+    chiTietContainer.innerHTML = "";
+    var btnCheckStatus = document.getElementById("btn-check-status"); // Đảm bảo rằng btnCheckStatus đã được định nghĩa
+
+    if (chiTietContainer && btnCheckStatus) {
+      // Các phần tử đã được định nghĩa
+      var table = document.createElement("table");
+      table.border = "1";
+
+      var headerRow = table.insertRow(0);
+      var headers = [
+        "Hình ảnh",
+        "Tên sản phẩm",
+        "Giá",
+        "Số lượng",
+        "Mã hóa đơn",
+      ];
+
+      for (var h = 0; h < headers.length; h++) {
+        var headerCell = headerRow.insertCell(h);
+        headerCell.innerHTML = "<b>" + headers[h] + "</b>";
+      }
+
+      for (var i = 0; i < chiTiet.length; i++) {
+        var currentChiTiet = chiTiet[i];
+        var row = table.insertRow(i + 1);
+
+        var maSanPham = currentChiTiet.masanpham;
+        var thongTinSanPham = layThongTinSanPhamTuProducts(maSanPham);
+
+        if (thongTinSanPham) {
+          row.insertCell(
+            0
+          ).innerHTML = `<img src="${thongTinSanPham.img}" alt="Hình ảnh" width="50">`;
+          row.insertCell(1).innerHTML = thongTinSanPham.name;
+          row.insertCell(2).innerHTML = currentChiTiet.gia;
+          row.insertCell(3).innerHTML = currentChiTiet.soluong;
+          row.insertCell(4).innerHTML = currentChiTiet.mahoadon;
+
+          var containerCthd = document.getElementById("container-cthd");
+
+          if (containerCthd) {
+            containerCthd.style.display = "block";
+          } else {
+            console.error("Phần tử container-cthd không tồn tại trong HTML.");
+          }
+        } else {
+          console.error(
+            "Không tìm thấy thông tin sản phẩm cho mã sản phẩm: ",
+            maSanPham
+          );
+        }
+      }
+
+      chiTietContainer.appendChild(table);
+
+      var status = getTrangThaiHoaDon(mahoadon);
+      btnCheckStatus.innerText = status;
+      updateStatusColor(status, mahoadon);
+
+      // Remove sự kiện click cũ trước khi thêm sự kiện mới
+      btnCheckStatus.removeEventListener("click", handleStatusChangeClick);
+
+      // Thêm sự kiện click mới
+      btnCheckStatus.addEventListener("click", handleStatusChangeClick);
+
+      function handleStatusChangeClick() {
+        var confirmed = confirm("Bạn có chắc chắn muốn đổi trạng thái không?");
+        if (confirmed) {
+          toggleTrangThaiHoaDon(mahoadon);
+          btnCheckStatus.innerText = getTrangThaiHoaDon(mahoadon);
+          status = getTrangThaiHoaDon(mahoadon);
+          updateStatusColor(status, mahoadon);
+          clickDonHangItem();
+        }
+      }
+    } else {
+      console.error(
+        "Phần tử chiTietHoaDon hoặc btnCheckStatus không tồn tại trong HTML."
+      );
+    }
+  }
+
+  function toggleTrangThaiHoaDon(mahoadon) {
+    var danhSachHoaDon = JSON.parse(localStorage.getItem("hoadon")) || [];
+    var hoadon = danhSachHoaDon.find((item) => item.mahoadon == mahoadon);
+
+    if (hoadon) {
+      var trangThai = hoadon.trangthaihoadon || "Chờ xử lý";
+      trangThai = trangThai === "Chờ xử lý" ? "Đã xử lý" : "Chờ xử lý";
+      hoadon.trangthaihoadon = trangThai;
+      localStorage.setItem("hoadon", JSON.stringify(danhSachHoaDon));
+      localStorage.setItem("trangthaihoadon", trangThai);
+    } else {
+      console.error("Không tìm thấy hóa đơn với mã: ", mahoadon);
+    }
+  }
+
+  function getTrangThaiHoaDon(mahoadon) {
+    var danhSachHoaDon = JSON.parse(localStorage.getItem("hoadon")) || [];
+    var hoadon = danhSachHoaDon.find((item) => item.mahoadon == mahoadon);
+    return hoadon ? hoadon.trangthaihoadon || "Chờ xử lý" : "Chờ xử lý";
+  }
+
+  function updateStatusColor(trangThai, mahoadon) {
+    var btnCheckStatus = document.getElementById("btn-check-status");
+    var table = document.getElementById("myTableBody");
+    var rows = table.getElementsByTagName("tr");
+
+    if (trangThai === "Đã xử lý") {
+      btnCheckStatus.style.color = "#05a0c7";
+      btnCheckStatus.style.border = "1px solid #05a0c7";
+    } else if (trangThai === "Chờ xử lý") {
+      btnCheckStatus.style.color = "#c72f05";
+      btnCheckStatus.style.border = "1px solid #c72f05";
+    } else {
+      btnCheckStatus.style.color = "";
+      btnCheckStatus.style.border = "";
+    }
+
+    for (var i = 0; i < rows.length; i++) {
+      var row = rows[i];
+      var currentMahoadon = row.querySelector("td:nth-child(3)").innerText;
+      if (currentMahoadon == mahoadon) {
+        var statusCell = row.querySelector(".status-table");
+        var currentStatus = getTrangThaiHoaDon(mahoadon);
+        statusCell.innerHTML = currentStatus;
+        if (currentStatus == "Đã xử lý") {
+          statusCell.style.color = "#05a0c7";
+          statusCell.style.border = "1px solid #05a0c7";
+        } else if (currentStatus == "Chờ xử lý") {
+          statusCell.style.color = "#c72f05";
+          statusCell.style.border = "1px solid #c72f05";
+        }
+        break;
+      }
+    }
+  }
 
   function layThongTinSanPhamTuProducts(maSanPham) {
-    // Thực hiện logic để lấy thông tin sản phẩm từ bảng products
-    // Trả về đối tượng chứa thông tin sản phẩm hoặc null nếu không tìm thấy
-
-    // Ví dụ: Lấy dữ liệu từ Local Storage
     var products = JSON.parse(localStorage.getItem("products")) || [];
-
-    // Tìm sản phẩm trong danh sách products
     var sanPham = products.find((item) => item.id == maSanPham);
     return sanPham;
   }

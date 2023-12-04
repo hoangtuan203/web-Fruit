@@ -282,6 +282,7 @@ tbody tr:hover {
     padding: 10px 15px;
     border-radius: 10px;
     font-size: 18px;
+    color: black;
 }
 #pagination {
     display: flex;
@@ -324,7 +325,7 @@ tbody tr:hover {
     top: 16%;
     left: 20%;
     background-color: rgb(255, 255, 255);
-    padding: 40px;
+    padding: 40px 40px 100px 40px;
     border-radius: 20px;
     width: 1000px;
     height: 500px;
@@ -346,4 +347,16 @@ tbody tr:hover {
     font-size: 20px;
     text-transform: uppercase;
 
+}
+#check-status {
+    padding-top: 20px;
+    font-size: 18px;
+}
+#check-status #btn-check-status {
+    padding: 5px 10px;
+    color: #c72f05;
+    border: 1px solid #c72f05;
+    border-radius: 20px;
+    font-size: 17px;
+    cursor: pointer;
 }
