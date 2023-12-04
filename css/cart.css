@@ -46,9 +46,9 @@ th {
 /* tr {
   color: #f2f2f2;
 } */
-/* tr:hover {
+tr:hover {
   background-color: #d8d7d7f4;
-} */
+}
 
 thead {
   border-bottom: 2px solid #dddddd;

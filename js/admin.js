@@ -1,286 +1,289 @@
-const storedProductsJSON = localStorage.getItem("products");
+const storedProductsJSON = localStorage.getItem('products');
 const storedProducts = JSON.parse(storedProductsJSON);
-const thongkeitem = document.getElementById("thongke");
-const content = document.getElementsByClassName("content")[0];
-const donhangitem = document.getElementById("donhang");
-const showProduct = document.getElementById("productId");
+const thongkeitem = document.getElementById('thongke');
+const content = document.getElementsByClassName('content')[0];
+const donhangitem = document.getElementById('donhang');
+const showProduct = document.getElementById('productId');
 const productsPerPage = 10;
 //hien thi menu left
 
-const menu_left = document.getElementById("menuLeft");
+const menu_left = document.getElementById('menuLeft');
 function PhongSide() {
-  menu_left.style.width = "250px";
-  var menuItems = document.querySelectorAll(".list-menu-item");
+  menu_left.style.width = '250px';
+  var menuItems = document.querySelectorAll('.list-menu-item');
   menuItems.forEach(function (item) {
-    item.classList.remove("hide-text");
+    item.classList.remove('hide-text');
   });
 }
 // Ẩn menu left
 function ThuSide() {
-  menu_left.style.width = "80px";
-  var menuItems = document.querySelectorAll(".list-menu-item");
+  menu_left.style.width = '80px';
+  var menuItems = document.querySelectorAll('.list-menu-item');
   menuItems.forEach(function (item) {
-    item.classList.add("hide-text");
+    item.classList.add('hide-text');
   });
 }
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
   ThuSide();
 });
 
 //thong ke
-const chitiethoadon = JSON.parse(localStorage.getItem("chitiethoadon")) || [];
-const hoadon = JSON.parse(localStorage.getItem("hoadon")) || [];
-const nhomsanpham = JSON.parse(localStorage.getItem("nhom")) || [
-  {
-    manhom: 1,
-    tennhom: "Nhóm 1",
-  },
-  {
-    manhom: 2,
-    tennhom: "Nhóm 2",
-  },
+const chitiethoadon = JSON.parse(localStorage.getItem('chitiethoadon')) || [];
+const hoadon = JSON.parse(localStorage.getItem('hoadon')) || [];
+const theloai = JSON.parse(localStorage.getItem('theloai')) || [
+  { id: 1, categoryName: 'fresh-fruit' },
+  { id: 2, categoryName: 'imported-fruit' },
+  { id: 3, categoryName: 'box-fruit' },
 ];
-const sanpham = JSON.parse(localStorage.getItem("sanpham")) || [
+
+const sanpham = JSON.parse(localStorage.getItem('products')) || [
   {
-    manhom: 1,
     id: 1,
-    name: "Chôm Chôm",
+    name: 'Chôm Chôm',
     price: 5000,
     quantity: 10,
-    img: "./image/product-fresh/chom-chom.jpg",
+    img: './image/product-fresh/chom-chom.jpg',
+    categoryName: 'fresh-fruit',
   },
   {
-    manhom: 1,
     id: 2,
-    name: "Dưa Hấu",
+    name: 'Dưa Hấu',
     price: 8000,
     quantity: 15,
-    img: "./image/product-fresh/dua-hau.jpg",
+    img: './image/product-fresh/dua-hau.jpg',
+    categoryName: 'fresh-fruit',
   },
   {
-    manhom: 1,
     id: 3,
-    name: "Dưa Lưới",
+    name: 'Dưa Lưới',
     price: 7000,
     quantity: 12,
-    img: "./image/product-fresh/dua-luoi.jpg",
+    img: './image/product-fresh/dua-luoi.jpg',
+    categoryName: 'fresh-fruit',
   },
   {
-    manhom: 1,
     id: 4,
-    name: "Hồng Giòn",
+    name: 'Hồng Giòn',
     price: 6000,
     quantity: 20,
-    img: "./image/product-fresh/hong-gion.jpg",
+    img: './image/product-fresh/hong-gion.jpg',
+    categoryName: 'fresh-fruit',
   },
   {
-    manhom: 1,
     id: 5,
-    name: "Hồng Trung",
+    name: 'Hồng Trung',
     price: 7500,
     quantity: 8,
-    img: "./image/product-fresh/Hong-Trung.jpg",
+    img: './image/product-fresh/Hong-Trung.jpg',
+    categoryName: 'fresh-fruit',
   },
   {
-    manhom: 1,
     id: 6,
-    name: "Măng Cụt",
+    name: 'Măng Cụt',
     price: 10000,
     quantity: 18,
-    img: "./image/product-fresh/mang-cut.jpg",
+    img: './image/product-fresh/mang-cut.jpg',
+    categoryName: 'fresh-fruit',
   },
   {
-    manhom: 1,
     id: 7,
-    name: "Nhãn Xuồng",
+    name: 'Nhãn Xuồng',
     price: 9000,
     quantity: 14,
-    img: "./image/product-fresh/Nhan-Xuong.jpg",
+    img: './image/product-fresh/Nhan-Xuong.jpg',
+    categoryName: 'fresh-fruit',
   },
   {
-    manhom: 1,
     id: 8,
-    name: "Sầu Riêng",
+    name: 'Sầu Riêng',
     price: 11000,
     quantity: 22,
-    img: "./image/product-fresh/Sau-Rieng.jpg",
+    img: './image/product-fresh/Sau-Rieng.jpg',
+    categoryName: 'fresh-fruit',
   },
   {
-    manhom: 1,
     id: 9,
-    name: "Vú Sữa",
+    name: 'Vú Sữa',
     price: 12000,
     quantity: 7,
-    img: "./image/product-fresh/Sau-Rieng.jpg",
+    img: './image/product-fresh/vu-sua.jpg',
+    categoryName: 'fresh-fruit',
   },
   {
-    manhom: 1,
     id: 10,
-    name: "Cam Xoàn",
+    name: 'Cam Xoàn',
     price: 12000,
     quantity: 7,
-    img: "./image/product-fresh/Cam-Xoan.jpg",
+    img: './image/product-fresh/Cam-Xoan.jpg',
+    categoryName: 'fresh-fruit',
   },
   {
-    manhom: 1,
     id: 11,
-    name: "Cam Ai Cập",
+    name: 'Cam Ai Cập',
     price: 6500,
     quantity: 25,
-    img: "./image/product-import/cam-ai-cap.jpg",
+    img: '../image/product-import/cam-ai-cap.jpg',
+    categoryName: 'imported-fruit',
   },
   {
-    manhom: 1,
     id: 12,
-    name: "Cam Úc",
+    name: 'Cam Úc',
     price: 8500,
     quantity: 12,
-    img: "./image/product-import/cam-uc.jpg",
+    img: './image/product-import/cam-uc.jpg',
+    categoryName: 'imported-fruit',
   },
   {
-    manhom: 1,
     id: 13,
-    name: "Cherry Đỏ Mỹ",
+    name: 'Cherry Đỏ Mỹ',
     price: 3000,
     quantity: 30,
-    img: "./image/product-import/cherry-do-my.jpg",
+    img: './image/product-import/cherry-do-my.jpg',
+    categoryName: 'imported-fruit',
   },
   {
-    manhom: 1,
     id: 14,
-    name: "Dâu Tây",
+    name: 'Dâu Tây',
     price: 9000,
     quantity: 17,
-    img: "./image/product-import/dau-tay.jpg",
+    img: './image/product-import/dau-tay.jpg',
+    categoryName: 'imported-fruit',
   },
   {
-    manhom: 1,
     id: 15,
-    name: "Lê Nam Phi",
+    name: 'Lê Nam Phi',
     price: 4000,
     quantity: 40,
-    img: "./image/product-import/le-nam-phi.jpg",
+    img: './image/product-import/le-nam-phi.jpg',
+    categoryName: 'imported-fruit',
   },
   {
-    manhom: 2,
     id: 16,
-    name: "Lựu Thái",
+    name: 'Lựu Thái',
     price: 6000,
     quantity: 14,
-    img: "./image/product-import/luu-thai.jpg",
+    img: './image/product-import/luu-thai.jpg',
+    categoryName: 'imported-fruit',
   },
   {
-    manhom: 2,
     id: 17,
-    name: "Nho Đỏ Úc",
+    name: 'Nho Đỏ Úc',
     price: 11000,
     quantity: 8,
-    img: "./image/product-import/nho-do-khong-hat-uc.jpg",
+    img: './image/product-import/nho-do-khong-hat-uc.jpg',
+    categoryName: 'imported-fruit',
   },
   {
-    manhom: 2,
     id: 18,
-    name: "Nho Mẫu Đơn",
+    name: 'Nho Mẫu Đơn',
     price: 7500,
     quantity: 13,
-    img: "./image/product-import/nho-mau-don-dai-loan.jpg",
+    img: './image/product-import/nho-mau-don-dai-loan.jpg',
+    categoryName: 'imported-fruit',
   },
   {
-    manhom: 2,
     id: 19,
-    name: "Táo Neazealand",
+    name: 'Táo Neazealand',
     price: 13000,
     quantity: 9,
-    img: "./image/product-import/tao-do-neazealand.jpg",
+    img: './image/product-import/tao-do-neazealand.jpg',
+    categoryName: 'imported-fruit',
   },
   {
-    manhom: 2,
     id: 20,
-    name: "Viết Quất",
+    name: 'Viết Quất',
     price: 9500,
     quantity: 16,
-    img: "./image/product-import/viet-quat.jpg",
+    img: './image/product-import/viet-quat.jpg',
+    categoryName: 'imported-fruit',
   },
   {
-    manhom: 2,
     id: 21,
-    name: "Giỏ Trái Cây Thăm Tặng",
+    name: 'Giỏ Trái Cây Thăm Tặng',
     price: 12000,
     quantity: 14,
-    img: "./image/product-cart/CT01-CTT-500k.jpg",
+    img: './image/product-cart/CT01-CTT-500k.jpg',
+    categoryName: 'box-fruit',
   },
   {
-    manhom: 2,
     id: 22,
-    name: "Giỏ Trái Cây Gia Đình",
+    name: 'Giỏ Trái Cây Gia Đình',
     price: 9000,
     quantity: 20,
-    img: "./image/product-cart/gio-trai-cay-579.jpg",
+    img: './image/product-cart/gio-trai-cay-579.jpg',
+    categoryName: 'box-fruit',
   },
   {
-    manhom: 2,
     id: 23,
-    name: "Giỏ Quà Trái Cây",
+    name: 'Giỏ Quà Trái Cây',
     price: 8500,
     quantity: 11,
-    img: "./image/product-cart/gio-trai-cay-citi-fruit.jpg",
+    img: './image/product-cart/gio-trai-cay-citi-fruit.jpg',
+    categoryName: 'box-fruit',
   },
   {
-    manhom: 2,
     id: 24,
-    name: "Hộp Trái Cây-Nho",
+    name: 'Hộp Trái Cây-Nho',
     price: 15000,
     quantity: 20,
-    img: "./image/product-cart/hop-trai-cay-qua-tang-nho-xanh.jpg",
+    img: './image/product-cart/hop-trai-cay-qua-tang-nho-xanh.jpg',
+    categoryName: 'box-fruit',
   },
   {
-    manhom: 2,
     id: 25,
-    name: "Hộp Trái Cây Quà Tặng",
+    name: 'Hộp Trái Cây Quà Tặng',
     price: 12000,
     quantity: 15,
-    img: "./image/product-cart/hop-trai-cay-qua-tang.jpg",
+    img: './image/product-cart/hop-trai-cay-qua-tang.jpg',
+    categoryName: 'box-fruit',
   },
   {
-    manhom: 2,
     id: 26,
-    name: "Hộp Nho Không Hạt",
+    name: 'Hộp Nho Không Hạt',
     price: 18000,
     quantity: 12,
-    img: "./image/product-cart/hop-trai-cay-qua-tang-nho-xanh-khong-hat.jpg",
+    img: './image/product-cart/hop-trai-cay-qua-tang-nho-xanh-khong-hat.jpg',
+    categoryName: 'box-fruit',
   },
-
   {
-    manhom: 2,
     id: 27,
-    name: "Hộp Trái Cây",
+    name: 'Hộp Trái Cây',
     price: 16000,
     quantity: 18,
-    img: "./image/product-cart/hop-trai-cay-qua-tang-hc03.jpg",
+    img: './image/product-cart/hop-trai-cay-qua-tang-hc03.jpg',
+    categoryName: 'box-fruit',
   },
   {
-    manhom: 2,
     id: 28,
-    name: "Giỏ Quà Thăm Tặng",
+    name: 'Giỏ Quà Thăm Tặng',
     price: 13000,
     quantity: 25,
-    img: "./image/product-cart/qua-tang.jpg",
+    img: './image/product-cart/qua-tang.jpg',
+    categoryName: 'box-fruit',
   },
   {
-    manhom: 2,
     id: 29,
-    name: "Giỏ Quà Đơn Giản",
+    name: 'Giỏ Quà Đơn Giản',
     price: 14000,
     quantity: 14,
-    img: "./image/product-cart/thiet-ke.png",
+    img: './image/product-cart/thiet-ke.png',
+    categoryName: 'box-fruit',
   },
   {
-    manhom: 2,
     id: 30,
-    name: "Giỏ Quà Sinh Nhật",
+    name: 'Giỏ Quà Sinh Nhật',
     price: 14000,
     quantity: 14,
-    img: "./image/product-cart/sinh-nhat.jpg",
+    img: './image/product-cart/sinh-nhat.jpg',
+    categoryName: 'box-fruit',
+  },
+  {
+    id: 31,
+    name: 'Chôm',
+    price: 5000,
+    quantity: 10,
+    img: './image/product-fresh/chom-chom.jpg',
+    categoryName: 'fresh-fruit',
   },
 ];
 
@@ -313,14 +316,14 @@ let thongke = (ngaybatdau, ngayketthuc, nhom) => {
     });
 
   let sanphamnhom;
-  if (nhom == "all") {
+  if (nhom == 'all') {
     sanphamnhom = sanpham.map((y) => {
       return y.id;
     });
   } else {
     sanphamnhom = sanpham
       .filter((x) => {
-        return x.manhom == nhom;
+        return x.categoryName == nhom;
       })
       .map((y) => {
         return y.id;
@@ -340,22 +343,22 @@ let thongke = (ngaybatdau, ngayketthuc, nhom) => {
 let loaddata = (map) => {
   const itemsPerPage = 5; // Số sản phẩm trên mỗi trang
   let currentPage = 1; // Trang hiện tại
-  let nhom = document.getElementById("nhom");
+  let nhom = document.getElementById('nhom');
   // const table = document.getElementsByClassName('table');
   let nhomhientai = nhom.value;
   let sanphamnhom;
-  if (nhomhientai == "all") {
+  if (nhomhientai == 'all') {
     sanphamnhom = sanpham;
   } else {
     sanphamnhom = sanpham.filter((x) => {
-      return x.manhom == nhomhientai;
+      return x.categoryName == nhomhientai;
     });
   }
 
   function displayProducts(page) {
-    const tableBody = document.getElementById("tableBody");
-    const pagination = document.getElementById("pagination");
-    tableBody.innerHTML = "";
+    const tableBody = document.getElementById('tableBody');
+    const pagination = document.getElementById('pagination');
+    tableBody.innerHTML = '';
 
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
@@ -367,14 +370,14 @@ let loaddata = (map) => {
       if (giatien) {
         row.innerHTML = `
             <td>${product.id}</td>
-            <td>${product.manhom}</td>
+            <td>${product.categoryName}</td>
             <td>${product.name}</td>
             <td>${giatien.toLocaleString()}</td>
         `;
       } else {
         row.innerHTML = `
         <td>${product.id}</td>
-        <td>${product.manhom}</td>
+        <td>${product.categoryName}</td>
         <td>${product.name}</td>
         <td>${0}</td>
     `;
@@ -382,14 +385,14 @@ let loaddata = (map) => {
     });
 
     const totalPages = Math.ceil(sanphamnhom.length / itemsPerPage);
-    pagination.innerHTML = "";
+    pagination.innerHTML = '';
 
     for (let i = 1; i <= totalPages; i++) {
-      const btn = document.createElement("button");
+      const btn = document.createElement('button');
       btn.innerText = i;
-      if (currentPage == i) btn.style.backgroundColor = "#039201";
+      if (currentPage == i) btn.style.backgroundColor = '#039201';
 
-      btn.addEventListener("click", function () {
+      btn.addEventListener('click', function () {
         currentPage = i;
         displayProducts(currentPage);
       });
@@ -403,24 +406,24 @@ let loaddata = (map) => {
 };
 
 let tainhom = () => {
-  let nhom = document.getElementById("nhom");
+  let nhom = document.getElementById('nhom');
 
-  let option = document.createElement("option");
-  option.value = "all";
-  option.innerHTML = `Tất cả nhóm`;
+  let option = document.createElement('option');
+  option.value = 'all';
+  option.innerHTML = `Tất cả thể loại`;
   nhom.appendChild(option);
-  nhomsanpham.map((x) => {
-    let option = document.createElement("option");
-    option.value = x.manhom;
-    option.innerHTML = `${x.tennhom}`;
+  theloai.map((x) => {
+    let option = document.createElement('option');
+    option.value = x.categoryName;
+    option.innerHTML = `${x.categoryName}`;
     nhom.appendChild(option);
   });
 };
 
-thongkeitem.addEventListener("click", () => {
-  content.innerHTML = "";
-  let div = document.createElement("div");
-  div.className = "container-thongke";
+thongkeitem.addEventListener('click', () => {
+  content.innerHTML = '';
+  let div = document.createElement('div');
+  div.className = 'container-thongke';
   div.innerHTML = `<div class="left-content">
   <form action="" class="form-thongke"  method="POST">
     <div class="text-form">
@@ -437,7 +440,7 @@ thongkeitem.addEventListener("click", () => {
       </div>
     </div>
     <div class="form-select">
-      <label for="cars">Chọn nhóm:</label>
+      <label for="cars">Chọn thể loại:</label>
       <select name="nhom" id="nhom"></select>
     </div>
     <button class="form-button" type="submit">Thống kê ngay</button>
@@ -449,7 +452,7 @@ thongkeitem.addEventListener("click", () => {
 <thead>
   <tr>
     <th>Mã Sản Phẩm</th>
-    <th>Nhóm</th>
+    <th>Thể loại</th>
     <th>Tên Sản Phẩm</th>
     <th>Lợi nhuận</th>
   </tr>
@@ -458,18 +461,18 @@ thongkeitem.addEventListener("click", () => {
   <!-- Dữ liệu sản phẩm sẽ được thêm vào đây -->
 </tbody>
 </table>
-<div id="pagination"></div>
+<div id="pagination" style="margin-top:15px"></div>
 </div>
 `;
   content.appendChild(div);
   tainhom();
 
-  const form = document.getElementsByClassName("form-thongke")[0];
-  form.addEventListener("submit", function (e) {
+  const form = document.getElementsByClassName('form-thongke')[0];
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
     let nhomhientai = nhom.value;
-    let ngaybatdau = document.getElementById("ngaybatdau").value;
-    let ngayketthuc = document.getElementById("ngayketthuc").value;
+    let ngaybatdau = document.getElementById('ngaybatdau').value;
+    let ngayketthuc = document.getElementById('ngayketthuc').value;
 
     let map = thongke(ngaybatdau, ngayketthuc, nhomhientai);
     loaddata(map);
@@ -970,12 +973,11 @@ donhangitem.addEventListener("click", () => {
 });
 
 
-
 //san pham
-showProduct.addEventListener("click", () => {
-  content.innerHTML = "";
-  let div = document.createElement("div");
-  div.className = "container-thongke";
+showProduct.addEventListener('click', () => {
+  content.innerHTML = '';
+  let div = document.createElement('div');
+  div.className = 'container-thongke';
   div.innerHTML = `<div class="product">
     <div class="header-product">
       <h1 class="title">QUẢN LÝ SẢN PHẨM</h1>
@@ -1097,20 +1099,20 @@ function getTotalPages() {
   return Math.ceil(storedProducts.length / productsPerPage);
 }
 function createPagination(totalPages, currentPage) {
-  const paginationContainer = document.querySelector(".pagination");
-  paginationContainer.innerHTML = ""; // Clear existing pagination
+  const paginationContainer = document.querySelector('.pagination');
+  paginationContainer.innerHTML = ''; // Clear existing pagination
 
-  const ul = document.createElement("ul");
-  ul.classList.add("listPage");
+  const ul = document.createElement('ul');
+  ul.classList.add('listPage');
 
   for (let i = 1; i <= totalPages; i++) {
-    const li = document.createElement("li");
-    li.classList.add("listPage-item");
+    const li = document.createElement('li');
+    li.classList.add('listPage-item');
     if (i === currentPage) {
-      li.classList.add("active");
+      li.classList.add('active');
     }
     li.textContent = i;
-    li.addEventListener("click", function () {
+    li.addEventListener('click', function () {
       loadProductList(i);
     });
     ul.appendChild(li);
@@ -1121,15 +1123,15 @@ function createPagination(totalPages, currentPage) {
 
 // Load product
 function loadProductList(currentPage) {
-  const bodyProduct = document.getElementById("tableProduct");
+  const bodyProduct = document.getElementById('tableProduct');
   console.log(bodyProduct);
 
-  const table = document.createElement("table");
-  table.id = "tbl-product";
-  const thead = document.createElement("thead");
-  const tbody = document.createElement("tbody");
-  const headerRow = document.createElement("tr");
-  
+  const table = document.createElement('table');
+  table.id = 'tbl-product';
+  const thead = document.createElement('thead');
+  const tbody = document.createElement('tbody');
+  const headerRow = document.createElement('tr');
+
   headerRow.innerHTML = `
       <th>STT</th>
       <th>ID</th>
@@ -1155,7 +1157,7 @@ function loadProductList(currentPage) {
   });
 
   table.appendChild(tbody);
-  bodyProduct.innerHTML = "";
+  bodyProduct.innerHTML = '';
   bodyProduct.appendChild(table);
 
   const totalPages = getTotalPages();
@@ -1164,14 +1166,14 @@ function loadProductList(currentPage) {
 }
 
 function createTableRow(item, index) {
-  const row = document.createElement("tr");
+  const row = document.createElement('tr');
   row.innerHTML = `
     <td>${index + 1}</td>
     <td>${item.id}</td>
     <td>${item.name}</td>
     <td>${item.price}</td>
     <td>${item.quantity}</td>
-    <td><img src="${
+    <td><img src=".${
       item.img
     }" style="max-width: 50px; max-height: 50px; background-color:transparent;"></td>
     <td>${item.categoryName}</td>
@@ -1188,8 +1190,8 @@ function createTableRow(item, index) {
     </td>
   `;
 
-  row.addEventListener("click", function () {
-    const checkbox = row.querySelector(".product-checkbox");
+  row.addEventListener('click', function () {
+    const checkbox = row.querySelector('.product-checkbox');
     checkbox.checked = !checkbox.checked;
   });
 
@@ -1197,25 +1199,30 @@ function createTableRow(item, index) {
 }
 // Call the function to load the product list
 function closeAddProductModal() {
-  const modal = document.getElementById("addProductModal");
-  modal.style.display = "none";
+  const modal = document.getElementById('addProductModal');
+  modal.style.display = 'none';
 }
 function addProduct() {
-  const modal = document.getElementById("addProductModal");
-  modal.style.display = "block";
+  const modal = document.getElementById('addProductModal');
+  modal.style.display = 'block';
 }
 
 //them san pham
 function addProductNew() {
-  const productName = document.getElementById("productName").value.trim();
-  const productPrice = parseFloat(document.getElementById("productPrice").value);
-  const productQuantityInput = document.getElementById("productQuantity").value;
-  const productQuantity = productQuantityInput.trim() !== '' ? parseInt(productQuantityInput) : 0;
+  const productName = document.getElementById('productName').value.trim();
+  const productPrice = parseFloat(
+    document.getElementById('productPrice').value
+  );
+  const productQuantityInput = document.getElementById('productQuantity').value;
+  const productQuantity =
+    productQuantityInput.trim() !== '' ? parseInt(productQuantityInput) : 0;
 
-  const productImageInput = document.getElementById("productImage");
-  const productImage = productImageInput.files[0] ? productImageInput.files[0].name : "";
+  const productImageInput = document.getElementById('productImage');
+  const productImage = productImageInput.files[0]
+    ? productImageInput.files[0].name
+    : '';
 
-  const categoryName = document.getElementById("categoryName").value.trim();
+  const categoryName = document.getElementById('categoryName').value.trim();
 
   // // Input validation
   // if (!productName || isNaN(productPrice) || isNaN(productQuantity) || !categoryName) {
@@ -1237,27 +1244,26 @@ function addProductNew() {
     price: productPrice,
     quantity: productQuantity,
     img: imagePath + productImage,
-    categoryName: categoryName
+    categoryName: categoryName,
   };
 
   storedProducts.push(newProduct);
-  localStorage.setItem("products", JSON.stringify(storedProducts));
-  alert("Thêm sản phẩm thành công!");
+  localStorage.setItem('products', JSON.stringify(storedProducts));
+  alert('Thêm sản phẩm thành công!');
   loadProductList();
   closeAddProductModal();
 }
-
 
 //delete product
 function deleteProduct(productId) {
   const index = storedProducts.findIndex((product) => product.id === productId);
   if (index !== -1) {
-    const confirmation = window.confirm("Bạn muốn xóa sản phẩm này?");
+    const confirmation = window.confirm('Bạn muốn xóa sản phẩm này?');
 
     if (confirmation) {
       const deletedProduct = storedProducts.splice(index, 1)[0]; // Remove and get the deleted product
-      localStorage.setItem("products", JSON.stringify(storedProducts));
-      const table = document.getElementById("tbl-product");
+      localStorage.setItem('products', JSON.stringify(storedProducts));
+      const table = document.getElementById('tbl-product');
       if (table) {
         table.parentNode.removeChild(table);
       }
@@ -1267,25 +1273,25 @@ function deleteProduct(productId) {
 }
 //xoa nhieu san pham
 function deleteSelectedProducts() {
-  const checkboxes = document.querySelectorAll(".product-checkbox:checked");
+  const checkboxes = document.querySelectorAll('.product-checkbox:checked');
   const selectedProductIds = Array.from(checkboxes).map((checkbox) =>
     parseInt(checkbox.dataset.id, 10)
   );
 
   if (selectedProductIds.length === 0) {
-    alert("Vui lòng chọn ít nhất một sản phẩm để xóa.");
+    alert('Vui lòng chọn ít nhất một sản phẩm để xóa.');
     return;
   }
 
   const confirmation = window.confirm(
-    "Bạn có chắc chắn muốn xóa các sản phẩm đã chọn?"
+    'Bạn có chắc chắn muốn xóa các sản phẩm đã chọn?'
   );
 
   if (confirmation) {
     const updatedProducts = storedProducts.filter(
       (product) => !selectedProductIds.includes(product.id)
     );
-    localStorage.setItem("products", JSON.stringify(updatedProducts));
+    localStorage.setItem('products', JSON.stringify(updatedProducts));
     loadProductList();
   }
 }
@@ -1293,26 +1299,26 @@ function deleteSelectedProducts() {
 //load quantity product
 function quantityProduct() {
   const numberOfProducts = getNumberOfProducts();
-  document.getElementById("quantityValue").innerText = numberOfProducts;
+  document.getElementById('quantityValue').innerText = numberOfProducts;
 }
 function getNumberOfProducts() {
   return storedProducts.length;
 }
 function showUploadImage() {
-  const form = document.getElementById("addImage");
-  form.style.display = "block";
+  const form = document.getElementById('addImage');
+  form.style.display = 'block';
 }
 function closeAddImage() {
-  const form = document.getElementById("addImage");
-  form.style.display = "none";
+  const form = document.getElementById('addImage');
+  form.style.display = 'none';
 }
 //upload image
 function uploadImage() {
-  const input = document.getElementById("imageInput");
+  const input = document.getElementById('imageInput');
   input.click();
 
-  input.addEventListener("change", () => {
-    const imagePath = document.getElementById("imagePath");
+  input.addEventListener('change', () => {
+    const imagePath = document.getElementById('imagePath');
     const selectedFile = input.files[0];
 
     if (selectedFile) {
@@ -1320,8 +1326,7 @@ function uploadImage() {
       const relativePath = `../image/product-fresh/${selectedFile.name}`;
       imagePath.textContent = `Đường dẫn: ${relativePath}`;
     } else {
-      imagePath.textContent = "";
+      imagePath.textContent = '';
     }
   });
 }
-
