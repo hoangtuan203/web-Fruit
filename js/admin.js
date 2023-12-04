@@ -480,7 +480,6 @@ thongkeitem.addEventListener('click', () => {
 });
 
 // xu ly don hang
-// xu ly don hang
 
 donhangitem.addEventListener("click", () => {
   content.innerHTML = "";
@@ -529,10 +528,10 @@ donhangitem.addEventListener("click", () => {
                 <div class="orders-time-period">
                     <select name="orders-time-period" id="select-orders">
                         <option value="" selected disabled>Khoảng thời gian</option>
-                        <option value="1">Gần đây</option>
-                        <option value="3">3 ngày</option>
-<option value="7">7 ngày</option>
-                        <option value="30">30 ngày</option>
+                        <option value="3">Gần đây</option>
+                        <option value="6">3 - 6 ngày</option>
+                        <option value="9">6 - 9 ngày</option>
+                        <option value="12">9 - 12 ngày</option>
                     </select>
                 </div>
                 <div class="all-filters">
@@ -561,7 +560,7 @@ donhangitem.addEventListener("click", () => {
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="selectAll"></th>
-                            <th>Mã Khách Hàng</th>
+                            <th>Tên Khách Hàng</th>
                             <th>Mã Hóa Đơn </th>
                             <th>Ngày Mua</th>
                             <th>Trạng Thái</th>
@@ -719,7 +718,7 @@ donhangitem.addEventListener("click", () => {
       var row = document.createElement("tr");
       row.innerHTML = `
     <td><input type="checkbox"></td>
-    <td>${item.makhach}</td>
+    <td>${item.username}</td>
     <td>${item.mahoadon}</td>
     <td>${item.ngaymua}</td>
     <td><span class="status-table">${item.trangthaihoadon}</span></td>
@@ -970,6 +969,81 @@ donhangitem.addEventListener("click", () => {
     var sanPham = products.find((item) => item.id == maSanPham);
     return sanPham;
   }
+
+  var searchInput = document.querySelector(".search-input");
+  var tableBody = document.getElementById("myTableBody");
+
+  // Lắng nghe sự kiện khi người dùng nhập liệu
+  searchInput.addEventListener("input", function () {
+    // Lọc dữ liệu trong bảng dựa trên nội dung của ô input
+    filterTableRows();
+  });
+
+  // Hàm lọc dữ liệu trong bảng
+  function filterTableRows() {
+    var searchTerm = searchInput.value.toLowerCase();
+
+    // Lấy ra tất cả các dòng trong tbody
+    var rows = tableBody.getElementsByTagName("tr");
+
+    // Duyệt qua từng dòng và ẩn/hiện dựa trên điều kiện tìm kiếm
+    for (var i = 0; i < rows.length; i++) {
+      var customerName = rows[i]
+        .getElementsByTagName("td")[1]
+        .innerText.toLowerCase();
+
+      if (customerName.includes(searchTerm)) {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
+    }
+  }
+
+
+  var selectOrders = document.getElementById("select-orders");
+  var tableBody = document.getElementById("myTableBody");
+
+  // Lắng nghe sự kiện khi người dùng chọn khoảng thời gian
+  selectOrders.addEventListener("change", function () {
+    // Lọc dữ liệu trong bảng dựa trên khoảng thời gian được chọn
+    filterTableByTimePeriod();
+  });
+
+  // Hàm lọc dữ liệu trong bảng theo khoảng thời gian
+  function filterTableByTimePeriod() {
+    var selectedTimePeriod = parseInt(selectOrders.value);
+    var currentDate = new Date();
+
+    // Lấy ra tất cả các dòng trong tbody
+    var rows = tableBody.getElementsByTagName("tr");
+
+    // Duyệt qua từng dòng và ẩn/hiện dựa trên điều kiện khoảng thời gian
+    for (var i = 0; i < rows.length; i++) {
+      var purchaseDateStr = rows[i].getElementsByTagName("td")[3].innerText;
+      var purchaseDate = new Date(purchaseDateStr);
+
+      // Tính số ngày giữa ngày mua và ngày hiện tại
+      var daysDifference = Math.floor(
+        (currentDate - purchaseDate) / (1000 * 60 * 60 * 24)
+      );
+      console.log(selectedTimePeriod);
+      console.log(daysDifference);
+
+
+      // Ẩn/hiện dòng dựa trên khoảng thời gian
+      if (
+        selectedTimePeriod === 0 ||
+        (daysDifference >= selectedTimePeriod - 3 &&
+          daysDifference <= selectedTimePeriod)
+      ) {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
+    }
+  }
+
 });
 
 
