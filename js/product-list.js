@@ -162,6 +162,7 @@ const products = [
   {
     id: 21,
     name: "Giỏ Trái Cây Thăm Tặng",
+    name: 'Giỏ Trái Cây ',
     price: 12000,
     quantity: 14,
     img: "../image/product-cart/CT01-CTT-500k.jpg",
@@ -170,6 +171,7 @@ const products = [
   {
     id: 22,
     name: "Giỏ Trái Cây Gia Đình",
+    name: 'Giỏ Trái Cây',
     price: 9000,
     quantity: 20,
     img: "../image/product-cart/gio-trai-cay-579.jpg",
@@ -194,6 +196,7 @@ const products = [
   {
     id: 25,
     name: "Hộp Trái Cây Quà Tặng",
+    name: 'Hộp Quà Tặng',
     price: 12000,
     quantity: 15,
     img: "../image/product-cart/hop-trai-cay-qua-tang.jpg",
@@ -202,6 +205,7 @@ const products = [
   {
     id: 26,
     name: "Hộp Nho Không Hạt",
+    name: 'Nho Không Hạt',
     price: 18000,
     quantity: 12,
     img: "../image/product-cart/hop-trai-cay-qua-tang-nho-xanh-khong-hat.jpg",
@@ -234,6 +238,7 @@ const products = [
   {
     id: 30,
     name: "Giỏ Quà Sinh Nhật",
+    name: 'Quà Sinh Nhật',
     price: 14000,
     quantity: 14,
     img: "../image/product-cart/sinh-nhat.jpg",
