@@ -337,6 +337,9 @@ let countquantity = () => {
   }
 };
 
+//
+
+
 countquantity();
 // add to cart
 

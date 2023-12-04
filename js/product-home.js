@@ -4,31 +4,31 @@ const categoryContainer = document.querySelector('.category-container');
 const checkboxs = categoryContainer.querySelectorAll('.menu-product');
 const checkboxPrice = categoryContainer.querySelectorAll('.menu-price');
 const handleEvent = function () {
-  const productEvent = document.querySelector('#product');
-  const categoryContainer = document.querySelector('.category-container');
-  const navbarItems = document.querySelectorAll('.navbar-item');
-  const self = this;
-  navbarItems.forEach((item) => {
-    item.addEventListener('click', function (event) {
-      event.preventDefault();
-      navbarItems.forEach((navItem) => {
-        navItem.classList.remove('active');
-      });
-      item.classList.add('active');
-      categoryContainer.style.display = 'block';
-      renderCategoryMenu();
-      const category_title_name = document.querySelector(
-        '.category-title-name'
-      );
-      category_title_name.textContent = 'Danh Mục Sản Phẩm';
+    const productEvent = document.querySelector('#product');
+    const categoryContainer = document.querySelector('.category-container');
+    const navbarItems = document.querySelectorAll('.navbar-item');
+    const self = this;
+    navbarItems.forEach((item) => {
+        item.addEventListener('click', function (event) {
+            event.preventDefault();
+            navbarItems.forEach((navItem) => {
+                navItem.classList.remove('active');
+            });
+            item.classList.add('active');
+            categoryContainer.style.display = 'block';
+            renderCategoryMenu();
+            const category_title_name = document.querySelector(
+                '.category-title-name'
+            );
+            category_title_name.textContent = 'Danh Mục Sản Phẩm';
+        });
     });
-  });
 };
 const renderCategoryMenu = function () {
-  const category_crumb_container = document.querySelector(
-    '.category-crumb-container'
-  );
-  category_crumb_container.innerHTML = `
+    const category_crumb_container = document.querySelector(
+        '.category-crumb-container'
+    );
+    category_crumb_container.innerHTML = `
     <div class="row-container-category">
     <div class="category-crumb-right">
         <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,24 +54,24 @@ const renderCategoryMenu = function () {
 };
 //  phân trang home
 const renderProducts = function (page) {
-  let start = (page - 1) * page_size;
-  let end = start + page_size;
-  const container = document.querySelector('.box-container');
-  const categoryContainer = document.querySelector('.category-container');
-  categoryContainer.style.display =
-    categoryContainer.style.display !== 'block'
-      ? 'none'
-      : categoryContainer.style.display;
-  const paginatedProducts = productHomes.slice(start, end);
-  container.innerHTML = '';
-  paginatedProducts.forEach((item) => {
-    const productElement = document.createElement('div');
-    const formattedPrice = item.price.toLocaleString('vi-VN', {
-      style: 'currency',
-      currency: 'VND',
-    });
-    productElement.classList.add('product');
-    productElement.innerHTML = `
+    let start = (page - 1) * page_size;
+    let end = start + page_size;
+    const container = document.querySelector('.box-container');
+    const categoryContainer = document.querySelector('.category-container');
+    categoryContainer.style.display =
+        categoryContainer.style.display !== 'block'
+            ? 'none'
+            : categoryContainer.style.display;
+    const paginatedProducts = productHomes.slice(start, end);
+    container.innerHTML = '';
+    paginatedProducts.forEach((item) => {
+        const productElement = document.createElement('div');
+        const formattedPrice = item.price.toLocaleString('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        });
+        productElement.classList.add('product');
+        productElement.innerHTML = `
         <div class="image-product">
                 <a  class="eye-button eye" href="" data-product-id="${item.id}" >
                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,27 +96,27 @@ const renderProducts = function (page) {
             </div>
         </div>
         `;
-    container.appendChild(productElement);
-  });
-  const boxContainer = document.querySelector('.box-container');
-  const boxes = boxContainer.children;
-  if (boxes.length >= 1 && boxes.length <= 4) {
-    boxContainer.style.gridTemplateColumns =
-      'repeat(auto-fill, minmax(20%, 1fr))';
-  }
+        container.appendChild(productElement);
+    });
+    const boxContainer = document.querySelector('.box-container');
+    const boxes = boxContainer.children;
+    if (boxes.length >= 1 && boxes.length <= 4) {
+        boxContainer.style.gridTemplateColumns =
+            'repeat(auto-fill, minmax(20%, 1fr))';
+    }
 };
 // tìm kiếm sản phẩm theo thên
 const renderProductsByName = function (filteredProducts) {
-  const container = document.querySelector('.box-container');
-  container.innerHTML = '';
-  filteredProducts.forEach((item) => {
-    const productElement = document.createElement('div');
-    const formattedPrice = item.price.toLocaleString('vi-VN', {
-      style: 'currency',
-      currency: 'VND',
-    });
-    productElement.classList.add('product');
-    productElement.innerHTML = `
+    const container = document.querySelector('.box-container');
+    container.innerHTML = '';
+    filteredProducts.forEach((item) => {
+        const productElement = document.createElement('div');
+        const formattedPrice = item.price.toLocaleString('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        });
+        productElement.classList.add('product');
+        productElement.innerHTML = `
             <div class="image-product">
                 <img src="${item.img}" alt="">
                 <a class="eye-button eye" data-product-id=${item.id} href="">
@@ -141,68 +141,68 @@ const renderProductsByName = function (filteredProducts) {
                 </div>
             </div>
             `;
-    container.appendChild(productElement);
-  });
+        container.appendChild(productElement);
+    });
 };
-let page_size = 6;
+let page_size = 10;
 let currentPage = 1;
 let totalPage = Math.ceil(productHomes.length / page_size);
 const pagination = function () {
-  const next = document.querySelector('#next-pag');
-  const prev = document.querySelector('#prev-pag');
-  const pagination_item__link = document.querySelectorAll(
-    '.pagination-item__link'
-  );
-  next.addEventListener('click', function (event) {
-    event.preventDefault();
-    currentPage++;
-    if (currentPage > totalPage) {
-      currentPage = 1;
-    }
-    renderProducts(currentPage);
-    updatePaginationActive();
-    modal();
-  });
-  prev.addEventListener('click', function (event) {
-    event.preventDefault();
-    currentPage--;
-    if (currentPage == 0) {
-      currentPage = totalPage;
-    }
-    renderProducts(currentPage);
-    updatePaginationActive();
-    modal();
-  });
-  const updatePaginationActive = function () {
-    pagination_item__link.forEach((item, index) => {
-      if (index === currentPage) {
-        item.classList.add('pagination-active');
-      } else {
-        item.classList.remove('pagination-active');
-      }
+    const next = document.querySelector('#next-pag');
+    const prev = document.querySelector('#prev-pag');
+    const pagination_item__link = document.querySelectorAll(
+        '.pagination-item__link'
+    );
+    next.addEventListener('click', function (event) {
+        event.preventDefault();
+        currentPage++;
+        if (currentPage > totalPage) {
+            currentPage = 1;
+        }
+        renderProducts(currentPage);
+        updatePaginationActive();
+        modal();
     });
-  };
-  renderProducts(currentPage);
-  updatePaginationActive();
+    prev.addEventListener('click', function (event) {
+        event.preventDefault();
+        currentPage--;
+        if (currentPage == 0) {
+            currentPage = totalPage;
+        }
+        renderProducts(currentPage);
+        updatePaginationActive();
+        modal();
+    });
+    const updatePaginationActive = function () {
+        pagination_item__link.forEach((item, index) => {
+            if (index === currentPage) {
+                item.classList.add('pagination-active');
+            } else {
+                item.classList.remove('pagination-active');
+            }
+        });
+    };
+    renderProducts(currentPage);
+    updatePaginationActive();
 };
 const modal = function () {
-  const eyeButtons = document.querySelectorAll('.eye-button');
-  const modalContainer = document.getElementById('modal');
-  eyeButtons.forEach((button) => {
-    button.addEventListener('click', function (event) {
-      event.preventDefault();
-      modalContainer.style.display = 'block';
-      // Assume you have a data attribute for the product ID
-      const productId = this.getAttribute('data-product-id');
-      const product = productHomes.find(
-        (item) => item.id === parseInt(productId)
-      );
-      const formattedPrice = product.price.toLocaleString('vi-VN', {
-        style: 'currency',
-        currency: 'VND',
-      });
-      // Create modal content
-      modalContainer.innerHTML = `
+    const eyeButtons = document.querySelectorAll('.eye-button');
+    const modalContainer = document.getElementById('modal');
+    eyeButtons.forEach((button) => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            modalContainer.style.display = 'block';
+            // Assume you have a data attribute for the product ID
+            const productId = this.getAttribute('data-product-id');
+            const product = productHomes.find(
+                (item) => item.id === parseInt(productId)
+            );
+            const formattedPrice = product.price.toLocaleString('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+            });
+            // Create modal content
+            modalContainer.innerHTML = `
                 <div class="modal-content">
                     <div class="image-container">
                         <div class="image-product">
@@ -235,136 +235,135 @@ const modal = function () {
                     </svg>
                 </div>
             `;
-      const close_details = document.querySelector('#close-detail');
-      close_details.addEventListener('click', function () {
-        modalContainer.style.display = 'none';
-      });
-      window.addEventListener('click', function (event) {
-        if (event.target === modalContainer) {
-          modalContainer.style.display = 'none';
-        }
-      });
+            const close_details = document.querySelector('#close-detail');
+            close_details.addEventListener('click', function () {
+                modalContainer.style.display = 'none';
+            });
+            window.addEventListener('click', function (event) {
+                if (event.target === modalContainer) {
+                    modalContainer.style.display = 'none';
+                }
+            });
+        });
     });
-  });
 };
 // search
 const search = function () {
-  const categoryContainer = document.querySelector('.category-container');
-  categoryContainer.style.display =
-    categoryContainer.style.display !== 'block'
-      ? 'none'
-      : categoryContainer.style.display;
-  const categoryRadioButtons = document.querySelectorAll(
-    '.menu-product:checked'
-  );
-  const priceRadioButtons = document.querySelectorAll('.menu-price:checked');
-  const nameInput = document
-    .querySelector('#search-box')
-    .value.trim()
-    .toLowerCase();
-  const selectedCategories = Array.from(categoryRadioButtons).map(
-    (radio) => radio.value
-  );
-  const selectedPrices = Array.from(priceRadioButtons).map((radio) =>
-    parseInt(radio.value)
-  );
-  let minPrice, maxPrice;
-  switch (selectedPrices[0]) {
-    case 1:
-      minPrice = 0;
-      maxPrice = 10000;
-      break;
-    case 2:
-      minPrice = 10000;
-      maxPrice = 20000;
-      break;
-    case 3:
-      minPrice = 30000;
-      maxPrice = Infinity;
-      break;
-  }
-  const filteredProducts = productHomes.filter((product) => {
-    const matchesName = product.name.toLowerCase().includes(nameInput);
-    const matchesCategory =
-      selectedCategories.length === 0 ||
-      selectedCategories.includes(product.categoryName);
-    const matchesPrice =
-      selectedPrices.length === 0 ||
-      (product.price >= minPrice && product.price <= maxPrice);
-    console.log(matchesPrice);
-    // const category_title_name = document.querySelector('.category-title-name');
-    // if(matchesName){
-    //     category_title_name.textContent='Tìm thấy' + Math.ceil(matchesName.length) + 'sản phẩm';
-    // }
-    return matchesName && matchesCategory && matchesPrice;
-  });
-  renderProductsByName(filteredProducts);
-  const boxContainer = document.querySelector('.box-container');
-  const boxes = boxContainer.children;
-  if (boxes.length >= 1 && boxes.length <= 4) {
-    boxContainer.style.gridTemplateColumns =
-      'repeat(auto-fill, minmax(20%, 1fr))';
-  }
-  modal();
+    const categoryContainer = document.querySelector('.category-container');
+    categoryContainer.style.display = categoryContainer.style.display !== 'block' ? 'none'  : categoryContainer.style.display;
+    const categoryRadioButtons = document.querySelectorAll('.menu-product:checked');
+    const priceRadioButtons = document.querySelectorAll('.menu-price:checked');
+    const nameInput = document.querySelector('#search-box') .value.trim().toLowerCase();
+    const selectedCategories = Array.from(categoryRadioButtons).map(
+        (radio) => radio.value
+    );
+    const selectedPrices = Array.from(priceRadioButtons).map((radio) =>
+        parseInt(radio.value)
+    );
+    let minPrice, maxPrice;
+    switch (selectedPrices[0]) {
+        case 1:
+            minPrice = 0;
+            maxPrice = 10000;
+            break;
+        case 2:
+            minPrice = 10000;
+            maxPrice = 20000;
+            break;
+        case 3:
+            minPrice = 30000;
+            maxPrice = Infinity;
+            break;
+    }
+    const filteredProducts = productHomes.filter((product) => {
+        const matchesName = product.name.toLowerCase().includes(nameInput);
+        const matchesCategory =selectedCategories.length === 0 || selectedCategories.includes(product.categoryName);
+        const matchesPrice =  selectedPrices.length === 0 ||(product.price >= minPrice && product.price <= maxPrice);
+        console.log(matchesPrice);
+        const category_title_name = document.querySelector('.category-title-name');
+        if (matchesName) {
+            category_title_name.textContent = 'Tìm thấy sản phẩm';
+        }
+        return matchesName && matchesCategory && matchesPrice;
+    });
+    renderProductsByName(filteredProducts);
+    const boxContainer = document.querySelector('.box-container');
+    const boxes = boxContainer.children;
+    if (boxes.length >= 1 && boxes.length <= 4) {
+        boxContainer.style.gridTemplateColumns =
+            'repeat(auto-fill, minmax(20%, 1fr))';
+    }
+    modal();
 };
 checkboxs.forEach((checkbox) => {
-  checkbox.addEventListener('change', function () {
-    const category_title_name = document.querySelector('.category-title-name');
-    checkboxs.forEach((oldRadio) => {
-      if (oldRadio !== checkbox && oldRadio.checked) {
-        oldRadio.checked = false;
-      }
+    checkbox.addEventListener('change', function () {
+        const category_title_name = document.querySelector('.category-title-name');
+        checkboxs.forEach((oldRadio) => {
+            if (oldRadio !== checkbox && oldRadio.checked) {
+                oldRadio.checked = false;
+            }
+        });
+        if (this.checked) {
+            modal();
+            search();
+            if (this.value === 'box-fruit') {
+                category_title_name.textContent = 'Hộp Quà Trái Cây';
+            } else if (this.value === 'imported-fruit') {
+                category_title_name.textContent = 'Trái Cây Nhập Khẩu';
+            } else if (this.value === 'fresh-fruit') {
+                category_title_name.textContent = 'Trái Cây Tươi';
+            }
+        }
     });
-    if (this.checked) {
-      modal();
-      search();
-      if (this.value === 'box-fruit') {
-        category_title_name.textContent = 'Hộp Quà Trái Cây';
-      } else if (this.value === 'imported-fruit') {
-        category_title_name.textContent = 'Trái Cây Nhập Khẩu';
-      } else if (this.value === 'fresh-fruit') {
-        category_title_name.textContent = 'Trái Cây Tươi';
-      }
-    }
-  });
 });
 checkboxPrice.forEach((checkbox) => {
-  checkbox.addEventListener('change', function () {
-    checkboxPrice.forEach((oldRadio) => {
-      if (oldRadio !== checkbox && oldRadio.checked) {
-        oldRadio.checked = false;
-      }
+    checkbox.addEventListener('change', function () {
+        checkboxPrice.forEach((oldRadio) => {
+            if (oldRadio !== checkbox && oldRadio.checked) {
+                oldRadio.checked = false;
+            }
+        });
+        if (this.checked) {
+            search();
+        }
     });
-    if (this.checked) {
-      search();
-    }
-  });
 });
-const renderSearch = function () {};
+const renderSearch = function () { };
 const search_icon = document.querySelector('#search-icon');
 const searchForm = document.querySelector('#search-form');
 const close = document.querySelector('#close');
 const searchBox = document.querySelector('#search-box');
 search_icon.onclick = () => {
-  searchForm.classList.toggle('active');
-  searchBox.focus();
-  searchBox.value = '';
+    
+    searchForm.classList.toggle('active');
+    searchBox.focus();
+    searchBox.value = '';
+    categoryContainer.style.display = 'block';
+   
+    renderCategoryMenu();
+    const navbarItems = document.querySelector('.navbar-item');
+    navbarItems.classList.remove('active');
+    const navbaItems = document.querySelector('#product');
+    navbaItems.classList.add('active');
 };
 close.onclick = () => {
-  searchForm.classList.toggle('active');
+    searchForm.classList.toggle('active');
 };
 const search_button = document.querySelector('#search-button');
 search_button.addEventListener('click', () => {
-  const category_title_name = document.querySelector('.category-title-name');
-  const searchResult = search();
-  searchForm.classList.toggle('active');
+  
+    const category_title_name = document.querySelector('.category-title-name');
+    search();
+    searchForm.classList.toggle('active');
+    
 });
 
 // category-crumb
 const category_crumb_render = function () {
-  const category_crumb = document.querySelector('.category-crumb');
-  category_crumb.style.display = 'block';
+    const category_crumb = document.querySelector('.category-crumb');
+    category_crumb.style.display = 'block';
 };
+
 handleEvent();
 pagination();
 modal();
@@ -380,9 +379,9 @@ modal();
 // });
 // theo tên sản phẩm, có chọn phân loại và khoảng giá
 // 1/ tên ok
-// 2/ phân loại ok
-// 3/ khoảng giá  ok
-// 4/ tên và phân loại     ok   cam
-// 5/ tên và khoảng giá 	ok   chôm
-// 6/ phân loại và khoảng giá  ok
+// 2/ phân loại 
+// 3/ khoảng giá  
+// 4/ tên và phân loại        cam
+// 5/ tên và khoảng giá 	   chôm
+// 6/ phân loại và khoảng giá  
 // 7/ tên, phân loại và khoảng giá   nho
