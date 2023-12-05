@@ -1,4 +1,3 @@
-import { user } from '../js/array_demo.js';
 
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('.form_signup');
