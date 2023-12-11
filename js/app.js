@@ -339,11 +339,14 @@ let countquantity = () => {
 
 //
 
-
 countquantity();
 // add to cart
 
 let addtocart = (product_id, quantity) => {
+  if (currentuser.role == 'admin') {
+    alert('Admin không được mua hàng');
+    return;
+  }
   let product = sanpham.find((x) => x.id == product_id);
 
   if (currentcart.length > 0) {

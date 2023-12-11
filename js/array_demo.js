@@ -29,7 +29,5 @@ const user = [
   },
 ];
 // product
-
-
 const userJSON = JSON.stringify(user);
 localStorage.setItem('users', userJSON);
