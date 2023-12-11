@@ -1101,7 +1101,7 @@ showProduct.addEventListener("click", () => {
     <div id="addProductModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="closeAddProductModal()">&times;</span>
-        <h2>Thêm sản phẩm mới</h2>
+        <h2 class="title-form-add">Thêm sản phẩm mới</h2>
         <form id="addProductForm">
           <label for="productName">Tên Sản Phẩm:</label>
           <input
@@ -1151,12 +1151,12 @@ showProduct.addEventListener("click", () => {
     <div id="editProductModal" class="modal">
       <div class="modal-content">
       <span class="close" onclick="closeEditProduct()">&times;</span>
-      <h2>Sửa thông tin</h2>
+      <h2 class="title-form-edit">Sửa thông tin</h2>
         <form id="addProductForm">
           <label for="productName">Tên Sản Phẩm:</label>
           <input
             type="text"
-            id="productName"
+            id="productNameEdit"
             name="productName"
             placeholder="Tên Sản Phẩm"
           />
@@ -1164,7 +1164,7 @@ showProduct.addEventListener("click", () => {
           <label for="productPrice">Giá:</label>
           <input
             type="number"
-            id="productPrice"
+            id="productPriceEdit"
             name="productPrice"
             placeholder="Giá"
             required
@@ -1173,7 +1173,7 @@ showProduct.addEventListener("click", () => {
           <label for="productQuantity">Số Lượng:</label>
           <input
             type="number"
-            id="productQuantity"
+            id="productQuantityEdit"
             name="productQuantity"
             placeholder="Số Lượng"
             required
@@ -1182,7 +1182,7 @@ showProduct.addEventListener("click", () => {
           <label for="productImage">HÌnh Ảnh:</label>
           <input
             type="file"
-            id="productImage"
+            id="productImageEdit"
             name="productImage"
             accept="image/*"
             required
@@ -1190,17 +1190,18 @@ showProduct.addEventListener("click", () => {
           <label for="categoryName">Loại Sản Phẩm:</label>
           <input
             type="text"
-            id="categoryName"
+            id="categoryNameEdit"
             name="categoryName"
             placeholder="Loại Sản Phẩm"
             required
           />
           <button
-            class="btn-add-product-new btn-edit-product"
+            class="btn-edit-product"
+            id="id_edit_product"
             type="button"
-            onclick="editProductNew()"
+            onclick="updateProductClick()"
           >
-            Lưu
+            Cập nhật
           </button>
         </form>
       </div>
@@ -1473,59 +1474,99 @@ function closeEditProduct() {
 
 //sua san pham
 
+function updateProductClick(){
+  const productId = document.getElementById("click_edit_product")
+  editProductClick(productId)
+}
 
 function editProductClick(productId) {
   const modal = document.getElementById("editProductModal");
   modal.style.display = "block";
-  // Tìm sản phẩm cần sửa trong mảng storedProducts
+
   const editedProduct = storedProducts.find((product) => product.id === productId);
 
-  // Kiểm tra nếu sản phẩm được tìm thấy
   if (editedProduct) {
-    // Hiển thị dữ liệu lên form
     displayProductDataOnForm(editedProduct);
 
-    // Đổi nút "Lưu" thành nút "Cập nhật"
-    const saveButton = document.querySelector(".btn-add-product-new");
-    saveButton.innerText = "Cập nhật";
-
-    // Thêm sự kiện click cho nút "Cập nhật"
-    saveButton.removeEventListener("click", addProductNew);
-    saveButton.addEventListener("click", function () {
-      updateProduct(productId);
+    const updateButton = document.getElementById("id_edit_product");
+    updateButton.removeEventListener("click", function () {});
+    updateButton.addEventListener("click", function () {
+      const updatedProduct = collectProductDataFromForm(productId);
+      updateProduct(updatedProduct);
     });
   }
 }
-function updateProduct(productId) {
-  // Lấy giá trị từ formx
+
+
+function collectProductDataFromForm(id_product) {
+  // Collect the updated product data from the form
   const updatedProduct = {
-    id: productId,
-    name: document.getElementById("productName").value,
-    price: document.getElementById("productPrice").value,
-    quantity: document.getElementById("productQuantity").value,
-    img: document.getElementById("productImage").value,
-    categoryName: document.getElementById("categoryName").value,
+    id: id_product,
+    name: document.getElementById("productNameEdit").value,
+    price: document.getElementById("productPriceEdit").value,
+    quantity: document.getElementById("productQuantityEdit").value,
+    categoryName: document.getElementById("categoryNameEdit").value,
+    img: "", 
   };
 
+  const productImageInput = document.getElementById("productImageEdit");
+  if (productImageInput.files.length > 0) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      // Set the 'img' property to the data URL of the selected image
+      updatedProduct.img = e.target.result;
+      updateProduct(updatedProduct);
+    };
+
+    // Read the selected file as a data URL
+    reader.readAsDataURL(productImageInput.files[0]);
+  } else {
+    // No new image selected, update the product without changing the image
+    updateProduct(updatedProduct);
+  }
+
+  return updatedProduct;
+}
+
+
+function displayProductDataOnForm(product) {
+  document.getElementById("productNameEdit").value = product.name;
+  document.getElementById("productPriceEdit").value = product.price;
+  document.getElementById("productQuantityEdit").value = product.quantity;
+  document.getElementById("categoryNameEdit").value = product.categoryName;
+
+  // Display the product image preview
+  const productImageEdit = document.getElementById("productImageEdit");
+  productImageEdit.src = product.img;
+}
+
+function updateProduct(updatedProduct) {
   // Tìm sản phẩm cần sửa trong mảng storedProducts
-  const index = storedProducts.findIndex((product) => product.id === productId);
+  const index = storedProducts.findIndex((product) => product.id === updatedProduct.id);
+
   // Kiểm tra nếu sản phẩm được tìm thấy
   if (index !== -1) {
     // Cập nhật thông tin sản phẩm trong mảng storedProducts
-    storedProducts[index] = updatedProduct;
+    storedProducts[index] = {
+      id: updatedProduct.id,
+      name: document.getElementById("productNameEdit").value,
+      price: document.getElementById("productPriceEdit").value,
+      quantity: document.getElementById("productQuantityEdit").value,
+      categoryName: document.getElementById("categoryNameEdit").value,
+      img: updatedProduct.img, // Keep the original image URL
+    };
 
     // Cập nhật dữ liệu trong local storage
     localStorage.setItem("products", JSON.stringify(storedProducts));
+    alert("Cập nhật thành công")
+    closeModal();
+    loadProductList()
   }
 }
-
-function displayProductDataOnForm(product) {
-  // Gán giá trị từ sản phẩm vào các trường của form
-  document.getElementById("productName").value = product.name;
-  document.getElementById("productPrice").value = product.price;
-  document.getElementById("productQuantity").value = product.quantity;
-  document.getElementById("productImage").value = product.img;
-  document.getElementById("categoryName").value = product.categoryName;
+function closeModal() {
+  const modal = document.getElementById("editProductModal");
+  modal.style.display = "none";
 }
 
 //xoa nhieu san pham
@@ -1542,7 +1583,6 @@ function deleteSelectedProducts() {
     alert("Vui lòng chọn ít nhất một sản phẩm để xóa.");
     return;
   }
-
   const confirmation = window.confirm(
     "Bạn có chắc chắn muốn xóa các sản phẩm đã chọn?"
   );
@@ -1550,19 +1590,18 @@ function deleteSelectedProducts() {
   if (confirmation) {
     const updatedProducts = storedProducts.filter((product) => {
       const shouldKeep = !selectedProductIds.includes(product.id);
-      // console.log(
-      //   `Product ID ${product.id}: ${shouldKeep ? "Keep" : "Remove"}`
-      // );
       return shouldKeep;
     });
 
-    console.log(updatedProducts);
-
     localStorage.setItem("products", JSON.stringify(updatedProducts));
-    loadProductList();
-    alert("Xóa sản phẩm thành công!");
+    setTimeout(() => {
+      location.reload();
+      loadProductList();
+      alert("Xóa sản phẩm thành công!");
+    }, 100); 
   }
 }
+
 //load quantity product
 function quantityProduct(totalProducts) {
   const quantityValue = document.getElementById("quantityValue");
@@ -1714,21 +1753,6 @@ function loadUser(currentPage, filter) {
   currentPage = currentPage || 1;
   let filteredUser = storedUsers;
 
-  // Apply filter if provided
-  if (filter) {
-    const filterLowerCase = filter.toLowerCase();
-    filteredUser = storedProducts.filter(
-      (item) =>
-        item.name.toLowerCase().includes(filterLowerCase) ||
-        item.price.toString() === filterLowerCase
-    );
-  }
-  if (filteredUser.length === 0) {
-    // Display a message when no products are found
-    bodyProduct.innerHTML =
-      "<p style='text-align: center; padding: 20px;'>No products found.</p>";
-    return;
-  }
 
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;

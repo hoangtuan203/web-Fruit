@@ -469,13 +469,18 @@ tbody tr:last-child td {
   border: 1px solid #888;
   border-radius: 10px; /* Add rounded corners */
 }
-.modal-content h2 {
+.title-form-add {
   color: var(--main-color);
   margin-bottom: 10px;
   align-items: center;
   text-align: center;
 }
-
+.title-form-edit{
+  color: rgb(206, 206, 27);
+  margin-bottom: 10px;
+  align-items: center;
+  text-align: center;
+}
 .close {
   color: #aaa;
   float: right;
