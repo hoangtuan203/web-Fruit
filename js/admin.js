@@ -1542,6 +1542,28 @@ function displayProductDataOnForm(product) {
 }
 
 function updateProduct(updatedProduct) {
+  // Lấy giá trị từ các trường nhập liệu
+  const productName = document.getElementById("productNameEdit").value;
+  const productPrice = document.getElementById("productPriceEdit").value;
+  const productQuantity = document.getElementById("productQuantityEdit").value;
+  const categoryName = document.getElementById("categoryNameEdit").value;
+  const productImage = document.getElementById("productImageEdit").files[0]; // Lấy file ảnh
+
+  // Kiểm tra nếu có bất kỳ trường nào bỏ trống
+  if (!productName || !productPrice || !productQuantity || !categoryName) {
+    alert("Vui lòng điền đầy đủ thông tin sản phẩm.");
+    return;
+  }
+  if(!productImage){
+    alert("Vui lòng chọn ảnh");
+    return;
+  }
+  // Kiểm tra nếu giá và số lượng là số dương
+  if (isNaN(productPrice) || isNaN(productQuantity) || productPrice <= 0 || productQuantity <= 0) {
+    alert("Vui lòng nhập giá và số lượng hợp lệ.");
+    return;
+  }
+
   // Tìm sản phẩm cần sửa trong mảng storedProducts
   const index = storedProducts.findIndex((product) => product.id === updatedProduct.id);
 
@@ -1550,20 +1572,21 @@ function updateProduct(updatedProduct) {
     // Cập nhật thông tin sản phẩm trong mảng storedProducts
     storedProducts[index] = {
       id: updatedProduct.id,
-      name: document.getElementById("productNameEdit").value,
-      price: document.getElementById("productPriceEdit").value,
-      quantity: document.getElementById("productQuantityEdit").value,
-      categoryName: document.getElementById("categoryNameEdit").value,
-      img: updatedProduct.img, // Keep the original image URL
+      name: productName,
+      price: productPrice,
+      quantity: productQuantity,
+      categoryName: categoryName,
+      img: updatedProduct.img, // Giữ nguyên URL hình ảnh ban đầu
     };
 
     // Cập nhật dữ liệu trong local storage
     localStorage.setItem("products", JSON.stringify(storedProducts));
-    alert("Cập nhật thành công")
+    alert("Cập nhật thành công");
     closeModal();
-    loadProductList()
+    loadProductList();
   }
 }
+
 function closeModal() {
   const modal = document.getElementById("editProductModal");
   modal.style.display = "none";
