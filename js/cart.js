@@ -1,6 +1,6 @@
 const table = document.getElementsByClassName('table');
-const tong_tien = document.getElementsByClassName('tong_tien');
-const so_luong = document.getElementsByClassName('so_luong');
+const tong_tien = document.getElementById('tongtien');
+const so_luong = document.getElementById('soluong');
 const order = document.getElementById('order');
 
 // fake so lieu
@@ -278,7 +278,7 @@ function reloadCard() {
     let tr = document.createElement('tr');
 
     tr.innerHTML = `
-                <td><img src=".${product.img}"/></td>
+                <td><img src="${product.img}"/></td>
                 <td>${product.name}</td>
                 <td>${product.price.toLocaleString()}</td>
                 <td>               <div class="item">
@@ -295,8 +295,8 @@ function reloadCard() {
     table[0].appendChild(tr);
   });
 
-  tong_tien[0].innerHTML = `Tổng tiền:${totalPrice.toLocaleString()}đ`;
-  so_luong[0].innerHTML = `Tổng sản phẩm:${count.toLocaleString()}`;
+  tong_tien.innerHTML = `${totalPrice.toLocaleString()}đ`;
+  so_luong.innerHTML = `${count.toLocaleString()}`;
 }
 reloadCard();
 function changeQuantity(key, quantity) {

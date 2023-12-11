@@ -1,5 +1,3 @@
-import { user } from '../js/array_demo.js';
-
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('.form_signup');
   const emailField = form.querySelector('input[name="email"]');
@@ -18,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   passwordField.addEventListener('input', function () {
     let password = this.value;
-
     validationItems.forEach((item) => {
       let condition = item.getAttribute('data-condition');
       let conditionRegex = getConditionRegex(condition);
@@ -37,12 +34,42 @@ document.addEventListener('DOMContentLoaded', function () {
       getConditionRegex('One number').test(password)
     ) {
       passwordValid = true;
+    } else {
+      passwordValid = false;
     }
   });
 
   // user list
 
-  const usersList = JSON.parse(localStorage.getItem('users')) || user;
+  const usersList = JSON.parse(localStorage.getItem('users')) || [
+    {
+      user_id: 1,
+      username: 'admin',
+      password: 'Lahuuminh1.',
+      email: 'lahuuminh678@gmail.com',
+      phone: '0782713663',
+      status: 'active',
+      role: 'admin',
+    },
+    {
+      user_id: 2,
+      username: 'lytruong',
+      password: 'Lahuuminh1.',
+      email: 'truonglykhong2003@gmail.com',
+      phone: '0782713663',
+      status: 'active',
+      role: 'admin',
+    },
+    {
+      user_id: 3,
+      username: 'admin',
+      password: 'Lahuuminh1.',
+      email: 'admin@gmail.com',
+      phone: '0782713663',
+      status: 'active',
+      role: 'admin',
+    },
+  ];
   console.log(usersList);
   form.addEventListener('submit', function (event) {
     event.preventDefault(); // prevent default form submission
@@ -82,12 +109,12 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       passwordField.classList.remove('input_error');
     }
-
+    console.log(valid);
     if (valid) {
       // form.submit(); // send form when there is no error
       if (button.getAttribute('data-action') == 'login') {
         let user = usersList.find((x) => x.email == emailField.value);
-
+        console.log(user);
         if (user) {
           if (user.password == passwordField.value) {
             localStorage.setItem('currentuser', JSON.stringify(user));

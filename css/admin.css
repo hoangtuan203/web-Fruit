@@ -129,16 +129,77 @@
   top: 10px;
   font-family: math;
 }
-#quantityValue {
-  color: var(--main-color);
-  font-size: 25px;
-  margin-left: 8px;
-}
-#productQuantity {
-  align-items: center;
+.button-header {
   display: flex;
-  font-size: 20px;
+  align-items: center;
+  justify-content: center;
 }
+#quantityValue {
+  color: black;
+  font-size: 20px;
+  margin-left: 8px;
+  margin-bottom: 2px;
+}
+#productQuantity-item {
+  border: 1px solid #aaa;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: flex;
+  font-size: 18px;
+}
+#quantityValue:hover {
+  color: #039201;
+}
+.search-product {
+  position: relative;
+  right: -20%;
+  padding: 6px;
+  border-radius: 5px;
+  transition: transform 0.3s ease-in-out;
+}
+.search-product:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+/* modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+.modal-content-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.filter-product{
+  margin-left: 10px;
+  background: none;
+}
+
 .btn-add {
   padding: 8px 16px;
   background-color: #4caf50;
@@ -215,9 +276,9 @@ input {
   margin: 10px 0;
 }
 
-input[type='text'],
-input[type='number'],
-input[type='file'] {
+input[type="text"],
+input[type="number"],
+input[type="file"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -225,16 +286,16 @@ input[type='file'] {
 }
 
 /* Định dạng cho hình ảnh được tải lên */
-input[type='file'] {
+input[type="file"] {
   padding: 0;
 }
 
 /* Chỉnh màu chữ mặc định cho required field */
-label[for='product_id'],
-label[for='product_name'],
-label[for='product_price_new'],
-label[for='product_image'],
-label[for='product_price_old'] {
+label[for="product_id"],
+label[for="product_name"],
+label[for="product_price_new"],
+label[for="product_image"],
+label[for="product_price_old"] {
   color: #007bff;
 }
 .list-btn {
@@ -275,18 +336,18 @@ label[for='product_price_old'] {
   cursor: pointer;
   width: 100%;
 }
-.headerUpload{
+.headerUpload {
   display: flex;
   align-items: center;
   justify-content: centerclose;
 }
-.closeImage{
+.closeImage {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
-.closeImage:hover{
+.closeImage:hover {
   cursor: pointer;
   color: red;
 }
@@ -339,7 +400,6 @@ table {
   margin-top: 32px;
   border-collapse: collapse;
   width: 100%;
-  /* background-color: rgba(255, 255, 255, 0.5); */
 }
 
 th,
@@ -355,9 +415,10 @@ th {
 
 tr {
   color: #ff8000;
+  background:none !important; 
 }
 tr:hover {
-  background-color: #d8d7d7f4;  
+  background-color: #d8d7d7f4;
 }
 
 thead {
@@ -403,18 +464,23 @@ tbody tr:last-child td {
 .modal-content {
   background-color: #fefefe;
   margin: 10% auto;
-  padding: 20px;
+  padding: 20px 20px 40px 20px;
   width: 40%;
   border: 1px solid #888;
   border-radius: 10px; /* Add rounded corners */
 }
-.modal-content h2 {
+.title-form-add {
   color: var(--main-color);
   margin-bottom: 10px;
   align-items: center;
   text-align: center;
 }
-
+.title-form-edit{
+  color: rgb(206, 206, 27);
+  margin-bottom: 10px;
+  align-items: center;
+  text-align: center;
+}
 .close {
   color: #aaa;
   float: right;
@@ -433,14 +499,16 @@ tbody tr:last-child td {
   border: 1px solid;
   border-radius: 5px;
   padding: 8px;
-  display: flex;
+  /* display: flex; */
   color: white;
   font-weight: 600;
 }
+
 .btn-add-product-new:hover {
   opacity: 0.8;
   cursor: pointer;
 }
+
 .btn-edit-product {
   background-color: rgb(206, 206, 27);
   border: 1px solid;
@@ -466,11 +534,23 @@ tbody tr:last-child td {
 .btn-delete-product:hover {
   opacity: 0.8;
 }
-.product-checkbox{  
+.product-checkbox {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 26px;
+  /* border: none; */
+}
+
+/* start user */
+.btn-add-user-new{
+  background-color: #4caf50;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 8px;
+  /* display: flex; */
+  color: white;
+  font-weight: 600;
 }
 /* end product  */
 /* pagination */

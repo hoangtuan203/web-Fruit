@@ -1,289 +1,293 @@
-const storedProductsJSON = localStorage.getItem('products');
+const storedProductsJSON = localStorage.getItem("products");
 const storedProducts = JSON.parse(storedProductsJSON);
-const thongkeitem = document.getElementById('thongke');
-const content = document.getElementsByClassName('content')[0];
-const donhangitem = document.getElementById('donhang');
-const showProduct = document.getElementById('productId');
+const thongkeitem = document.getElementById("thongke");
+const content = document.getElementsByClassName("content")[0];
+const donhangitem = document.getElementById("donhang");
+const showProduct = document.getElementById("productId");
 const productsPerPage = 10;
+
+const showUser = document.getElementById("userId");
+const storedUsersJSON = localStorage.getItem("users");
+const storedUsers = JSON.parse(storedUsersJSON);
 //hien thi menu left
 
-const menu_left = document.getElementById('menuLeft');
+const menu_left = document.getElementById("menuLeft");
 function PhongSide() {
-  menu_left.style.width = '250px';
-  var menuItems = document.querySelectorAll('.list-menu-item');
+  menu_left.style.width = "250px";
+  var menuItems = document.querySelectorAll(".list-menu-item");
   menuItems.forEach(function (item) {
-    item.classList.remove('hide-text');
+    item.classList.remove("hide-text");
   });
 }
 // Ẩn menu left
 function ThuSide() {
-  menu_left.style.width = '80px';
-  var menuItems = document.querySelectorAll('.list-menu-item');
+  menu_left.style.width = "80px";
+  var menuItems = document.querySelectorAll(".list-menu-item");
   menuItems.forEach(function (item) {
-    item.classList.add('hide-text');
+    item.classList.add("hide-text");
   });
 }
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   ThuSide();
 });
 
 //thong ke
-const chitiethoadon = JSON.parse(localStorage.getItem('chitiethoadon')) || [];
-const hoadon = JSON.parse(localStorage.getItem('hoadon')) || [];
-const theloai = JSON.parse(localStorage.getItem('theloai')) || [
-  { id: 1, categoryName: 'fresh-fruit' },
-  { id: 2, categoryName: 'imported-fruit' },
-  { id: 3, categoryName: 'box-fruit' },
+const chitiethoadon = JSON.parse(localStorage.getItem("chitiethoadon")) || [];
+const hoadon = JSON.parse(localStorage.getItem("hoadon")) || [];
+const theloai = JSON.parse(localStorage.getItem("theloai")) || [
+  { id: 1, categoryName: "fresh-fruit" },
+  { id: 2, categoryName: "imported-fruit" },
+  { id: 3, categoryName: "box-fruit" },
 ];
 
-const sanpham = JSON.parse(localStorage.getItem('products')) || [
+const sanpham = JSON.parse(localStorage.getItem("products")) || [
   {
     id: 1,
-    name: 'Chôm Chôm',
+    name: "Chôm Chôm",
     price: 5000,
     quantity: 10,
-    img: './image/product-fresh/chom-chom.jpg',
-    categoryName: 'fresh-fruit',
+    img: "./image/product-fresh/chom-chom.jpg",
+    categoryName: "fresh-fruit",
   },
   {
     id: 2,
-    name: 'Dưa Hấu',
+    name: "Dưa Hấu",
     price: 8000,
     quantity: 15,
-    img: './image/product-fresh/dua-hau.jpg',
-    categoryName: 'fresh-fruit',
+    img: "./image/product-fresh/dua-hau.jpg",
+    categoryName: "fresh-fruit",
   },
   {
     id: 3,
-    name: 'Dưa Lưới',
+    name: "Dưa Lưới",
     price: 7000,
     quantity: 12,
-    img: './image/product-fresh/dua-luoi.jpg',
-    categoryName: 'fresh-fruit',
+    img: "./image/product-fresh/dua-luoi.jpg",
+    categoryName: "fresh-fruit",
   },
   {
     id: 4,
-    name: 'Hồng Giòn',
+    name: "Hồng Giòn",
     price: 6000,
     quantity: 20,
-    img: './image/product-fresh/hong-gion.jpg',
-    categoryName: 'fresh-fruit',
+    img: "./image/product-fresh/hong-gion.jpg",
+    categoryName: "fresh-fruit",
   },
   {
     id: 5,
-    name: 'Hồng Trung',
+    name: "Hồng Trung",
     price: 7500,
     quantity: 8,
-    img: './image/product-fresh/Hong-Trung.jpg',
-    categoryName: 'fresh-fruit',
+    img: "./image/product-fresh/Hong-Trung.jpg",
+    categoryName: "fresh-fruit",
   },
   {
     id: 6,
-    name: 'Măng Cụt',
+    name: "Măng Cụt",
     price: 10000,
     quantity: 18,
-    img: './image/product-fresh/mang-cut.jpg',
-    categoryName: 'fresh-fruit',
+    img: "./image/product-fresh/mang-cut.jpg",
+    categoryName: "fresh-fruit",
   },
   {
     id: 7,
-    name: 'Nhãn Xuồng',
+    name: "Nhãn Xuồng",
     price: 9000,
     quantity: 14,
-    img: './image/product-fresh/Nhan-Xuong.jpg',
-    categoryName: 'fresh-fruit',
+    img: "./image/product-fresh/Nhan-Xuong.jpg",
+    categoryName: "fresh-fruit",
   },
   {
     id: 8,
-    name: 'Sầu Riêng',
+    name: "Sầu Riêng",
     price: 11000,
     quantity: 22,
-    img: './image/product-fresh/Sau-Rieng.jpg',
-    categoryName: 'fresh-fruit',
+    img: "./image/product-fresh/Sau-Rieng.jpg",
+    categoryName: "fresh-fruit",
   },
   {
     id: 9,
-    name: 'Vú Sữa',
+    name: "Vú Sữa",
     price: 12000,
     quantity: 7,
-    img: './image/product-fresh/vu-sua.jpg',
-    categoryName: 'fresh-fruit',
+    img: "./image/product-fresh/vu-sua.jpg",
+    categoryName: "fresh-fruit",
   },
   {
     id: 10,
-    name: 'Cam Xoàn',
+    name: "Cam Xoàn",
     price: 12000,
     quantity: 7,
-    img: './image/product-fresh/Cam-Xoan.jpg',
-    categoryName: 'fresh-fruit',
+    img: "./image/product-fresh/Cam-Xoan.jpg",
+    categoryName: "fresh-fruit",
   },
   {
     id: 11,
-    name: 'Cam Ai Cập',
+    name: "Cam Ai Cập",
     price: 6500,
     quantity: 25,
-    img: '../image/product-import/cam-ai-cap.jpg',
-    categoryName: 'imported-fruit',
+    img: "../image/product-import/cam-ai-cap.jpg",
+    categoryName: "imported-fruit",
   },
   {
     id: 12,
-    name: 'Cam Úc',
+    name: "Cam Úc",
     price: 8500,
     quantity: 12,
-    img: './image/product-import/cam-uc.jpg',
-    categoryName: 'imported-fruit',
+    img: "./image/product-import/cam-uc.jpg",
+    categoryName: "imported-fruit",
   },
   {
     id: 13,
-    name: 'Cherry Đỏ Mỹ',
+    name: "Cherry Đỏ Mỹ",
     price: 3000,
     quantity: 30,
-    img: './image/product-import/cherry-do-my.jpg',
-    categoryName: 'imported-fruit',
+    img: "./image/product-import/cherry-do-my.jpg",
+    categoryName: "imported-fruit",
   },
   {
     id: 14,
-    name: 'Dâu Tây',
+    name: "Dâu Tây",
     price: 9000,
     quantity: 17,
-    img: './image/product-import/dau-tay.jpg',
-    categoryName: 'imported-fruit',
+    img: "./image/product-import/dau-tay.jpg",
+    categoryName: "imported-fruit",
   },
   {
     id: 15,
-    name: 'Lê Nam Phi',
+    name: "Lê Nam Phi",
     price: 4000,
     quantity: 40,
-    img: './image/product-import/le-nam-phi.jpg',
-    categoryName: 'imported-fruit',
+    img: "./image/product-import/le-nam-phi.jpg",
+    categoryName: "imported-fruit",
   },
   {
     id: 16,
-    name: 'Lựu Thái',
+    name: "Lựu Thái",
     price: 6000,
     quantity: 14,
-    img: './image/product-import/luu-thai.jpg',
-    categoryName: 'imported-fruit',
+    img: "./image/product-import/luu-thai.jpg",
+    categoryName: "imported-fruit",
   },
   {
     id: 17,
-    name: 'Nho Đỏ Úc',
+    name: "Nho Đỏ Úc",
     price: 11000,
     quantity: 8,
-    img: './image/product-import/nho-do-khong-hat-uc.jpg',
-    categoryName: 'imported-fruit',
+    img: "./image/product-import/nho-do-khong-hat-uc.jpg",
+    categoryName: "imported-fruit",
   },
   {
     id: 18,
-    name: 'Nho Mẫu Đơn',
+    name: "Nho Mẫu Đơn",
     price: 7500,
     quantity: 13,
-    img: './image/product-import/nho-mau-don-dai-loan.jpg',
-    categoryName: 'imported-fruit',
+    img: "./image/product-import/nho-mau-don-dai-loan.jpg",
+    categoryName: "imported-fruit",
   },
   {
     id: 19,
-    name: 'Táo Neazealand',
+    name: "Táo Neazealand",
     price: 13000,
     quantity: 9,
-    img: './image/product-import/tao-do-neazealand.jpg',
-    categoryName: 'imported-fruit',
+    img: "./image/product-import/tao-do-neazealand.jpg",
+    categoryName: "imported-fruit",
   },
   {
     id: 20,
-    name: 'Viết Quất',
+    name: "Viết Quất",
     price: 9500,
     quantity: 16,
-    img: './image/product-import/viet-quat.jpg',
-    categoryName: 'imported-fruit',
+    img: "./image/product-import/viet-quat.jpg",
+    categoryName: "imported-fruit",
   },
   {
     id: 21,
-    name: 'Giỏ Trái Cây Thăm Tặng',
+    name: "Giỏ Trái Cây Thăm Tặng",
     price: 12000,
     quantity: 14,
-    img: './image/product-cart/CT01-CTT-500k.jpg',
-    categoryName: 'box-fruit',
+    img: "./image/product-cart/CT01-CTT-500k.jpg",
+    categoryName: "box-fruit",
   },
   {
     id: 22,
-    name: 'Giỏ Trái Cây Gia Đình',
+    name: "Giỏ Trái Cây Gia Đình",
     price: 9000,
     quantity: 20,
-    img: './image/product-cart/gio-trai-cay-579.jpg',
-    categoryName: 'box-fruit',
+    img: "./image/product-cart/gio-trai-cay-579.jpg",
+    categoryName: "box-fruit",
   },
   {
     id: 23,
-    name: 'Giỏ Quà Trái Cây',
+    name: "Giỏ Quà Trái Cây",
     price: 8500,
     quantity: 11,
-    img: './image/product-cart/gio-trai-cay-citi-fruit.jpg',
-    categoryName: 'box-fruit',
+    img: "./image/product-cart/gio-trai-cay-citi-fruit.jpg",
+    categoryName: "box-fruit",
   },
   {
     id: 24,
-    name: 'Hộp Trái Cây-Nho',
+    name: "Hộp Trái Cây-Nho",
     price: 15000,
     quantity: 20,
-    img: './image/product-cart/hop-trai-cay-qua-tang-nho-xanh.jpg',
-    categoryName: 'box-fruit',
+    img: "./image/product-cart/hop-trai-cay-qua-tang-nho-xanh.jpg",
+    categoryName: "box-fruit",
   },
   {
     id: 25,
-    name: 'Hộp Trái Cây Quà Tặng',
+    name: "Hộp Trái Cây Quà Tặng",
     price: 12000,
     quantity: 15,
-    img: './image/product-cart/hop-trai-cay-qua-tang.jpg',
-    categoryName: 'box-fruit',
+    img: "./image/product-cart/hop-trai-cay-qua-tang.jpg",
+    categoryName: "box-fruit",
   },
   {
     id: 26,
-    name: 'Hộp Nho Không Hạt',
+    name: "Hộp Nho Không Hạt",
     price: 18000,
     quantity: 12,
-    img: './image/product-cart/hop-trai-cay-qua-tang-nho-xanh-khong-hat.jpg',
-    categoryName: 'box-fruit',
+    img: "./image/product-cart/hop-trai-cay-qua-tang-nho-xanh-khong-hat.jpg",
+    categoryName: "box-fruit",
   },
   {
     id: 27,
-    name: 'Hộp Trái Cây',
+    name: "Hộp Trái Cây",
     price: 16000,
     quantity: 18,
-    img: './image/product-cart/hop-trai-cay-qua-tang-hc03.jpg',
-    categoryName: 'box-fruit',
+    img: "./image/product-cart/hop-trai-cay-qua-tang-hc03.jpg",
+    categoryName: "box-fruit",
   },
   {
     id: 28,
-    name: 'Giỏ Quà Thăm Tặng',
+    name: "Giỏ Quà Thăm Tặng",
     price: 13000,
     quantity: 25,
-    img: './image/product-cart/qua-tang.jpg',
-    categoryName: 'box-fruit',
+    img: "./image/product-cart/qua-tang.jpg",
+    categoryName: "box-fruit",
   },
   {
     id: 29,
-    name: 'Giỏ Quà Đơn Giản',
+    name: "Giỏ Quà Đơn Giản",
     price: 14000,
     quantity: 14,
-    img: './image/product-cart/thiet-ke.png',
-    categoryName: 'box-fruit',
+    img: "./image/product-cart/thiet-ke.png",
+    categoryName: "box-fruit",
   },
   {
     id: 30,
-    name: 'Giỏ Quà Sinh Nhật',
+    name: "Giỏ Quà Sinh Nhật",
     price: 14000,
     quantity: 14,
-    img: './image/product-cart/sinh-nhat.jpg',
-    categoryName: 'box-fruit',
+    img: "./image/product-cart/sinh-nhat.jpg",
+    categoryName: "box-fruit",
   },
   {
     id: 31,
-    name: 'Chôm',
+    name: "Chôm",
     price: 5000,
     quantity: 10,
-    img: './image/product-fresh/chom-chom.jpg',
-    categoryName: 'fresh-fruit',
+    img: "./image/product-fresh/chom-chom.jpg",
+    categoryName: "fresh-fruit",
   },
 ];
 
@@ -316,7 +320,7 @@ let thongke = (ngaybatdau, ngayketthuc, nhom) => {
     });
 
   let sanphamnhom;
-  if (nhom == 'all') {
+  if (nhom == "all") {
     sanphamnhom = sanpham.map((y) => {
       return y.id;
     });
@@ -343,11 +347,11 @@ let thongke = (ngaybatdau, ngayketthuc, nhom) => {
 let loaddata = (map) => {
   const itemsPerPage = 5; // Số sản phẩm trên mỗi trang
   let currentPage = 1; // Trang hiện tại
-  let nhom = document.getElementById('nhom');
+  let nhom = document.getElementById("nhom");
   // const table = document.getElementsByClassName('table');
   let nhomhientai = nhom.value;
   let sanphamnhom;
-  if (nhomhientai == 'all') {
+  if (nhomhientai == "all") {
     sanphamnhom = sanpham;
   } else {
     sanphamnhom = sanpham.filter((x) => {
@@ -356,9 +360,9 @@ let loaddata = (map) => {
   }
 
   function displayProducts(page) {
-    const tableBody = document.getElementById('tableBody');
-    const pagination = document.getElementById('pagination');
-    tableBody.innerHTML = '';
+    const tableBody = document.getElementById("tableBody");
+    const pagination = document.getElementById("pagination");
+    tableBody.innerHTML = "";
 
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
@@ -385,14 +389,14 @@ let loaddata = (map) => {
     });
 
     const totalPages = Math.ceil(sanphamnhom.length / itemsPerPage);
-    pagination.innerHTML = '';
+    pagination.innerHTML = "";
 
     for (let i = 1; i <= totalPages; i++) {
-      const btn = document.createElement('button');
+      const btn = document.createElement("button");
       btn.innerText = i;
-      if (currentPage == i) btn.style.backgroundColor = '#039201';
+      if (currentPage == i) btn.style.backgroundColor = "#039201";
 
-      btn.addEventListener('click', function () {
+      btn.addEventListener("click", function () {
         currentPage = i;
         displayProducts(currentPage);
       });
@@ -406,24 +410,24 @@ let loaddata = (map) => {
 };
 
 let tainhom = () => {
-  let nhom = document.getElementById('nhom');
+  let nhom = document.getElementById("nhom");
 
-  let option = document.createElement('option');
-  option.value = 'all';
+  let option = document.createElement("option");
+  option.value = "all";
   option.innerHTML = `Tất cả thể loại`;
   nhom.appendChild(option);
   theloai.map((x) => {
-    let option = document.createElement('option');
+    let option = document.createElement("option");
     option.value = x.categoryName;
     option.innerHTML = `${x.categoryName}`;
     nhom.appendChild(option);
   });
 };
 
-thongkeitem.addEventListener('click', () => {
-  content.innerHTML = '';
-  let div = document.createElement('div');
-  div.className = 'container-thongke';
+thongkeitem.addEventListener("click", () => {
+  content.innerHTML = "";
+  let div = document.createElement("div");
+  div.className = "container-thongke";
   div.innerHTML = `<div class="left-content">
   <form action="" class="form-thongke"  method="POST">
     <div class="text-form">
@@ -467,12 +471,12 @@ thongkeitem.addEventListener('click', () => {
   content.appendChild(div);
   tainhom();
 
-  const form = document.getElementsByClassName('form-thongke')[0];
-  form.addEventListener('submit', function (e) {
+  const form = document.getElementsByClassName("form-thongke")[0];
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
     let nhomhientai = nhom.value;
-    let ngaybatdau = document.getElementById('ngaybatdau').value;
-    let ngayketthuc = document.getElementById('ngayketthuc').value;
+    let ngaybatdau = document.getElementById("ngaybatdau").value;
+    let ngayketthuc = document.getElementById("ngayketthuc").value;
 
     let map = thongke(ngaybatdau, ngayketthuc, nhomhientai);
     loaddata(map);
@@ -668,7 +672,7 @@ donhangitem.addEventListener("click", () => {
   function clickDonHangItem() {
     if (donhangitem) {
       donhangitem.click();
-      console.log('df');
+      console.log("df");
     } else {
       console.error("Không tìm thấy phần tử với ID: donhangitem");
     }
@@ -759,7 +763,6 @@ donhangitem.addEventListener("click", () => {
     updatePaginationButtons();
   }
 
-
   function updatePaginationButtons() {
     var paginationButtons = document.querySelectorAll("#pagination li");
 
@@ -836,8 +839,9 @@ donhangitem.addEventListener("click", () => {
     }
   }
 
-  document.getElementById("myTableBody").addEventListener("click", clickHandler);
-
+  document
+    .getElementById("myTableBody")
+    .addEventListener("click", clickHandler);
 
   function displayOrderDetails(chiTiet, mahoadon) {
     var chiTietContainer = document.getElementById("chiTietHoaDon");
@@ -1054,28 +1058,46 @@ donhangitem.addEventListener("click", () => {
 
 });
 
-
-//san pham
-showProduct.addEventListener('click', () => {
-  content.innerHTML = '';
-  let div = document.createElement('div');
-  div.className = 'container-thongke';
-  div.innerHTML = `<div class="product">
-    <div class="header-product">
-      <h1 class="title">QUẢN LÝ SẢN PHẨM</h1>
-      <p id="productQuantity">
-        Tổng sản phẩm:
-        <span id="quantityValue"></span>
-      </p>
-      <div class="button-header">
-        <button class="btn-add" onclick="addProduct()">Thêm SP</button>
-        <button
+{
+  /* <button
           id="imageInput"
           class="btn-upload-img"
           onclick="showUploadImage()"
         >
           Thêm Ảnh
-        </button>
+        </button> */
+}
+//san pham
+showProduct.addEventListener("click", () => {
+  content.innerHTML = "";
+  let div = document.createElement("div");
+  div.className = "container-thongke";
+  div.innerHTML = `<div class="product">
+    <div class="header-product">
+      <h1 class="title">QUẢN LÝ SẢN PHẨM</h1>
+      <p id="productQuantity-item">
+        Tất Cả
+        <span id="quantityValue"></span>
+      </p>
+      <div class="button-header">
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+        <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <svg class="search-product" onclick="showSearchProduct()" width="40px" height="40px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+            <title>search</title>
+            <desc>Created with Sketch Beta.</desc>
+            <defs>
+        
+        </defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-256.000000, -1139.000000)" fill="#000000">
+                    <path d="M269.46,1163.45 C263.17,1163.45 258.071,1158.44 258.071,1152.25 C258.071,1146.06 263.17,1141.04 269.46,1141.04 C275.75,1141.04 280.85,1146.06 280.85,1152.25 C280.85,1158.44 275.75,1163.45 269.46,1163.45 L269.46,1163.45 Z M287.688,1169.25 L279.429,1161.12 C281.591,1158.77 282.92,1155.67 282.92,1152.25 C282.92,1144.93 276.894,1139 269.46,1139 C262.026,1139 256,1144.93 256,1152.25 C256,1159.56 262.026,1165.49 269.46,1165.49 C272.672,1165.49 275.618,1164.38 277.932,1162.53 L286.224,1170.69 C286.629,1171.09 287.284,1171.09 287.688,1170.69 C288.093,1170.3 288.093,1169.65 287.688,1169.25 L287.688,1169.25 Z" id="search" sketch:type="MSShapeGroup">
+        
+        </path>
+                </g>
+            </g>
+        </svg>
+        <button class="btn-add" onclick="addProduct()">Thêm SP</button>
+        
         <button class="btn-delete-all" onclick="deleteSelectedProducts()">
           Xóa Nhiều
         </button>
@@ -1087,7 +1109,7 @@ showProduct.addEventListener('click', () => {
     <div id="addProductModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="closeAddProductModal()">&times;</span>
-        <h2>Thêm sản phẩm mới</h2>
+        <h2 class="title-form-add">Thêm sản phẩm mới</h2>
         <form id="addProductForm">
           <label for="productName">Tên Sản Phẩm:</label>
           <input
@@ -1096,26 +1118,18 @@ showProduct.addEventListener('click', () => {
             name="productName"
             placeholder="Tên Sản Phẩm"
           />
-
           <label for="productPrice">Giá:</label>
           <input
             type="number"
             id="productPrice"
             name="productPrice"
-            placeholder="Giá"
+            placeholder="Nhập Giá"
             required
           />
+          <label for="productQuantity">Số lượng:</label>
+          <input type="number" id="productQuantity" name="productQuantity"  placeholder="Nhập Số lượng" required />
 
-          <label for="productQuantity">Số Lượng:</label>
-          <input
-            type="number"
-            id="productQuantity"
-            name="productQuantity"
-            placeholder="Số Lượng"
-            required
-          />
-
-          <label for="productImage">HÌnh Ảnh:</label>
+          <label for="productImage">Hình Ảnh:</label>
           <input
             type="file"
             id="productImage"
@@ -1123,11 +1137,11 @@ showProduct.addEventListener('click', () => {
             accept="image/*"
             required
           />
-          <label for="productQuantity">Loại Sản Phẩm:</label>
+          <label for="categoryName">Loại Sản Phẩm:</label>
           <input
             type="text"
             id="categoryName"
-            name="productQuantity"
+            name="categoryName"
             placeholder="Loại Sản Phẩm"
             required
           />
@@ -1137,6 +1151,65 @@ showProduct.addEventListener('click', () => {
             onclick="addProductNew()"
           >
             Thêm Sản Phẩm
+          </button>
+        </form>
+      </div>
+    </div>
+    
+    <div id="editProductModal" class="modal">
+      <div class="modal-content">
+      <span class="close" onclick="closeEditProduct()">&times;</span>
+      <h2 class="title-form-edit">Sửa thông tin</h2>
+        <form id="addProductForm">
+          <label for="productName">Tên Sản Phẩm:</label>
+          <input
+            type="text"
+            id="productNameEdit"
+            name="productName"
+            placeholder="Tên Sản Phẩm"
+          />
+
+          <label for="productPrice">Giá:</label>
+          <input
+            type="number"
+            id="productPriceEdit"
+            name="productPrice"
+            placeholder="Giá"
+            required
+          />
+
+          <label for="productQuantity">Số Lượng:</label>
+          <input
+            type="number"
+            id="productQuantityEdit"
+            name="productQuantity"
+            placeholder="Số Lượng"
+            required
+          />
+
+          <label for="productImage">HÌnh Ảnh:</label>
+          <input
+            type="file"
+            id="productImageEdit"
+            name="productImage"
+            accept="image/*"
+            required
+          />
+          <label for="categoryName">Loại Sản Phẩm:</label>
+          <input
+            type="text"
+            id="categoryNameEdit"
+            name="categoryName"
+            placeholder="Loại Sản Phẩm"
+            required
+          />
+          <button
+            class="btn-edit-product"
+            id="id_edit_product"
+            type="button"
+            onclick="updateProductClick()"
+          >
+            Cập nhật
           </button>
         </form>
       </div>
@@ -1162,6 +1235,21 @@ showProduct.addEventListener('click', () => {
         </form>
       </div>
     </div>
+    <div id="searchModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeSearchModal" onclick="hideSearchProduct()">&times;</span>
+        <h2>Tìm kiếm</h2>
+        <div class="modal-content-item">
+          <input id="inputSearch" type="text" placeholder="Nhập tên sản phẩm muốn tìm...">
+          <button>
+            <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+            <svg class="filter-product" width="30px" height="30px" onclick="filterProduct()" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.95301 2.25C4.96862 2.25 4.98429 2.25 5.00001 2.25L19.047 2.25C19.7139 2.24997 20.2841 2.24994 20.7398 2.30742C21.2231 2.36839 21.6902 2.50529 22.0738 2.86524C22.4643 3.23154 22.6194 3.68856 22.6875 4.16405C22.7501 4.60084 22.7501 5.14397 22.75 5.76358L22.75 6.54012C22.75 7.02863 22.75 7.45095 22.7136 7.80311C22.6743 8.18206 22.5885 8.5376 22.3825 8.87893C22.1781 9.2177 21.9028 9.4636 21.5854 9.68404C21.2865 9.8917 20.9045 10.1067 20.4553 10.3596L17.5129 12.0159C16.8431 12.393 16.6099 12.5288 16.4542 12.6639C16.0966 12.9744 15.8918 13.3188 15.7956 13.7504C15.7545 13.9349 15.75 14.1672 15.75 14.8729L15.75 17.605C15.7501 18.5062 15.7501 19.2714 15.6574 19.8596C15.5587 20.4851 15.3298 21.0849 14.7298 21.4602C14.1434 21.827 13.4975 21.7933 12.8698 21.6442C12.2653 21.5007 11.5203 21.2094 10.6264 20.8599L10.5395 20.826C10.1208 20.6623 9.75411 20.519 9.46385 20.3691C9.1519 20.208 8.8622 20.0076 8.64055 19.6957C8.41641 19.3803 8.32655 19.042 8.28648 18.6963C8.24994 18.381 8.24997 18.0026 8.25 17.5806L8.25 14.8729C8.25 14.1672 8.24555 13.9349 8.20442 13.7504C8.1082 13.3188 7.90342 12.9744 7.54584 12.6639C7.39014 12.5288 7.15692 12.393 6.48714 12.0159L3.54471 10.3596C3.09549 10.1067 2.71353 9.8917 2.41458 9.68404C2.09724 9.4636 1.82191 9.2177 1.61747 8.87893C1.41148 8.5376 1.32571 8.18206 1.28645 7.80311C1.24996 7.45094 1.24998 7.02863 1.25 6.54012L1.25001 5.81466C1.25001 5.79757 1.25 5.78054 1.25 5.76357C1.24996 5.14396 1.24991 4.60084 1.31251 4.16405C1.38064 3.68856 1.53576 3.23154 1.92618 2.86524C2.30983 2.50529 2.77695 2.36839 3.26024 2.30742C3.71592 2.24994 4.28607 2.24997 4.95301 2.25ZM3.44796 3.79563C3.1143 3.83772 3.0082 3.90691 2.95251 3.95916C2.90359 4.00505 2.83904 4.08585 2.79734 4.37683C2.75181 4.69454 2.75001 5.12868 2.75001 5.81466V6.50448C2.75001 7.03869 2.75093 7.38278 2.77846 7.64854C2.8041 7.89605 2.84813 8.01507 2.90174 8.10391C2.9569 8.19532 3.0485 8.298 3.27034 8.45209C3.50406 8.61444 3.82336 8.79508 4.30993 9.06899L7.22296 10.7088C7.25024 10.7242 7.2771 10.7393 7.30357 10.7542C7.86227 11.0685 8.24278 11.2826 8.5292 11.5312C9.12056 12.0446 9.49997 12.6682 9.66847 13.424C9.75036 13.7913 9.75022 14.2031 9.75002 14.7845C9.75002 14.8135 9.75 14.843 9.75 14.8729V17.5424C9.75 18.0146 9.75117 18.305 9.77651 18.5236C9.79942 18.7213 9.83552 18.7878 9.8633 18.8269C9.89359 18.8695 9.95357 18.9338 10.152 19.0363C10.3644 19.146 10.6571 19.2614 11.1192 19.442C12.0802 19.8177 12.7266 20.0685 13.2164 20.1848C13.695 20.2985 13.8527 20.2396 13.9343 20.1885C14.0023 20.146 14.1073 20.0597 14.1757 19.626C14.2478 19.1686 14.25 18.5234 14.25 17.5424V14.8729C14.25 14.843 14.25 14.8135 14.25 14.7845C14.2498 14.2031 14.2496 13.7913 14.3315 13.424C14.5 12.6682 14.8794 12.0446 15.4708 11.5312C15.7572 11.2826 16.1377 11.0685 16.6964 10.7542C16.7229 10.7393 16.7498 10.7242 16.7771 10.7088L19.6901 9.06899C20.1767 8.79508 20.496 8.61444 20.7297 8.45209C20.9515 8.298 21.0431 8.19532 21.0983 8.10391C21.1519 8.01507 21.1959 7.89605 21.2215 7.64854C21.2491 7.38278 21.25 7.03869 21.25 6.50448V5.81466C21.25 5.12868 21.2482 4.69454 21.2027 4.37683C21.161 4.08585 21.0964 4.00505 21.0475 3.95916C20.9918 3.90691 20.8857 3.83772 20.5521 3.79563C20.2015 3.75141 19.727 3.75 19 3.75H5.00001C4.27297 3.75 3.79854 3.75141 3.44796 3.79563Z" fill="#1C274C"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
     <div class="pagination">
       <ul class="listPage">
         <li class="active listPage-item">1</li>
@@ -1174,6 +1262,11 @@ showProduct.addEventListener('click', () => {
   content.appendChild(div);
   loadProductList(1);
 });
+document.addEventListener("DOMContentLoaded", function () {
+  // Gọi sự kiện click mặc định cho showUser
+  showProduct.click();
+});
+//get len username
 
 //phan trang
 
@@ -1181,20 +1274,20 @@ function getTotalPages() {
   return Math.ceil(storedProducts.length / productsPerPage);
 }
 function createPagination(totalPages, currentPage) {
-  const paginationContainer = document.querySelector('.pagination');
-  paginationContainer.innerHTML = ''; // Clear existing pagination
+  const paginationContainer = document.querySelector(".pagination");
+  paginationContainer.innerHTML = ""; // Clear existing pagination
 
-  const ul = document.createElement('ul');
-  ul.classList.add('listPage');
+  const ul = document.createElement("ul");
+  ul.classList.add("listPage");
 
   for (let i = 1; i <= totalPages; i++) {
-    const li = document.createElement('li');
-    li.classList.add('listPage-item');
+    const li = document.createElement("li");
+    li.classList.add("listPage-item");
     if (i === currentPage) {
-      li.classList.add('active');
+      li.classList.add("active");
     }
     li.textContent = i;
-    li.addEventListener('click', function () {
+    li.addEventListener("click", function () {
       loadProductList(i);
     });
     ul.appendChild(li);
@@ -1204,16 +1297,14 @@ function createPagination(totalPages, currentPage) {
 }
 
 // Load product
-function loadProductList(currentPage) {
-  const bodyProduct = document.getElementById('tableProduct');
-  console.log(bodyProduct);
+function loadProductList(currentPage, filter) {
+  const bodyProduct = document.getElementById("tableProduct");
 
-  const table = document.createElement('table');
-  table.id = 'tbl-product';
-  const thead = document.createElement('thead');
-  const tbody = document.createElement('tbody');
-  const headerRow = document.createElement('tr');
-
+  const table = document.createElement("table");
+  table.id = "tbl-product";
+  const thead = document.createElement("thead");
+  const tbody = document.createElement("tbody");
+  const headerRow = document.createElement("tr");
   headerRow.innerHTML = `
       <th>STT</th>
       <th>ID</th>
@@ -1230,40 +1321,59 @@ function loadProductList(currentPage) {
   table.appendChild(thead);
 
   currentPage = currentPage || 1;
+  let filteredProducts = storedProducts;
+
+  // Apply filter if provided
+  if (filter) {
+    const filterLowerCase = filter.toLowerCase();
+    filteredProducts = storedProducts.filter(
+      (item) =>
+        item.name.toLowerCase().includes(filterLowerCase) ||
+        item.price.toString() === filterLowerCase
+    );
+  }
+  if (filteredProducts.length === 0) {
+    // Display a message when no products are found
+    bodyProduct.innerHTML =
+      "<p style='text-align: center; padding: 20px;'>No products found.</p>";
+    return;
+  }
+
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
-  displayedProducts = storedProducts.slice(startIndex, endIndex);
+  displayedProducts = filteredProducts.slice(startIndex, endIndex);
+
   displayedProducts.forEach((item, index) => {
     const row = createTableRow(item, startIndex + index);
     tbody.appendChild(row);
   });
 
   table.appendChild(tbody);
-  bodyProduct.innerHTML = '';
+  bodyProduct.innerHTML = "";
   bodyProduct.appendChild(table);
 
-  const totalPages = getTotalPages();
+  const totalPages = getTotalPages(filteredProducts.length);
   createPagination(totalPages, currentPage);
-  quantityProduct();
+  quantityProduct(filteredProducts.length);
 }
 
 function createTableRow(item, index) {
-  const row = document.createElement('tr');
+  const row = document.createElement("tr");
   row.innerHTML = `
     <td>${index + 1}</td>
     <td>${item.id}</td>
     <td>${item.name}</td>
     <td>${item.price}</td>
     <td>${item.quantity}</td>
-    <td><img src=".${
+    <td><img src="${
       item.img
-    }" style="max-width: 50px; max-height: 50px; background-color:transparent;"></td>
+    }" style="max-width: 50px; max-height: 50px; background:none; background-image: none;"></td>
     <td>${item.categoryName}</td>
-    <td class="product-checkbox" >  
-      <input  type="checkbox" id="checkbox-${item.id}">
+    <td class="product-checkbox">  
+      <input type="checkbox" id="checkbox-${item.id}">
     </td>
     <td>
-      <button class="btn-edit-product" onclick="editProduct(${
+      <button id="click_edit_product" class="btn-edit-product" onclick="editProductClick(${
         item.id
       })">Sửa</button>
       <button class="btn-delete-product" onclick="deleteProduct(${
@@ -1272,8 +1382,8 @@ function createTableRow(item, index) {
     </td>
   `;
 
-  row.addEventListener('click', function () {
-    const checkbox = row.querySelector('.product-checkbox');
+  row.addEventListener("click", function () {
+    const checkbox = row.querySelector(".product-checkbox");
     checkbox.checked = !checkbox.checked;
   });
 
@@ -1281,71 +1391,83 @@ function createTableRow(item, index) {
 }
 // Call the function to load the product list
 function closeAddProductModal() {
-  const modal = document.getElementById('addProductModal');
-  modal.style.display = 'none';
-}
-function addProduct() {
-  const modal = document.getElementById('addProductModal');
-  modal.style.display = 'block';
+  const modal = document.getElementById("addProductModal");
+  modal.style.display = "none";
 }
 
+function addProduct() {
+  const modal = document.getElementById("addProductModal");
+  modal.style.display = "block";
+}
 //them san pham
 function addProductNew() {
-  const productName = document.getElementById('productName').value.trim();
-  const productPrice = parseFloat(
-    document.getElementById('productPrice').value
-  );
-  const productQuantityInput = document.getElementById('productQuantity').value;
-  const productQuantity =
-    productQuantityInput.trim() !== '' ? parseInt(productQuantityInput) : 0;
+  const productName = document.getElementById("productName").value.trim();
+  const productPrice = document.getElementById("productPrice").value;
+  const productQuantity = document.getElementById("productQuantity").value;
 
-  const productImageInput = document.getElementById('productImage');
+  const productImageInput = document.getElementById("productImage");
+  const categoryName = document.getElementById("categoryName").value;
   const productImage = productImageInput.files[0]
     ? productImageInput.files[0].name
-    : '';
+    : "";
+  if (productName == "") {
+    alert("Vui lòng nhập tên sản phẩm.");
+    return;
+  }
+  if (
+    productPrice === "" ||
+    isNaN(productPrice) ||
+    !Number.isInteger(parseFloat(productPrice))
+  ) {
+    alert("Vui lòng nhập giá tiền");
+    return;
+  }
 
-  const categoryName = document.getElementById('categoryName').value.trim();
-
-  // // Input validation
-  // if (!productName || isNaN(productPrice) || isNaN(productQuantity) || !categoryName) {
-  //   alert("Vui lòng nhập đầy đủ thông tin và giá trị hợp lệ.");
-  //   return;
-  // }
-
+  // Kiểm tra nếu productQuantity không phải là số nguyên
+  if (productQuantity === "" || isNaN(productQuantity) || !Number.isInteger(parseFloat(productQuantity))) {
+    alert("Vui lòng nhập số lượng ");
+    return;
+  }
+  if (categoryName == "") {
+    alert("Vui lòng nhập loại sản phẩm.");
+    return;
+  }
+  if (productImage == "") {
+    alert("Vui lòng chọn ảnh.");
+    return;
+  }
   const maxId = storedProducts.reduce(
     (max, product) => (product.id > max ? product.id : max),
     0
   );
-
-  const imagePath = '../image/product-fresh/';
-  console.log(imagePath + productImage);
+  let linkImage = "../image/product-fresh/" + productImage;
 
   const newProduct = {
     id: maxId + 1,
     name: productName,
     price: productPrice,
     quantity: productQuantity,
-    img: imagePath + productImage,
+    img: linkImage,
     categoryName: categoryName,
   };
 
   storedProducts.push(newProduct);
-  localStorage.setItem('products', JSON.stringify(storedProducts));
-  alert('Thêm sản phẩm thành công!');
-  loadProductList();
+  localStorage.setItem("products", JSON.stringify(storedProducts));
+  alert("Thêm sản phẩm thành công!");
   closeAddProductModal();
+  loadProductList();
 }
 
 //delete product
 function deleteProduct(productId) {
   const index = storedProducts.findIndex((product) => product.id === productId);
   if (index !== -1) {
-    const confirmation = window.confirm('Bạn muốn xóa sản phẩm này?');
+    const confirmation = window.confirm("Bạn muốn xóa sản phẩm này?");
 
     if (confirmation) {
       const deletedProduct = storedProducts.splice(index, 1)[0]; // Remove and get the deleted product
-      localStorage.setItem('products', JSON.stringify(storedProducts));
-      const table = document.getElementById('tbl-product');
+      localStorage.setItem("products", JSON.stringify(storedProducts));
+      const table = document.getElementById("tbl-product");
       if (table) {
         table.parentNode.removeChild(table);
       }
@@ -1353,62 +1475,409 @@ function deleteProduct(productId) {
     }
   }
 }
-//xoa nhieu san pham
-function deleteSelectedProducts() {
-  const checkboxes = document.querySelectorAll('.product-checkbox:checked');
-  const selectedProductIds = Array.from(checkboxes).map((checkbox) =>
-    parseInt(checkbox.dataset.id, 10)
-  );
+function closeEditProduct() {
+  const modal = document.getElementById("editProductModal");
+  modal.style.display = "none";
+}
 
-  if (selectedProductIds.length === 0) {
-    alert('Vui lòng chọn ít nhất một sản phẩm để xóa.');
+//sua san pham
+
+function updateProductClick(){
+  const productId = document.getElementById("click_edit_product")
+  editProductClick(productId)
+}
+
+function editProductClick(productId) {
+  const modal = document.getElementById("editProductModal");
+  modal.style.display = "block";
+
+  const editedProduct = storedProducts.find((product) => product.id === productId);
+
+  if (editedProduct) {
+    displayProductDataOnForm(editedProduct);
+
+    const updateButton = document.getElementById("id_edit_product");
+    updateButton.removeEventListener("click", function () {});
+    updateButton.addEventListener("click", function () {
+      const updatedProduct = collectProductDataFromForm(productId);
+      updateProduct(updatedProduct);
+    });
+  }
+}
+
+
+function collectProductDataFromForm(id_product) {
+  // Collect the updated product data from the form
+  const updatedProduct = {
+    id: id_product,
+    name: document.getElementById("productNameEdit").value,
+    price: document.getElementById("productPriceEdit").value,
+    quantity: document.getElementById("productQuantityEdit").value,
+    categoryName: document.getElementById("categoryNameEdit").value,
+    img: "", 
+  };
+
+  const productImageInput = document.getElementById("productImageEdit");
+  if (productImageInput.files.length > 0) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      // Set the 'img' property to the data URL of the selected image
+      updatedProduct.img = e.target.result;
+      updateProduct(updatedProduct);
+    };
+
+    // Read the selected file as a data URL
+    reader.readAsDataURL(productImageInput.files[0]);
+  } else {
+    // No new image selected, update the product without changing the image
+    updateProduct(updatedProduct);
+  }
+
+  return updatedProduct;
+}
+
+
+function displayProductDataOnForm(product) {
+  document.getElementById("productNameEdit").value = product.name;
+  document.getElementById("productPriceEdit").value = product.price;
+  document.getElementById("productQuantityEdit").value = product.quantity;
+  document.getElementById("categoryNameEdit").value = product.categoryName;
+
+  // Display the product image preview
+  const productImageEdit = document.getElementById("productImageEdit");
+  productImageEdit.src = product.img;
+}
+
+function updateProduct(updatedProduct) {
+  // Lấy giá trị từ các trường nhập liệu
+  const productName = document.getElementById("productNameEdit").value;
+  const productPrice = document.getElementById("productPriceEdit").value;
+  const productQuantity = document.getElementById("productQuantityEdit").value;
+  const categoryName = document.getElementById("categoryNameEdit").value;
+  const productImage = document.getElementById("productImageEdit").files[0]; // Lấy file ảnh
+
+  // Kiểm tra nếu có bất kỳ trường nào bỏ trống
+  if (!productName || !productPrice || !productQuantity || !categoryName) {
+    alert("Vui lòng điền đầy đủ thông tin sản phẩm.");
+    return;
+  }
+  if(!productImage){
+    alert("Vui lòng chọn ảnh");
+    return;
+  }
+  // Kiểm tra nếu giá và số lượng là số dương
+  if (isNaN(productPrice) || isNaN(productQuantity) || productPrice <= 0 || productQuantity <= 0) {
+    alert("Vui lòng nhập giá và số lượng hợp lệ.");
     return;
   }
 
-  const confirmation = window.confirm(
-    'Bạn có chắc chắn muốn xóa các sản phẩm đã chọn?'
-  );
+  // Tìm sản phẩm cần sửa trong mảng storedProducts
+  const index = storedProducts.findIndex((product) => product.id === updatedProduct.id);
 
-  if (confirmation) {
-    const updatedProducts = storedProducts.filter(
-      (product) => !selectedProductIds.includes(product.id)
-    );
-    localStorage.setItem('products', JSON.stringify(updatedProducts));
+  // Kiểm tra nếu sản phẩm được tìm thấy
+  if (index !== -1) {
+    // Cập nhật thông tin sản phẩm trong mảng storedProducts
+    storedProducts[index] = {
+      id: updatedProduct.id,
+      name: productName,
+      price: productPrice,
+      quantity: productQuantity,
+      categoryName: categoryName,
+      img: updatedProduct.img, // Giữ nguyên URL hình ảnh ban đầu
+    };
+
+    // Cập nhật dữ liệu trong local storage
+    localStorage.setItem("products", JSON.stringify(storedProducts));
+    alert("Cập nhật thành công");
+    closeModal();
     loadProductList();
   }
 }
 
-//load quantity product
-function quantityProduct() {
-  const numberOfProducts = getNumberOfProducts();
-  document.getElementById('quantityValue').innerText = numberOfProducts;
+function closeModal() {
+  const modal = document.getElementById("editProductModal");
+  modal.style.display = "none";
 }
-function getNumberOfProducts() {
-  return storedProducts.length;
+
+//xoa nhieu san pham
+function deleteSelectedProducts() {
+  const checkboxes = document.querySelectorAll(
+    '.product-checkbox input[type="checkbox"]:checked'
+  );
+  const selectedProductIds = Array.from(checkboxes).map((checkbox) => {
+    const productId = parseInt(checkbox.id.split("-")[1].trim());
+    return productId;
+  });
+
+  if (selectedProductIds.length === 0) {
+    alert("Vui lòng chọn ít nhất một sản phẩm để xóa.");
+    return;
+  }
+  const confirmation = window.confirm(
+    "Bạn có chắc chắn muốn xóa các sản phẩm đã chọn?"
+  );
+
+  if (confirmation) {
+    const updatedProducts = storedProducts.filter((product) => {
+      const shouldKeep = !selectedProductIds.includes(product.id);
+      return shouldKeep;
+    });
+
+    localStorage.setItem("products", JSON.stringify(updatedProducts));
+    setTimeout(() => {
+      location.reload();
+      loadProductList();
+      alert("Xóa sản phẩm thành công!");
+    }, 100); 
+  }
+}
+
+//load quantity product
+function quantityProduct(totalProducts) {
+  const quantityValue = document.getElementById("quantityValue");
+  quantityValue.textContent = totalProducts;
 }
 function showUploadImage() {
-  const form = document.getElementById('addImage');
-  form.style.display = 'block';
+  const form = document.getElementById("addImage");
+  form.style.display = "block";
 }
 function closeAddImage() {
-  const form = document.getElementById('addImage');
-  form.style.display = 'none';
+  const form = document.getElementById("addImage");
+  form.style.display = "none";
 }
 //upload image
-function uploadImage() {
-  const input = document.getElementById('imageInput');
-  input.click();
+// function uploadImage() {
+//   const input = document.getElementById("imageInput");
+//   input.click();
 
-  input.addEventListener('change', () => {
-    const imagePath = document.getElementById('imagePath');
-    const selectedFile = input.files[0];
+//   input.addEventListener("change", () => {
+//     const imagePath = document.getElementById("imagePath");
+//     const selectedFile = input.files[0];
 
-    if (selectedFile) {
-      // Assuming you want to display the relative path after ../image/product-fresh/
-      const relativePath = `../image/product-fresh/${selectedFile.name}`;
-      imagePath.textContent = `Đường dẫn: ${relativePath}`;
-    } else {
-      imagePath.textContent = '';
-    }
-  });
+//     if (selectedFile) {
+//       // Assuming you want to display the relative path after ../image/product-fresh/
+//       const relativePath = `../image/product-fresh/${selectedFile.name}`;
+//       imagePath.textContent = `Đường dẫn: ${relativePath}`;
+//     } else {
+//       imagePath.textContent = "";
+//     }
+//   });
+// }
+function showSearchProduct() {
+  const show = document.getElementById("searchModal");
+  show.style.display = "block";
 }
+function hideSearchProduct() {
+  const hide = document.getElementById("searchModal");
+  hide.style.display = "none";
+}
+function filterProduct() {
+  const filterInputValue = document.getElementById("inputSearch").value;
+  loadProductList(1, filterInputValue);
+  hideSearchProduct();
+}
+
+// NGUOI DUNG
+
+showUser.addEventListener("click", () => {
+  content.innerHTML = "";
+  let div = document.createElement("div");
+  div.className = "container-thongke";
+  div.innerHTML = `<div class="product">
+    <div class="header-product">
+      <h1 class="title">QUẢN LÝ NGƯỜI DÙNG</h1>
+      <p id="productQuantity-item">
+        Tất Cả
+        <span id="quantityValue"></span>
+      </p>
+     
+     
+    </div>
+    <div id="tableUser" class="body-product">
+    </div>
+    
+    <div id="addProductModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeAddProductModal()">&times;</span>
+        <h2>Thêm Người Dùng</h2>
+        <form id="addProductForm">
+          <label for="userName">Tên người dùng:</label>
+          <input
+            type="text"
+            id="userName"
+            name="userName"
+            placeholder="Nhập tên người dùng"
+          />
+
+          <label for="userPassword">Mật khẩu:</label>
+          <input
+            type="text"
+            id="userPassword"
+            name="userPassword"
+            placeholder="Nhập mật khẩu"
+            required
+          />
+
+          <label for="userEmail">Email:</label>
+          <input
+            type="text"
+            id="userEmail"
+            name="userEmail"
+            placeholder="Nhập Email"
+            required
+          />
+
+          <label for="userPhone">SĐT</label>
+          <input
+            type="number"
+            id="userPhone"
+            name="userPhone"
+            placeholder="Nhập SĐT"
+            required
+          />
+          
+          <button
+            class="btn-add-user-new"
+            type="button"
+            onclick="addUserNew()"
+          >
+            Thêm Người dùng
+          </button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="pagination pagination-user">
+      <ul class="listPage">
+        <li class="active listPage-item">1</li>
+        <li class="listPage-item">2</li>
+        <li class="listPage-item">3</li>
+      </ul>
+    </div>
+  </div>
+  `;
+  content.appendChild(div);
+  loadUser(1);
+});
+// Load user
+function loadUser(currentPage, filter) {
+  const bodyProduct = document.getElementById("tableUser");
+
+  const table = document.createElement("table");
+  table.id = "tbl-user";
+  const thead = document.createElement("thead");
+  const tbody = document.createElement("tbody");
+  const headerRow = document.createElement("tr");
+  headerRow.innerHTML = `
+      <th>STT</th>
+      <th>ID</th>
+      <th>Tài khoản</th>
+      <th>Password</th>
+      <th>Email</th>
+      <th>Chức năng</th>
+  `;
+
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  currentPage = currentPage || 1;
+  let filteredUser = storedUsers;
+
+
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const endIndex = startIndex + productsPerPage;
+  displayedProducts = filteredUser.slice(startIndex, endIndex);
+
+  displayedProducts.forEach((item, index) => {
+    const row = createTableRowUsers(item, startIndex + index);
+    tbody.appendChild(row);
+  });
+
+  table.appendChild(tbody);
+  bodyProduct.innerHTML = "";
+  bodyProduct.appendChild(table);
+
+  const totalPages = getTotalPagesUser(filteredUser.length);
+  createPaginationUser(totalPages, currentPage);
+  quantityProduct(filteredUser.length);
+}
+
+function createTableRowUsers(item, index) {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${index + 1}</td>
+    <td>${item.user_id}</td>
+    <td>${item.username}</td>
+    <td>${item.password}</td>
+    <td>${item.email}</td>
+
+    <td>
+      <button class="btn-delete-product" onclick="deleteUser(${
+        item.id
+      })">Xóa</button>
+    </td>
+  `;
+
+  row.addEventListener("click", function () {
+    const checkbox = row.querySelector(".product-checkbox");
+    checkbox.checked = !checkbox.checked;
+  });
+
+  return row;
+}
+
+function getTotalPagesUser() {
+  return Math.ceil(storedUsers.length / productsPerPage);
+}
+function createPaginationUser(totalPages, currentPage) {
+  const paginationContainer = document.querySelector(".pagination-user");
+  paginationContainer.innerHTML = ""; // Clear existing pagination
+
+  const ul = document.createElement("ul");
+  ul.classList.add("listPage");
+
+  for (let i = 1; i <= totalPages; i++) {
+    const li = document.createElement("li");
+    li.classList.add("listPage-item");
+    if (i === currentPage) {
+      li.classList.add("active");
+    }
+    li.textContent = i;
+    li.addEventListener("click", function () {
+      loadUser(i);
+    });
+    ul.appendChild(li);
+  }
+
+  paginationContainer.appendChild(ul);
+}
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+function isValidPhoneNumber(phone) {
+  // Số điện thoại gồm 10 số và số 0 là số bắt đầu
+  const phoneRegex = /^0[0-9]{9}$/;
+  return phoneRegex.test(phone);
+}
+
+//  xóa người dùng
+function deleteUser(userId) {
+  const index = storedUsers.findIndex((user) => user.id === userId);
+  if (index !== -1) {
+    const confirmation = window.confirm("Bạn muốn xóa người dùng này?");
+
+    if (confirmation) {
+      const deletedProduct = storedUsers.splice(index, 1)[0]; // Remove and get the deleted product
+      localStorage.setItem("user", JSON.stringify(storedUsers));
+      const table = document.getElementById("tbl-user");
+      if (table) {
+        table.parentNode.removeChild(table);
+      }
+      loadUser();
+    }
+  }
+}
+function searchUsers(userId) {}

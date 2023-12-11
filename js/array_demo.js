@@ -29,5 +29,5 @@ const user = [
   },
 ];
 // product
-
-export { user };
+const userJSON = JSON.stringify(user);
+localStorage.setItem('users', userJSON);
