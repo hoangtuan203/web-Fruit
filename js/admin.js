@@ -524,7 +524,7 @@ donhangitem.addEventListener("click", () => {
                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#039201" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <input type="text" placeholder="Nhập hóa đơn..." class="search-input">
+                <input type="text" placeholder="Nhập tên khách hàng..." class="search-input">
                 <!--<button class="search-btn">Tìm Hóa Đơn</button> -->
                     
             </div>
@@ -540,7 +540,7 @@ donhangitem.addEventListener("click", () => {
                 </div>
                 <div class="all-filters">
                     <div class="filter">
-                        <button class="btn-filter">Tất cả</button>
+                        <button class="btn-filter" id="allBtn">Tất cả</button>
                     </div>
                     <div class="filter">
                         <button class="btn-filter">Chờ xử lý</button>
@@ -557,7 +557,7 @@ donhangitem.addEventListener("click", () => {
                 </div>
             </div>
             <div class="container-remove">
-                <button class="remove-all">xóa</button>
+                <button class="remove-all" id="xoaButton">xóa</button>
             </div>
             <div class="orders-table">
                 <table>
@@ -711,6 +711,25 @@ donhangitem.addEventListener("click", () => {
     }
   }
 
+  function confirmXoaHoaDon() {
+    var xacNhan = confirm("Bạn có chắc chắn muốn xóa toàn bộ hóa đơn không?");
+    if (xacNhan) {
+      if (localStorage.getItem("hoadon")) {
+        localStorage.removeItem("hoadon");
+        clickDonHangItem();
+        alert("Đã xóa toàn bộ hóa đơn!");
+      } else {
+        alert("Không có hóa đơn để xóa.");
+      }
+    } else {
+      alert("Hủy bỏ xóa hóa đơn.");
+    }
+  }
+
+  document
+    .getElementById("xoaButton")
+    .addEventListener("click", confirmXoaHoaDon);
+
   function displayData(page) {
     var start = (page - 1) * itemsPerPage;
     var end = start + itemsPerPage;
@@ -800,7 +819,6 @@ donhangitem.addEventListener("click", () => {
   });
 
   function clickHandler(event) {
-    // Kiểm tra xem sự kiện click đã được xử lý trước đó chưa
     if (event.handled !== true) {
       var target = event.target;
       if (
@@ -814,11 +832,8 @@ donhangitem.addEventListener("click", () => {
         var chiTietDonHang = chiTietHoaDon.filter(
           (item) => item.mahoadon == mahoadon
         );
-
-        // Đánh dấu sự kiện đã được xử lý
         event.handled = true;
 
-        // Gọi hàm xử lý chi tiết đơn hàng
         displayOrderDetails(chiTietDonHang, mahoadon);
       }
     }
@@ -1009,24 +1024,19 @@ donhangitem.addEventListener("click", () => {
 
   // Lắng nghe sự kiện khi người dùng chọn khoảng thời gian
   selectOrders.addEventListener("change", function () {
-    // Lọc dữ liệu trong bảng dựa trên khoảng thời gian được chọn
     filterTableByTimePeriod();
   });
 
-  // Hàm lọc dữ liệu trong bảng theo khoảng thời gian
   function filterTableByTimePeriod() {
     var selectedTimePeriod = parseInt(selectOrders.value);
     var currentDate = new Date();
 
-    // Lấy ra tất cả các dòng trong tbody
     var rows = tableBody.getElementsByTagName("tr");
 
-    // Duyệt qua từng dòng và ẩn/hiện dựa trên điều kiện khoảng thời gian
     for (var i = 0; i < rows.length; i++) {
       var purchaseDateStr = rows[i].getElementsByTagName("td")[3].innerText;
       var purchaseDate = new Date(purchaseDateStr);
 
-      // Tính số ngày giữa ngày mua và ngày hiện tại
       var daysDifference = Math.floor(
         (currentDate - purchaseDate) / (1000 * 60 * 60 * 24)
       );
