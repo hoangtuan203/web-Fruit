@@ -2,7 +2,7 @@
   box-sizing: inherit;
   margin: 0 auto;
   padding: 0;
-  font-family: 'Tahoma Geneva', sans-serif;
+  font-family: "Tahoma Geneva", sans-serif;
   color: #000;
 }
 :root {
@@ -104,7 +104,7 @@
 }
 /* CONTENT */
 /* SAN PHAM */
-.container-thongke{
+.container-thongke {
   display: flex;
   justify-content: center;
 }
@@ -183,7 +183,7 @@
   border-radius: 5px;
   text-align: center;
 }
-.modal-content-item{
+.modal-content-item {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -195,7 +195,7 @@
   font-size: 20px;
   cursor: pointer;
 }
-.filter-product{
+.filter-product {
   margin-left: 10px;
   background: none;
 }
@@ -415,7 +415,7 @@ th {
 
 tr {
   color: #ff8000;
-  background:none !important; 
+  background: none !important;
 }
 tr:hover {
   background-color: #d8d7d7f4;
@@ -475,7 +475,7 @@ tbody tr:last-child td {
   align-items: center;
   text-align: center;
 }
-.title-form-edit{
+.title-form-edit {
   color: rgb(206, 206, 27);
   margin-bottom: 10px;
   align-items: center;
@@ -502,15 +502,22 @@ tbody tr:last-child td {
   /* display: flex; */
   color: white;
   font-weight: 600;
+  display: flex;
+  margin-left: 166px;
+  margin-top: 16px;
 }
 
 .btn-add-product-new:hover {
   opacity: 0.8;
   cursor: pointer;
 }
-
+.btn-update-product{
+  display: flex;
+  margin-left: 190px;
+  margin-top: 16px;
+}
 .btn-edit-product {
-  background-color: rgb(206, 206, 27);
+    background-color: rgb(206, 206, 27);
   border: 1px solid;
   border-radius: 5px;
   padding: 8px;
@@ -518,6 +525,12 @@ tbody tr:last-child td {
   font-weight: 600;
   cursor: pointer;
   margin-right: 8px;
+  
+}
+.combobox-category{
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 4px;
 }
 .btn-edit-product:hover {
   opacity: 0.8;
@@ -543,7 +556,7 @@ tbody tr:last-child td {
 }
 
 /* start user */
-.btn-add-user-new{
+.btn-add-user-new {
   background-color: #4caf50;
   border: 1px solid;
   border-radius: 5px;
